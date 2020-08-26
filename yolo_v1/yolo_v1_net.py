@@ -61,10 +61,6 @@ class TotalLoss(nn.Module):
         """
 
 
-
-
-
-
 if __name__ == "__main__":
     net = resnet34(pretrained=True)
     model = YOLO_v1(net, 20)
