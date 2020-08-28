@@ -15,7 +15,8 @@ import math
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
 import torch
-
+from torchsummary import summary
+from torchvision.models import resnet50
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152']
 
@@ -76,13 +77,17 @@ class Bottleneck(nn.Module):
 
     def __init__(self, inplanes, planes, stride=1, downsample=None):
         super(Bottleneck, self).__init__()
+
         self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=1, bias=False)
         self.bn1 = nn.BatchNorm2d(planes)
+
         self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=stride, padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(planes)
+
         self.conv3 = nn.Conv2d(planes, planes * 4, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(planes * 4)
         self.relu = nn.ReLU(inplace=True)
+
         self.downsample = downsample
         self.stride = stride
 
@@ -119,8 +124,10 @@ class detnet_bottleneck(nn.Module):
         super(detnet_bottleneck, self).__init__()
         self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=1, bias=False)
         self.bn1 = nn.BatchNorm2d(planes)
+
         self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=stride, padding=2, bias=False, dilation=2)
         self.bn2 = nn.BatchNorm2d(planes)
+
         self.conv3 = nn.Conv2d(planes, self.expansion*planes, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(self.expansion*planes)
 
@@ -162,12 +169,13 @@ class ResNet(nn.Module):
 
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
 
-        self.layer5 = self._make_detnet_layer(in_channels=2048)
+        self.layer5 = self._make_detnet_layer(in_channels=2048)  # output shape = [batch, 256, 14, 14]
 
         # self.avgpool = nn.AvgPool2d(14) #fit 448 input size
         # self.fc = nn.Linear(512 * block.expansion, num_classes)
         self.conv_end = nn.Conv2d(256, 30, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn_end = nn.BatchNorm2d(30)
+
         for m in self.modules():  # 遍历模型
             if isinstance(m, nn.Conv2d):  # isinstance：m类型判断    若当前组件为 conv
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
@@ -186,7 +194,7 @@ class ResNet(nn.Module):
                 nn.BatchNorm2d(planes * block.expansion),
             )
 
-        layers = []
+        layers = list()
         layers.append(block(self.inplanes, planes, stride, downsample))
         self.inplanes = planes * block.expansion
         for i in range(1, blocks):
@@ -211,7 +219,7 @@ class ResNet(nn.Module):
         x = self.layer2(x)
         x = self.layer3(x)
         x = self.layer4(x)
-        x = self.layer5(x)
+        x = self.layer5(x)  # [batch_size, dim, h, w]
         # x = self.avgpool(x)
         # x = x.view(x.size(0), -1)
         # x = self.fc(x)
@@ -247,7 +255,7 @@ def resnet34(pretrained=False, **kwargs):
     return model
 
 
-def resnet50(pretrained=False, **kwargs):
+def Resnet50(pretrained=False, **kwargs):
     """Constructs a ResNet-50 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -281,8 +289,13 @@ def resnet152(pretrained=False, **kwargs):
 
 
 if __name__ == "__main__":
-    from torchsummary import summary
-    net = resnet50().cuda()
-    summary(net, (3, 418, 418))
-    # print(net)
+    net = Resnet50()
+    net2 = resnet50(pretrained=True)
+    if torch.cuda.is_available():
+        summary(net.cuda(), (3, 448, 448))
+        x = torch.rand((1, 3, 448, 448)).cuda()
+        output = net(x).cuda()
+        print('the output shape is: ', output.shape)
+    else:
+        summary(net, (3, 448, 448))
 

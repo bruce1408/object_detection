@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torchvision.models import resnet34
+from torchvision.models import resnet34, resnet50
 from torchsummary import summary
 NUM_BBOX = 2
 
@@ -62,7 +62,7 @@ class TotalLoss(nn.Module):
 
 
 if __name__ == "__main__":
-    net = resnet34(pretrained=True)
+    net = resnet50(pretrained=True)
     model = YOLO_v1(net, 20)
     if torch.cuda.is_available():
         summary(model.cuda(), (3, 448, 448))
