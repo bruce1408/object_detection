@@ -49,11 +49,14 @@ class YOLO_v1(nn.Module):
         )
 
     def forward(self, input):
-        input = self.features(input)  # [8, 2048, 14, 14]
-        input = self.Conv_layers(input)  # [8, 1024, 7, 7]
+        # input 结果 [8, 2048, 14, 14]
+        input = self.features(input)
+
+        # input 结果 [8, 1024, 7, 7]
+        input = self.Conv_layers(input)
         input = input.view(input.size()[0], -1)
         input = self.fc_layers(input)
-        return input.reshape(-1, (5*NUM_BBOX + self.num_classes), 7, 7)
+        return input.reshape(-1, (5 * NUM_BBOX + self.num_classes), 7, 7)
 
 
 class TotalLoss(nn.Module):
