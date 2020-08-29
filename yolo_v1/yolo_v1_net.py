@@ -9,6 +9,7 @@ class YOLO_v1(nn.Module):
     def __init__(self, model, num_classes):
         super(YOLO_v1, self).__init__()
         self.model = model
+        print(model)
         self.num_classes = num_classes
         self.in_size = model.fc.in_features
         self.features = nn.Sequential(*list(model.children())[:-2])
@@ -19,7 +20,7 @@ class YOLO_v1(nn.Module):
             nn.BatchNorm2d(1024),
             nn.LeakyReLU(),
 
-            nn.Conv2d(1024, 1024, 3, stride=2, padding=1),
+            nn.Conv2d(1024, 1024, 3, stride=2, padding=1),  # [7, 7, 1024]
             nn.BatchNorm2d(1024),
             nn.LeakyReLU(),
 
@@ -27,7 +28,7 @@ class YOLO_v1(nn.Module):
             nn.BatchNorm2d(1024),
             nn.LeakyReLU(),
 
-            nn.Conv2d(1024, 1024, 3, padding=1),
+            nn.Conv2d(1024, 1024, 3, padding=1),  # [7, 7, 1024],当stride=1, pad=1, kernel=3,尺寸不变
             nn.BatchNorm2d(1024),
             nn.LeakyReLU()
         )
@@ -59,10 +60,6 @@ class TotalLoss(nn.Module):
         :param labels: 样本标签 = [batch_size, 30, 7, 7]
         :return:
         """
-
-
-
-
 
 
 if __name__ == "__main__":
