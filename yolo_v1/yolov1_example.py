@@ -171,7 +171,7 @@ class ResNet(nn.Module):
 
         self.layer5 = self._make_detnet_layer(in_channels=2048)  # output shape = [batch, 256, 14, 14]
 
-        # self.avgpool = nn.AvgPool2d(14) #fit 448 input size
+        # self.avgpool = nn.AvgPool2d(14) # fit 448 input size
         # self.fc = nn.Linear(512 * block.expansion, num_classes)
         self.conv_end = nn.Conv2d(256, 30, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn_end = nn.BatchNorm2d(30)
