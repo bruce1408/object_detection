@@ -7,6 +7,7 @@ NUM_BBOX = 2
 官方使用ResNet50模型，然后修改层数的最后两层
 """
 
+
 class YOLO_v1(nn.Module):
     def __init__(self, model, num_classes):
         super(YOLO_v1, self).__init__()
@@ -16,7 +17,7 @@ class YOLO_v1(nn.Module):
         self.in_size = model.fc.in_features
         self.features = nn.Sequential(*list(model.children())[:-2])
 
-        # 4个卷积层,输入尺寸是[2, 2048, 14, 14]
+        # 4个卷积层,输入尺寸是[2, 2048, 14, 14],从这里开始以及开始自己定义的网络结构了.
         self.Conv_layers = nn.Sequential(
             # 卷积层1
             nn.Conv2d(self.in_size, 1024, 3, padding=1),
