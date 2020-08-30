@@ -3,31 +3,38 @@ import torch.nn as nn
 from torchvision.models import resnet34, resnet50
 from torchsummary import summary
 NUM_BBOX = 2
-
+"""
+官方使用ResNet50模型，然后修改层数的最后两层
+"""
 
 class YOLO_v1(nn.Module):
     def __init__(self, model, num_classes):
         super(YOLO_v1, self).__init__()
         self.model = model
+        print(model)
         self.num_classes = num_classes
         self.in_size = model.fc.in_features
         self.features = nn.Sequential(*list(model.children())[:-2])
 
-        # 4个卷积层
+        # 4个卷积层,输入尺寸是[2, 2048, 14, 14]
         self.Conv_layers = nn.Sequential(
+            # 卷积层1
             nn.Conv2d(self.in_size, 1024, 3, padding=1),
             nn.BatchNorm2d(1024),
             nn.LeakyReLU(),
 
-            nn.Conv2d(1024, 1024, 3, stride=2, padding=1),
+            # 卷积层2
+            nn.Conv2d(1024, 1024, 3, stride=2, padding=1),  # [7, 7, 1024]
             nn.BatchNorm2d(1024),
             nn.LeakyReLU(),
 
+            # 卷积层3
             nn.Conv2d(1024, 1024, 3, padding=1),
             nn.BatchNorm2d(1024),
             nn.LeakyReLU(),
 
-            nn.Conv2d(1024, 1024, 3, padding=1),
+            # 卷积层4
+            nn.Conv2d(1024, 1024, 3, padding=1),  # [7, 7, 1024],当stride=1, pad=1, kernel=3,尺寸不变
             nn.BatchNorm2d(1024),
             nn.LeakyReLU()
         )
@@ -42,14 +49,18 @@ class YOLO_v1(nn.Module):
         )
 
     def forward(self, input):
+        # input 结果 [8, 2048, 14, 14]
         input = self.features(input)
-        input = self.Conv_layers(input)  # [8, 1024, 7, 7]
+
+        # input 结果 [8, 1024, 7, 7]
+        input = self.Conv_layers(input)
         input = input.view(input.size()[0], -1)
         input = self.fc_layers(input)
-        return input.reshape(-1, (5*NUM_BBOX + self.num_classes), 7, 7)
+        return input.reshape(-1, (5 * NUM_BBOX + self.num_classes), 7, 7)
 
 
 class TotalLoss(nn.Module):
+    # TODO
     def __init__(self):
         super(TotalLoss, self).__init__()
 
