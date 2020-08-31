@@ -46,8 +46,7 @@ class YOLO_v1(nn.Module):
             nn.LeakyReLU(),
 
             nn.Linear(4096, 7*7*30),
-            nn.Sigmoid()
-        )
+            nn.Sigmoid())
 
     def forward(self, input):
         # input 结果 [8, 2048, 14, 14]

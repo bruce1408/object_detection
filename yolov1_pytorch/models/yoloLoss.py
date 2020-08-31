@@ -14,12 +14,15 @@ import torch.nn.functional as F
 
 
 class yoloLoss(nn.Module):
+    """
+    s = 7, b = 2, l_coord = 5, l_noobj = 0.5
+    """
     def __init__(self, S, B, l_coord, l_noobj):
         super(yoloLoss, self).__init__()
-        self.S = S
-        self.B = B
-        self.l_coord = l_coord
-        self.l_noobj = l_noobj
+        self.S = S  # 7
+        self.B = B  # 2
+        self.l_coord = l_coord  # 5
+        self.l_noobj = l_noobj  # 0.5
 
     def compute_iou(self, box1, box2):
         """Compute the intersection over union of two set of boxes, each box is [x1,y1,x2,y2].
@@ -141,7 +144,8 @@ class yoloLoss(nn.Module):
         # 3.class loss
         class_loss = F.mse_loss(class_pred, class_target, size_average=False)
 
-        return (self.l_coord*loc_loss + self.B*contain_loss + not_contain_loss + self.l_noobj*nooobj_loss + class_loss)/N
+        return (self.l_coord*loc_loss + self.B*contain_loss + not_contain_loss + self.l_noobj*nooobj_loss + class_loss)\
+               /N
 
 
 
