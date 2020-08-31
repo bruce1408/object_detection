@@ -36,8 +36,6 @@ file_root = 'datasets'
 learning_rate = 0.001
 num_epochs = 100
 batch_size = 24
-
-# checkpoints
 resume = False
 
 # ---------------------数据读取---------------------
@@ -58,7 +56,7 @@ print('the batch_size is %d' % batch_size)
 # ---------------------网络选择---------------------
 use_resnet = True
 if use_resnet:
-    net = resnet50()
+    net = resnet50()  # 自己定义的resnet 网络
 else:
     net = vgg16_bn()
 """

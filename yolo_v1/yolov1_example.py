@@ -290,7 +290,6 @@ def resnet152(pretrained=False, **kwargs):
 
 if __name__ == "__main__":
     net = Resnet50()
-    net2 = resnet50(pretrained=True)
     if torch.cuda.is_available():
         summary(net.cuda(), (3, 448, 448))
         x = torch.rand((1, 3, 448, 448)).cuda()
