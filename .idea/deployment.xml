@@ -5,7 +5,14 @@
       <paths name="bruce60230">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/yolo_v1" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="chenxi60565">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp/pytorch_yolov1" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

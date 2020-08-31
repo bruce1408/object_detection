@@ -144,8 +144,11 @@ class yoloLoss(nn.Module):
         # 3.class loss
         class_loss = F.mse_loss(class_pred, class_target, size_average=False)
 
-        return (self.l_coord*loc_loss + self.B*contain_loss + not_contain_loss + self.l_noobj*nooobj_loss + class_loss)\
-               /N
+        return (self.l_coord*loc_loss +
+                self.B*contain_loss +
+                not_contain_loss +
+                self.l_noobj*nooobj_loss +
+                class_loss)/N
 
 
 

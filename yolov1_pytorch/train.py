@@ -30,7 +30,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 use_gpu = torch.cuda.is_available()
 
 # 数据文件
-file_root = 'datasets'
+file_root = '/home/chenxi/tmp/tmp/datasets'
 
 # 超参数
 learning_rate = 0.001
@@ -133,7 +133,7 @@ for epoch in range(num_epochs):
 
         pred = net(images)
         # print('the pred shape is: ', pred.shape)
-        print('target shape ', target.shape)
+        # print('target shape ', target.shape)
         loss = criterion(pred, target)
         total_loss += loss.data.item()
 
@@ -141,8 +141,8 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
         if (i+1) % 5 == 0:
-            print('Epoch [%d/%d], Iter [%d/%d] Loss: %.4f, average_loss: %.4f'
-                        % (epoch+1, num_epochs, i+1, len(train_loader), loss.item(), total_loss / (i+1)))
+            print('Epoch [%d/%d], Iter [%d/%d] Loss: %.4f, average_loss: %.4f' %
+                  (epoch+1, num_epochs, i+1, len(train_loader), loss.item(), total_loss / (i+1)))
             num_iter += 1
 
     # validation

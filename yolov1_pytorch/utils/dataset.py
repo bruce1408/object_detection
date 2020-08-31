@@ -11,6 +11,7 @@
 """
 
 import os
+import cv2
 import os.path
 
 import random
@@ -18,10 +19,9 @@ import numpy as np
 
 import torch
 import torch.utils.data as data
-import torchvision.transforms as transforms
-
-import cv2
 import matplotlib.pyplot as plt
+from torch.utils.data import DataLoader
+import torchvision.transforms as transforms
 
 
 class yoloDataset(data.Dataset):
@@ -29,7 +29,7 @@ class yoloDataset(data.Dataset):
 
     # train_dataset = yoloDataset(root=datasets/,
     # list_file=['voc2012.txt','voc2007.txt'],
-    # train=True,transform = [transforms.ToTensor()] )
+    # train=True, transform = [transforms.ToTensor()] )
 
     def __init__(self, root, list_file, train, transform):
         self.root = root  # 数据集根目录
@@ -74,7 +74,7 @@ class yoloDataset(data.Dataset):
 
     def __getitem__(self, idx):
         fname = self.fnames[idx]
-        img = cv2.imread(os.path.join(self.root, "images", fname))
+        img = cv2.imread(os.path.join(self.root, "images", fname))  # [height, width, channel]
         boxes = self.boxes[idx].clone()
         labels = self.labels[idx].clone()
 
@@ -298,19 +298,15 @@ class yoloDataset(data.Dataset):
 
 
 if __name__ == '__main__':
-    from torch.utils.data import DataLoader
-    import torchvision.transforms as transforms
 
-    file_root = "../datasets"
-    # train_dataset = yoloDataset(root=file_root, list_file=['voc2012.txt', 'voc2007.txt'],
-    #                             train=True, transform=[transforms.ToTensor()])
+    file_root = "/home/chenxi/tmp/tmp/datasets"
     train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
     train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=0)
     train_iter = iter(train_loader)
     for i in range(len(train_iter)):
         try:
             img, target = next(train_iter)
-            # print(img.shape, target.shape)
+            print(img.shape, target.shape)
         except:
             print('the %d file has failed to load ', i)
             pass
