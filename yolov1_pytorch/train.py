@@ -41,14 +41,12 @@ batch_size = 24
 resume = False
 
 # ---------------------数据读取---------------------
-train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True,
-                            transform=[transforms.ToTensor()])
-# train_dataset = yoloDataset(root=file_root, list_file=['voc12_trainval.txt','voc07_trainval.txt'],
-#                           train=True,transform = [transforms.ToTensor()] )
+train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
+
+test_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False, transform=[transforms.ToTensor()])
+
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
-test_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False,
-                           transform=[transforms.ToTensor()])
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 print('the train dataset has %d images' % (len(train_dataset)))
 print('the test dataset has %d images' % (len(test_dataset)))
@@ -58,7 +56,7 @@ print('the batch_size is %d' % batch_size)
 # ---------------------网络选择---------------------
 use_resnet = True
 if use_resnet:
-    net = resnet50()
+    net = resnet50()  # 自己定义的网络结构
 else:
     net = vgg16_bn()
 """
@@ -70,9 +68,9 @@ if resume:
     net.load_state_dict(torch.load('checkpoints/best.pth'))
 else:
     print('loading pre-trained model ......')
-    if use_resnet:
-        resnet = officalModel.resnet50(pretrained=True)  # 官方模型
-        new_state_dict = resnet.state_dict()
+    if use_resnet:  # 对应自己网络结构的官方预训练模型
+        offiNet = officalModel.resnet50(pretrained=True)  # 官方模型
+        new_state_dict = offiNet.state_dict()
         dd = net.state_dict()
         for k in new_state_dict.keys():
             print(k)
@@ -136,7 +134,7 @@ for epoch in range(num_epochs):
             images, target = images.cuda(), target.cuda()
 
         pred = net(images)
-        print(pred.shape)
+        # print('the pred shape is: ', pred.shape)
         print('target shape ', target.shape)
         loss = criterion(pred, target)
         total_loss += loss.data.item()
