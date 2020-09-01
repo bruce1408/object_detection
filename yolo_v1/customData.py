@@ -76,6 +76,7 @@ class VOC2012(Dataset):
             elif padh != 0:
                 bbox[i * 5 + 2] = (bbox[i * 5 + 2] * h + padh) / w
                 bbox[i * 5 + 4] = (bbox[i * 5 + 4] * h) / w
+
         labels = convert_bbox2labels(bbox)
         labels = transforms.ToTensor()(labels)
         return img, labels
@@ -83,8 +84,10 @@ class VOC2012(Dataset):
 
 def convert_bbox2labels(bbox):
     """
-    将bbox的(cls, x, y, w, h)数据转换为训练时方便计算Loss的数据形式(7, 7, 5*B+cls_num)
-    注意，输入的bbox的信息是(xc,yc,w,h)格式的，转换为labels后，bbox的信息转换为了(px,py,w,h)格式
+    将bbox的(cls, x, y, w, h)数据转换为训练时方便计算
+    Loss的数据形式(7, 7, 5*B+cls_num)
+    注意，输入的bbox的信息是(xc,yc,w,h)格式的，
+    转换为labels后，bbox的信息转换为了(px,py,w,h)格式
     """
     gridsize = 1.0 / 7
     labels = np.zeros((7, 7, 5 * NUM_BBOX + len(CLASSES)))  # 注意，此处需要根据不同数据集的类别个数进行修改
