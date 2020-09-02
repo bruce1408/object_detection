@@ -46,6 +46,7 @@ test_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=Fa
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
+
 print('the train dataset has %d images' % (len(train_dataset)))
 print('the test dataset has %d images' % (len(test_dataset)))
 print('the batch_size is %d' % batch_size)

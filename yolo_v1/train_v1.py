@@ -43,6 +43,6 @@ if __name__ == '__main__':
             yl = yl + loss
             # if is_vis and (i+1)%100==0:
             #     vis.line(np.array([yl.cpu().item()/(i+1)]),np.array([i+e*len(train_data)//batchsize]),win=viswin1,update='append')
-        if (e + 1) % 10 == 0:
-            torch.save(model, "./models_pkl/YOLOv1_epoch" + str(e + 1) + ".pkl")
+        if (e + 1) % 2 == 0:
+            torch.save(model, "./model/YOLOv1_epoch" + str(e + 1) + ".pth")
             # compute_val_map(model)

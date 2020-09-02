@@ -98,8 +98,7 @@ def convert_bbox2labels(bbox):
         # (bbox中心坐标 - 网格左上角点的坐标)/网格大小  ==> bbox中心点的相对位置, 偏移量
         gridpx = bbox[i * 5 + 1] / gridsize - gridx
         gridpy = bbox[i * 5 + 2] / gridsize - gridy
-        # print(gridx)
-        # print(gridy)
+
         # 将第gridy行，gridx列的网格设置为负责当前ground truth的预测，置信度和对应类别概率均置为1
         labels[gridy, gridx, 0:5] = np.array([gridpx, gridpy, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
         labels[gridy, gridx, 5:10] = np.array([gridpx, gridpy, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
