@@ -6,15 +6,16 @@ NUM_BBOX = 2
 """
 官方使用ResNet50模型，然后修改层数的最后两层
 """
-
+CLASSES = ['person', 'bird', 'cat', 'cow', 'dog', 'horse', 'sheep',
+           'aeroplane', 'bicycle', 'boat', 'bus', 'car', 'motorbike', 'train',
+           'bottle', 'chair', 'dining table', 'potted plant', 'sofa', 'tvmonitor']
 
 class YOLO_v1(nn.Module):
-    def __init__(self, model, num_classes):
+    def __init__(self):
         super(YOLO_v1, self).__init__()
-        self.model = model
-        print(model)
-        self.num_classes = num_classes
+        model = resnet50(pretrained=True)
         self.in_size = model.fc.in_features
+
         self.features = nn.Sequential(*list(model.children())[:-2])
 
         # 4个卷积层,输入尺寸是[2, 2048, 14, 14],从这里开始以及开始自己定义的网络结构了.
@@ -56,25 +57,11 @@ class YOLO_v1(nn.Module):
         input = self.Conv_layers(input)
         input = input.view(input.size()[0], -1)
         input = self.fc_layers(input)
-        return input.reshape(-1, (5 * NUM_BBOX + self.num_classes), 7, 7)
-
-
-class TotalLoss(nn.Module):
-    # TODO
-    def __init__(self):
-        super(TotalLoss, self).__init__()
-
-    def forward(self, pred, labels):
-        """
-        :param pred: 网络的输出 = [batch_size, 30, 7, 7]
-        :param labels: 样本标签 = [batch_size, 30, 7, 7]
-        :return:
-        """
+        return input.reshape(-1, (5 * NUM_BBOX + len(CLASSES)), 7, 7)
 
 
 if __name__ == "__main__":
-    net = resnet50(pretrained=True)
-    model = YOLO_v1(net, 20)
+    model = YOLO_v1()
     if torch.cuda.is_available():
         summary(model.cuda(), (3, 448, 448))
         x = torch.rand(size=(8, 3, 448, 448)).to("cuda")

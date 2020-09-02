@@ -3,9 +3,9 @@ import os
 
 import cv2
 
-CLASSES = ['person', 'bird', 'cat', 'cow', 'dog', 'horse', 'sheep',
-           'aeroplane', 'bicycle', 'boat', 'bus', 'car', 'motorbike', 'train',
-           'bottle', 'chair', 'dining table', 'potted plant', 'sofa', 'tvmonitor']
+CLASSES = ['person', 'bird', 'cat', 'cow', 'dog', 'horse', 'sheep', 'aeroplane',
+           'bicycle', 'boat', 'bus', 'car', 'motorbike', 'train',
+           'bottle', 'chair', 'diningtable', 'pottedplant', 'sofa', 'tvmonitor']
 
 DATASET_PATH = "/home/chenxi/dataset/VOCdevkit/VOC2012/"
 
@@ -36,7 +36,7 @@ def convert_annotation(image_id):
     """
     in_file = open(DATASET_PATH + 'Annotations/%s' % (image_id)+".xml")
     image_id = image_id.split('.')[0]
-    out_file = open('labels/%s.txt' % (image_id), 'w')
+    out_file = open('./labels/%s.txt' % (image_id), 'w')
     tree = ET.parse(in_file)
     root = tree.getroot()
     size = root.find('size')
@@ -52,8 +52,11 @@ def convert_annotation(image_id):
         xmlbox = obj.find('bndbox')
         points = (float(xmlbox.find('xmin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymin').text),
                   float(xmlbox.find('ymax').text))
+
         bb = convert((w, h), points)
         out_file.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
+        out_file.flush()
+    out_file.close()
 
 
 def make_label_txt():
@@ -77,14 +80,16 @@ def show_labels_img(imgname):
             print(CLASSES[int(label[0])])
             pt1 = (int(label[1] * w - label[3] * w / 2), int(label[2] * h - label[4] * h / 2))  # 左上角坐标
             pt2 = (int(label[1] * w + label[3] * w / 2), int(label[2] * h + label[4] * h / 2))  # 右下角坐标
+            print('pt1', pt1)
+            print('pt2', pt2)
             cv2.putText(img, CLASSES[int(label[0])], pt1, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
             cv2.rectangle(img, pt1, pt2, (0, 33, 139, 3))
-
     cv2.imshow("img", img)
     cv2.waitKey(0)
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD:yolo_v1/xml2txt.py
     with open("/home/chenxi/dataset/VOCdevkit/VOC2012/ImageSets/Main/train.txt") as f:
         for eachline in f:
             eachline = eachline.strip()
@@ -92,5 +97,14 @@ if __name__ == "__main__":
 
     # show_labels_img("2008_000008")
 
+=======
+    # with open("/home/bruce/bigVolumn/Datasets/VOCdevkit/VOC2012/ImageSets/Main/train.txt") as f:
+    #     for eachline in f:
+    #         eachline = eachline.strip()
+    #         # print(eachline)
+    #         convert_annotation(eachline)
+    # convert_annotation("2008_003636")
+    show_labels_img("2008_008331")
+>>>>>>> 00b909b6a3f977f256ad118c3c87b29c64578f56:yolo_v1/voc2yolo.py
 
 
