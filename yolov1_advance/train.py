@@ -35,20 +35,20 @@ file_root = '/home/bruce/PycharmProjects/yolov1_pytorch/datasets'
 # 超参数
 learning_rate = 0.001
 num_epochs = 100
-batch_size = 24
+batch_size = 8
 resume = False
 
 # ---------------------数据读取---------------------
 train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
 
-test_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False, transform=[transforms.ToTensor()])
+val_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False, transform=[transforms.ToTensor()])
 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
+val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 
 print('the train dataset has %d images' % (len(train_dataset)))
-print('the test dataset has %d images' % (len(test_dataset)))
+print('the test dataset has %d images' % (len(val_dataset)))
 print('the batch_size is %d' % batch_size)
 
 
@@ -150,14 +150,14 @@ for epoch in range(num_epochs):
     print("================= begin to validation ====================")
     validation_loss = 0.0
     net.eval()
-    for i, (images, target) in enumerate(test_loader):
+    for i, (images, target) in enumerate(val_loader):
         if use_gpu:
             images, target = images.cuda(), target.cuda()
 
         pred = net(images)
         loss = criterion(pred, target)
         validation_loss += loss.item()
-    validation_loss /= len(test_loader)
+    validation_loss /= len(val_loader)
 
     if best_test_loss > validation_loss:
         best_test_loss = validation_loss
