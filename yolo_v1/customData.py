@@ -7,7 +7,7 @@ from PIL import Image
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset
 
-folder = "/home/bruce/bigVolumn/Datasets/VOCdevkit/VOC2012/"
+folder = "/home/chenxi/dataset/VOCdevkit/VOC2012/"
 NUM_BBOX = 2
 CLASSES = ['person', 'bird', 'cat', 'cow', 'dog', 'horse', 'sheep',
            'aeroplane', 'bicycle', 'boat', 'bus', 'car', 'motorbike', 'train',
@@ -94,12 +94,14 @@ def convert_bbox2labels(bbox):
     for i in range(len(bbox) // 5):
         gridx = int(bbox[i * 5 + 1] // gridsize)  # 当前bbox中心落在第gridx个网格,列
         gridy = int(bbox[i * 5 + 2] // gridsize)  # 当前bbox中心落在第gridy个网格,行
+
         # (bbox中心坐标 - 网格左上角点的坐标)/网格大小  ==> bbox中心点的相对位置, 偏移量
-        gridpx = bbox[i * 5 + 1] / gridsize - gridx
-        gridpy = bbox[i * 5 + 2] / gridsize - gridy
+        relativX = bbox[i * 5 + 1] / gridsize - gridx
+        relativY = bbox[i * 5 + 2] / gridsize - gridy
+
         # 将第gridy行，gridx列的网格设置为负责当前ground truth的预测，置信度和对应类别概率均置为1
-        labels[gridy, gridx, 0:5] = np.array([gridpx, gridpy, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
-        labels[gridy, gridx, 5:10] = np.array([gridpx, gridpy, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
+        labels[gridy, gridx, 0:5] = np.array([relativX, relativY, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
+        labels[gridy, gridx, 5:10] = np.array([relativX, relativY, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
         labels[gridy, gridx, 10 + int(bbox[i * 5])] = 1
     return labels
 
