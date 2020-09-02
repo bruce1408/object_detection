@@ -80,9 +80,10 @@ def show_labels_img(imgname):
             print(CLASSES[int(label[0])])
             pt1 = (int(label[1] * w - label[3] * w / 2), int(label[2] * h - label[4] * h / 2))  # 左上角坐标
             pt2 = (int(label[1] * w + label[3] * w / 2), int(label[2] * h + label[4] * h / 2))  # 右下角坐标
+            print('pt1', pt1)
+            print('pt2', pt2)
             cv2.putText(img, CLASSES[int(label[0])], pt1, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
             cv2.rectangle(img, pt1, pt2, (0, 33, 139, 3))
-
     cv2.imshow("img", img)
     cv2.waitKey(0)
 
@@ -93,7 +94,7 @@ if __name__ == "__main__":
     #         eachline = eachline.strip()
     #         # print(eachline)
     #         convert_annotation(eachline)
-    convert_annotation("2008_003636")
-    # show_labels_img("2008_008331")
+    # convert_annotation("2008_003636")
+    show_labels_img("2008_008331")
 
 

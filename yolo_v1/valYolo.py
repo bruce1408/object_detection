@@ -81,22 +81,24 @@ def draw_bbox(img, bbox):
     :param bbox: 是(n,6)的尺寸，其中第0列代表bbox的分类序号，1~4为bbox坐标信息(xyxy)(均归一化了)，5是bbox的专属类别置信度
     """
     h, w = img.shape[0:2]
+    print(img.shape)
     n = bbox.size()[0]
-    print(bbox)
     for i in range(n):
         p1 = (w * bbox[i, 1], h * bbox[i, 2])
         p2 = (w * bbox[i, 3], h * bbox[i, 4])
+        print(p1, p2)
         cls_name = CLASSES[int(bbox[i, 0])]
         confidence = bbox[i, 5]
-        cv2.rectangle(img, p1, p2, color=COLOR[int(bbox[i, 0])])
         cv2.putText(img, cls_name, p1, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
+        cv2.rectangle(img, p1, p2, (0, 33, 139, 3))
+
     cv2.imshow("bbox", img)
     cv2.waitKey(0)
 
 
 if __name__ == '__main__':
     val_dataloader = DataLoader(VOC2012(is_train=False), batch_size=1, shuffle=False)
-    model = torch.load("./model/YOLOv1_epoch40.pth")  # 加载训练好的模型
+    model = torch.load("./model/YOLOv1_epoch2.pth")  # 加载训练好的模型
     for i, (inputs, labels) in enumerate(val_dataloader):
         inputs = inputs.cuda()
         # 以下代码是测试labels2bbox函数的时候再用
@@ -110,10 +112,10 @@ if __name__ == '__main__':
         ## 测试labels2bbox时，使用 labels作为labels2bbox2函数的输入
         bbox = labels2bbox(
             pred)  # 此处可以用labels代替pred，测试一下输出的bbox是否和标签一样，从而检查labels2bbox函数是否正确。当然，还要注意将数据集改成训练集而不是测试集，因为测试集没有labels。
-        inputs = inputs.squeeze(dim=0)  # 输入图像的尺寸是(1,3,448,448),压缩为(3,448,448)
-        inputs = inputs.permute((1, 2, 0))  # 转换为(448,448,3)
+        inputs = inputs.squeeze(dim=0)  # 输入图像的尺寸是(1, 3, 448, 448), 压缩为(3,448,448)
+        inputs = inputs.permute((1, 2, 0))  # 转换为(448, 448, 3)
         img = inputs.cpu().numpy()
-        img = 255 * img  # 将图像的数值从(0,1)映射到(0,255)并转为非负整形
+        img = 255 * img  # 将图像的数值从(0, 1)映射到(0, 255)并转为非负整形
         img = img.astype(np.uint8)
         draw_bbox(img, bbox.cpu())  # 将网络预测结果进行可视化，将bbox画在原图中，可以很直观的观察结果
-        print(bbox.size(), bbox)
+        # print(bbox.size(), bbox)

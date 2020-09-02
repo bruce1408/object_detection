@@ -30,7 +30,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 use_gpu = torch.cuda.is_available()
 
 # 数据文件
-file_root = '/home/chenxi/tmp/tmp/datasets'
+file_root = '/home/bruce/PycharmProjects/yolov1_pytorch/datasets'
 
 # 超参数
 learning_rate = 0.001
@@ -52,7 +52,7 @@ print('the test dataset has %d images' % (len(test_dataset)))
 print('the batch_size is %d' % batch_size)
 
 
-# ---------------------网络选择---------------------
+# --------------------- 网络选择 ----------------------
 use_resnet = True
 if use_resnet:
     net = resnet50()  # 自己定义的resnet 网络
@@ -147,6 +147,7 @@ for epoch in range(num_epochs):
             num_iter += 1
 
     # validation
+    print("================= begin to validation ====================")
     validation_loss = 0.0
     net.eval()
     for i, (images, target) in enumerate(test_loader):

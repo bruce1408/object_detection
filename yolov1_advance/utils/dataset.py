@@ -299,7 +299,7 @@ class yoloDataset(data.Dataset):
 
 if __name__ == '__main__':
 
-    file_root = "/home/chenxi/tmp/tmp/datasets"
+    file_root = "/home/bruce/PycharmProjects/yolov1_pytorch/datasets"
     train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
     train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=0)
     train_iter = iter(train_loader)
@@ -308,6 +308,6 @@ if __name__ == '__main__':
             img, target = next(train_iter)
             print(img.shape, target.shape)
         except:
-            print('the %d file has failed to load ', i)
+            print('the %d file has failed to load ' % i)
             pass
     print(train_dataset.num_samples)

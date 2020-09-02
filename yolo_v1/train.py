@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
-from customData import VOC2012
-from yolo_v1_net import YOLO_v1
-from yololoss import Loss_yolov1
+from CustomData import VOC2012
+from YOLO_v1_net import YOLO_v1
+from YOLO_loss import Loss_yolov1
 from torch.utils.data import DataLoader
 
 if __name__ == '__main__':
