@@ -97,13 +97,10 @@ def convert_bbox2labels(bbox):
         gridy = int(bbox[i * 5 + 2] // gridsize)  # 当前bbox中心落在第gridy个网格,行
 
         # (bbox中心坐标 - 网格左上角点的坐标)/网格大小  ==> bbox中心点的相对位置, 偏移量
-<<<<<<< HEAD:yolo_v1/customData.py
         relativX = bbox[i * 5 + 1] / gridsize - gridx
         relativY = bbox[i * 5 + 2] / gridsize - gridy
-=======
         gridpx = bbox[i * 5 + 1] / gridsize - gridx
         gridpy = bbox[i * 5 + 2] / gridsize - gridy
->>>>>>> 00b909b6a3f977f256ad118c3c87b29c64578f56:yolo_v1/CustomData.py
 
         # 将第gridy行，gridx列的网格设置为负责当前ground truth的预测，置信度和对应类别概率均置为1
         labels[gridy, gridx, 0:5] = np.array([relativX, relativY, bbox[i * 5 + 3], bbox[i * 5 + 4], 1])
