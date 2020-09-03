@@ -7,7 +7,7 @@ CLASSES = ['person', 'bird', 'cat', 'cow', 'dog', 'horse', 'sheep', 'aeroplane',
            'bicycle', 'boat', 'bus', 'car', 'motorbike', 'train',
            'bottle', 'chair', 'diningtable', 'pottedplant', 'sofa', 'tvmonitor']
 
-DATASET_PATH = "/home/bruce/bigVolumn/Datasets/VOCdevkit/VOC2012/"
+DATASET_PATH = "/home/chenxi/dataset/VOCdevkit/VOC2012/"
 
 
 def convert(size, box):
@@ -89,6 +89,15 @@ def show_labels_img(imgname):
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD:yolo_v1/xml2txt.py
+    with open("/home/chenxi/dataset/VOCdevkit/VOC2012/ImageSets/Main/train.txt") as f:
+        for eachline in f:
+            eachline = eachline.strip()
+            convert_annotation(eachline)
+
+    # show_labels_img("2008_000008")
+
+=======
     # with open("/home/bruce/bigVolumn/Datasets/VOCdevkit/VOC2012/ImageSets/Main/train.txt") as f:
     #     for eachline in f:
     #         eachline = eachline.strip()
@@ -96,5 +105,6 @@ if __name__ == "__main__":
     #         convert_annotation(eachline)
     # convert_annotation("2008_003636")
     show_labels_img("2008_008331")
+>>>>>>> 00b909b6a3f977f256ad118c3c87b29c64578f56:yolo_v1/voc2yolo.py
 
 
