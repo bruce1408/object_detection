@@ -202,7 +202,7 @@ if __name__ == '__main__':
     model.load_state_dict(torch.load('checkpoints/best.pth'))
     model.eval()
     model.cuda()
-    image_name = 'imgs/001526.jpg'
+    image_name = 'imgs/persondog2.jpg'
     image = cv2.imread(image_name)
     print('predicting...')
     result = predict_gpu(model, image_name)

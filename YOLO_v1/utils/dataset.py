@@ -7,7 +7,7 @@
 @Modificattion : txt描述文件 image_name.jpg x y w h c x y w h c 这样就是说一张图片中有两个目标
     @Author    :
     @Time      :
-    @Detail    :
+    @Detail    :https://blog.csdn.net/Pierce_KK/article/details/100690422
 """
 
 import os
@@ -38,7 +38,7 @@ class yoloDataset(data.Dataset):
         self.fnames = []  # 文件名s [001.jpg, 002.jpg]
         self.boxes = []  # boxes  [ [box], [[x1,y1,x2,y2], ...], ... ]
         self.labels = []  # labels [ [1], [2], ... ]
-        self.mean = (123, 117, 104)  # RGB
+        self.mean = (123, 117, 104)  # RGB 形式的均值
         self.num_samples = 0  # 样本总数
 
         if isinstance(list_file, list):
@@ -65,9 +65,9 @@ class yoloDataset(data.Dataset):
                 y = float(splited[2 + 5 * i])
                 x2 = float(splited[3 + 5 * i])
                 y2 = float(splited[4 + 5 * i])
-                c = splited[5 + 5 * i]
+                c_label = splited[5 + 5 * i]
                 box.append([x, y, x2, y2])
-                label.append(int(c) + 1)
+                label.append(int(c_label) + 1)
             self.boxes.append(torch.Tensor(box))
             self.labels.append(torch.LongTensor(label))
         self.num_samples = len(self.boxes)  # 数据集中包含所有Ground truth个数
@@ -120,7 +120,7 @@ class yoloDataset(data.Dataset):
 
     def encoder(self, boxes, labels):
         """
-        boxes (tensor) [[x1,y1,x2,y2],[]]
+        boxes (tensor) [[x1,y1,x2,y2],[]], 且boxes是进过除以[w, h]之后归一化的值
         labels (tensor) [...]
         return 7x7x30
         """
@@ -132,13 +132,14 @@ class yoloDataset(data.Dataset):
         for i in range(cxcy.size()[0]):  # 对于数据集中的每个框 这里cxcy.size() == num_samples
             cxcy_sample = cxcy[i]
             ij = (cxcy_sample / cell_size).ceil() - 1  # ij 是一个list, 表示目标中心点cxcy在归一化后的图片中所处的x y 方向的第几个网格
+            delta_xy = (cxcy_sample / cell_size) - ij  # 相对位移坐标情况
             # 0 1      2 3   4    5 6   7 8   9
             # [中心坐标,长宽,置信度,中心坐标,长宽,置信度, 20个类别] x 7x7
             target[int(ij[1]), int(ij[0]), 4] = 1  # 第一个框的置信度
             target[int(ij[1]), int(ij[0]), 9] = 1  # 第二个框的置信度
             target[int(ij[1]), int(ij[0]), int(labels[i]) + 9] = 1
             xy = ij * cell_size  # 匹配到划分后的子网格的左上角相对坐标
-            delta_xy = (cxcy_sample - xy) / cell_size  # delta_xy对于目标中心点落入的子网格，目标中心坐标相对于子网格左上点的位置比例
+            # delta_xy = (cxcy_sample - xy) / cell_size  # delta_xy对于目标中心点落入的子网格，目标中心坐标相对于子网格左上点的位置比例
             target[int(ij[1]), int(ij[0]), 2:4] = wh[i]  # 坐标w,h代表了预测边界框的width、height相对于整幅图像width,height的比例，范围为(0,1)
             target[int(ij[1]), int(ij[0]), :2] = delta_xy
             target[int(ij[1]), int(ij[0]), 7:9] = wh[i]
@@ -204,17 +205,17 @@ class yoloDataset(data.Dataset):
             # print(bgr.shape,shift_x,shift_y)
             # 原图像的平移
             if shift_x >= 0 and shift_y >= 0:
-                after_shfit_image[int(shift_y):, int(shift_x):, :] = bgr[:height - int(shift_y), :width - int(shift_x),
-                                                                     :]
+                after_shfit_image[int(shift_y):, int(shift_x):, :] = \
+                    bgr[:height - int(shift_y), :width - int(shift_x), :]
             elif shift_x >= 0 and shift_y < 0:
-                after_shfit_image[:height + int(shift_y), int(shift_x):, :] = bgr[-int(shift_y):, :width - int(shift_x),
-                                                                              :]
+                after_shfit_image[:height + int(shift_y), int(shift_x):, :] = \
+                    bgr[-int(shift_y):, :width - int(shift_x), :]
             elif shift_x < 0 and shift_y >= 0:
-                after_shfit_image[int(shift_y):, :width + int(shift_x), :] = bgr[:height - int(shift_y), -int(shift_x):,
-                                                                             :]
+                after_shfit_image[int(shift_y):, :width + int(shift_x), :] = \
+                    bgr[:height - int(shift_y), -int(shift_x):, :]
             elif shift_x < 0 and shift_y < 0:
-                after_shfit_image[:height + int(shift_y), :width + int(shift_x), :] = bgr[-int(shift_y):,
-                                                                                      -int(shift_x):, :]
+                after_shfit_image[:height + int(shift_y), :width + int(shift_x), :] = \
+                    bgr[-int(shift_y):, -int(shift_x):, :]
 
             shift_xy = torch.FloatTensor([[int(shift_x), int(shift_y)]]).expand_as(center)
             center = center + shift_xy
@@ -258,7 +259,7 @@ class yoloDataset(data.Dataset):
             mask = (mask1 & mask2).view(-1, 1)
 
             boxes_in = boxes[mask.expand_as(boxes)].view(-1, 4)
-            if (len(boxes_in) == 0):
+            if len(boxes_in) == 0:
                 return bgr, boxes, labels
             box_shift = torch.FloatTensor([[x, y, x, y]]).expand_as(boxes_in)
 
