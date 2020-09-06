@@ -202,7 +202,7 @@ if __name__ == '__main__':
     model.cuda()
     count = 0
     for image_path in tqdm(image_list):
-        result = predict_gpu(model, image_path, root_path='datasets/images/')  # result[[left_up,right_bottom,class_name,image_path],]
+        result = predict_gpu(model, image_path, root_path='/home/bruce/PycharmProjects/yolov1_pytorch/datasets/images/')  # result[[left_up,right_bottom,class_name,image_path],]
         for (x1, y1), (x2, y2), class_name, image_id, prob in result:  # image_id is actually image_path
             preds[class_name].append([image_id, prob, x1, y1, x2, y2])
         # print(image_path)
