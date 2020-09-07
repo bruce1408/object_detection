@@ -1,48 +1,169 @@
+# -*- coding: utf-8 -*-
+"""
+@Time          : 2020/08/12 18:30
+@Author        : Bryce
+@File          : train.py
+@Noice         :
+@Modificattion :
+    @Author    :
+    @Time      :
+    @Detail    :
+"""
+import warnings
+import os
+import numpy as np
+
 import torch
-import torch.nn as nn
-from CustomData import VOC2012
-from YOLO_v1_net import YOLO_v1
-from YOLO_loss import Loss_yolov1
 from torch.utils.data import DataLoader
+import torchvision.transforms as transforms
+from torchvision import models as officalModel
 
-if __name__ == '__main__':
-    epoch = 50
-    batchsize = 16
-    lr = 0.0001
+from models.vgg_yolo import vgg16_bn
+from models.resnet_yolo import resnet50
+from models.yoloLoss import yoloLoss
+from utils.dataset import yoloDataset
 
-    train_data = VOC2012(is_train=True)
-    train_dataloader = DataLoader(train_data, batch_size=batchsize, shuffle=True)
+warnings.filterwarnings('ignore')
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-    model = YOLO_v1().cuda()
-    # model.children()里是按模块(Sequential)提取的子模块，而不是具体到每个层，具体可以参见pytorch帮助文档
-    # 冻结resnet34特征提取层，特征提取层不参与参数更新
-    for layer in model.children():
-        layer.requires_grad = False
-        break
-    criterion = Loss_yolov1()
-    optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=0.0005)
+# 判断GPU是否可用
+use_gpu = torch.cuda.is_available()
 
-    is_vis = False  # 是否进行可视化，如果没有visdom可以将其设置为false
-    # if is_vis:
-    #     vis = visdom.Visdom()
-    #     viswin1 = vis.line(np.array([0.]),np.array([0.]),opts=dict(title="Loss/Step",xlabel="100*step",ylabel="Loss"))
+# 数据文件
+file_root = '/home/bruce/PycharmProjects/yolov1_pytorch/datasets'
 
-    for e in range(epoch):
-        model.train()
-        yl = torch.Tensor([0]).cuda()
-        for i, (inputs, labels) in enumerate(train_dataloader):
-            inputs = inputs.cuda()
-            labels = labels.float().cuda()
-            pred = model(inputs)
-            loss = criterion(pred, labels)
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+# 超参数
+learning_rate = 0.001
+num_epochs = 100
+batch_size = 8
+resume = True
 
-            print("Epoch %d/%d| Step %d/%d| Loss: %.6f" % (e, epoch, i, len(train_data) // batchsize, loss))
-            yl = yl + loss
-            # if is_vis and (i+1)%100==0:
-            #     vis.line(np.array([yl.cpu().item()/(i+1)]),np.array([i+e*len(train_data)//batchsize]),win=viswin1,update='append')
-        if (e + 1) % 2 == 0:
-            torch.save(model, "./model/YOLOv1_epoch" + str(e + 1) + ".pth")
-            # compute_val_map(model)
+# ---------------------数据读取---------------------
+train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
+
+val_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False, transform=[transforms.ToTensor()])
+
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+
+val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
+
+print('the train dataset has %d images' % (len(train_dataset)))
+print('the test dataset has %d images' % (len(val_dataset)))
+print('the batch_size is %d' % batch_size)
+
+
+# --------------------- 网络选择 ----------------------
+use_resnet = True
+if use_resnet:
+    net = resnet50()  # 自己定义的resnet 网络
+else:
+    net = vgg16_bn()
+"""
+models 模型表示官方代码
+自己定义的是resnet50
+"""
+if resume:
+    print("loading weight from checkpoints/best.pth")
+    net.load_state_dict(torch.load('checkpoints/best.pth'))
+else:
+    print('loading pre-trained model ......')
+    if use_resnet:  # 对应自己网络结构的官方预训练模型
+        offiNet = officalModel.resnet50(pretrained=True)  # 官方模型
+        new_state_dict = offiNet.state_dict()
+        dd = net.state_dict()
+        for k in new_state_dict.keys():
+            print(k)
+            if k in dd.keys() and not k.startswith('fc'):
+                # print('yes')
+                dd[k] = new_state_dict[k]
+        net.load_state_dict(dd)
+    else:
+        vgg = officalModel.vgg16_bn(pretrained=True)
+        new_state_dict = vgg.state_dict()
+        dd = net.state_dict()
+        for k in new_state_dict.keys():
+            print(k)
+            if k in dd.keys() and k.startswith('features'):
+                print('yes')
+                dd[k] = new_state_dict[k]
+        net.load_state_dict(dd)
+
+if use_gpu:
+    print('this computer has gpu %d and current is %s' % (torch.cuda.device_count(), torch.cuda.current_device()))
+    net.cuda()
+
+
+# ---------------------损失函数---------------------
+criterion = yoloLoss(7, 2, 5, 0.5)
+# ---------------------优化器----------------------
+# different learning rate
+params = []
+params_dict = dict(net.named_parameters())
+for key, value in params_dict.items():
+    if key.startswith('features'):
+        params += [{'params': [value], 'lr':learning_rate*0.5}]
+    else:
+        params += [{'params': [value], 'lr':learning_rate}]
+optimizer = torch.optim.SGD(params, lr=learning_rate, momentum=0.9, weight_decay=5e-4)
+# optimizer = torch.optim.Adam(net.parameters(),lr=learning_rate,weight_decay=1e-4)
+
+
+# ---------------------训练---------------------
+logfile = open('checkpoints/log.txt', 'w')
+num_iter = 0
+best_test_loss = np.inf
+
+for epoch in range(num_epochs):
+    # train
+    net.train()
+    if epoch == 30:
+        learning_rate = 0.0001
+    if epoch == 40:
+        learning_rate = 0.00001
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = learning_rate
+
+    print('\n\nStarting epoch %d / %d' % (epoch + 1, num_epochs))
+    print('Learning Rate for this epoch: {}'.format(learning_rate))
+
+    total_loss = 0.
+
+    for i, (images, target) in enumerate(train_loader):
+        if use_gpu:
+            images, target = images.cuda(), target.cuda()
+
+        pred = net(images)
+        # print('the pred shape is: ', pred.shape)
+        # print('target shape ', target.shape)
+        loss = criterion(pred, target)
+        total_loss += loss.data.item()
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        if (i+1) % 5 == 0:
+            print('Epoch [%d/%d], Iter [%d/%d] Loss: %.4f, average_loss: %.4f' %
+                  (epoch+1, num_epochs, i+1, len(train_loader), loss.item(), total_loss / (i+1)))
+            num_iter += 1
+
+    # validation
+    print("================= begin to validation ====================")
+    validation_loss = 0.0
+    net.eval()
+    for i, (images, target) in enumerate(val_loader):
+        if use_gpu:
+            images, target = images.cuda(), target.cuda()
+
+        pred = net(images)
+        loss = criterion(pred, target)
+        validation_loss += loss.item()
+    validation_loss /= len(val_loader)
+
+    if best_test_loss > validation_loss:
+        best_test_loss = validation_loss
+        print('get best test loss %.5f' % best_test_loss)
+        torch.save(net.state_dict(), 'checkpoints/best.pth')
+    logfile.writelines(str(epoch) + '\t' + str(validation_loss) + '\n')
+    logfile.flush()
+
+
