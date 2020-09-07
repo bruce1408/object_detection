@@ -81,6 +81,7 @@ class Darknet19(nn.Module):
         weights_loader.load(self, weights_path)
 
     def forward(self, x):
+
         x = self.layer0(x)
         x = self.layer1(x)
         x = self.layer2(x)
@@ -91,6 +92,7 @@ class Darknet19(nn.Module):
         x = self.conv(x)
         x = self.avgpool(x)
         x = self.softmax(x)
+
         return x
 
 
