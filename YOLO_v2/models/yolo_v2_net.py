@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torchsummary import summary
 from darknet import Darknet19, conv_bn_leaky
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
 from layers import ReorgLayer
 import torch.nn.functional as F
 
@@ -85,11 +85,13 @@ class Yolov2(nn.Module):
 
 
 if __name__ == "__main__":
-    net = Yolov2(weights_path="../pretrained/darknet19_448.weights")
+    # net = Yolov2(weights_path="../pretrained/darknet19_448.weights")
+    net = Yolov2()
     if torch.cuda.is_available():
+        print("gpu")
         net.cuda()
-        # summary(net, (3, 416, 416))
-        x = torch.rand((8, 3, 416, 416)).to("cuda")
+        summary(net, (3, 416, 416))
+        x = torch.rand((1, 3, 416, 416)).to("cuda")
         out = net(x)
         print(out[0].shape)
     else:

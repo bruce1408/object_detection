@@ -10,6 +10,7 @@ CLASSES = ['person', 'bird', 'cat', 'cow', 'dog', 'horse', 'sheep',
            'aeroplane', 'bicycle', 'boat', 'bus', 'car', 'motorbike', 'train',
            'bottle', 'chair', 'dining table', 'potted plant', 'sofa', 'tvmonitor']
 
+
 class YOLO_v1(nn.Module):
     def __init__(self):
         super(YOLO_v1, self).__init__()
