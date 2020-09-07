@@ -25,3 +25,4 @@ class ReorgLayer(nn.Module):
         x = x.view(batch_size, -1, _height, _width)
 
         return x
+
