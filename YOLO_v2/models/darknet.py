@@ -1,7 +1,9 @@
+import sys
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
+sys.path.append("../")
+from utils.load_weights import WeightLoader
 
 
 def conv_bn_leaky(in_channels, out_channels, kernel_size, return_module=False):
@@ -73,6 +75,10 @@ class Darknet19(nn.Module):
                 self.in_channels = v
 
         return nn.Sequential(*layers)
+
+    def load_weights(self, weights_path):
+        weights_loader = WeightLoader()
+        weights_loader.load(self, weights_path)
 
     def forward(self, x):
         x = self.layer0(x)
