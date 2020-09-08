@@ -60,6 +60,8 @@ class RoiDataset(Dataset):
             input_h, input_w = cfg.input_size
             im_data = im_data.resize((input_w, input_h))
             im_data_resize = torch.from_numpy(np.array(im_data)).float() / 255
+
+            # convert [h, w, 3] -> [3, h, w]
             im_data_resize = im_data_resize.permute(2, 0, 1)
             boxes = torch.from_numpy(boxes)
             gt_classes = torch.from_numpy(gt_classes)
@@ -121,7 +123,7 @@ def detection_collate(batch):
 
 
 if __name__ == "__main__":
-    data = RoiDataset(get_imdb("voc_2007_train"))
+    data = RoiDataset(get_imdb("voc_2012_train"))
     i = 0
     print(data[i].__len__())
     print(data[i][0].shape)
