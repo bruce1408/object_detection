@@ -202,6 +202,7 @@ def augment_img(img, boxes, gt_classes):
             gt_classes = gt_classes[keep]
             break
 
+    # 图像进行随机拉伸
     img = random_distort(img, cfg.hue, cfg.saturation, cfg.exposure)
     return img, boxes, gt_classes
 
