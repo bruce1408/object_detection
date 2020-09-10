@@ -202,7 +202,7 @@ if __name__ == '__main__':
     model.load_state_dict(torch.load('checkpoints/best.pth'))
     model.eval()
     model.cuda()
-    image_name = 'imgs/persondog2.jpg'
+    image_name = 'demo/persondog2.jpg'
     image = cv2.imread(image_name)
     print('predicting...')
     result = predict_gpu(model, image_name)
@@ -216,8 +216,8 @@ if __name__ == '__main__':
         cv2.rectangle(image, (p1[0] - 2//2, p1[1] - 2 - baseline), (p1[0] + text_size[0], p1[1] + text_size[1]), color, -1)
         cv2.putText(image, label, (p1[0], p1[1] + baseline), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1, 8)
 
-    cv2.imwrite('imgs/001526_result.jpg', image)
-    img = cv2.imread('imgs/001526_result.jpg')
+    cv2.imwrite('demo/001526_result.jpg', image)
+    img = cv2.imread('demo/001526_result.jpg')
     cv2.imshow('img', img)
     cv2.waitKey(0)
 

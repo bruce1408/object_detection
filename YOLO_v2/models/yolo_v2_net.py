@@ -85,7 +85,7 @@ class Yolov2(nn.Module):
 
 
 if __name__ == "__main__":
-    # net = Yolov2(weights_path="../pretrained/darknet19_448.weights")
+    net = Yolov2(weights_path="../datasets/darknet19_448.weights")
     net = Yolov2()
     if torch.cuda.is_available():
         print("gpu")

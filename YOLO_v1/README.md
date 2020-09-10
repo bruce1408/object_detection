@@ -55,7 +55,7 @@ python predict.py
 python eval_voc.py
 ```
 
-![](imgs/person.jpg)![](imgs/person_result.jpg)
+![](demo/person.jpg)![](demo/person_result.jpg)
 
 ## 附
 对于初学者或硬件条件限制问题，提供训练后的权重.pth文件。

@@ -52,14 +52,20 @@ class RoiDataset(Dataset):
             boxes[:, 0::2] = np.clip(boxes[:, 0::2] / w, 0.001, 0.999)
             boxes[:, 1::2] = np.clip(boxes[:, 1::2] / h, 0.001, 0.999)
 
-            # resize image
+            # resize image, 图像缩放到416尺寸即可
             input_h, input_w = cfg.input_size
             im_data = im_data.resize((input_w, input_h))
+
+            # 缩放之后的尺寸
             im_data_resize = torch.from_numpy(np.array(im_data)).float() / 255
 
             # convert [h, w, 3] -> [3, h, w]
             im_data_resize = im_data_resize.permute(2, 0, 1)
+
+            # convert to tensor
             boxes = torch.from_numpy(boxes)
+
+            # convert to tensor
             gt_classes = torch.from_numpy(gt_classes)
             num_obj = torch.Tensor([boxes.size(0)]).long()
             return im_data_resize, boxes, gt_classes, num_obj
@@ -122,10 +128,10 @@ if __name__ == "__main__":
     data = RoiDataset(get_imdb("voc_2007_train"))
     i = 0
     print(data[i].__len__())
-    print(data[i][0].shape)
-    print(data[i][1].shape)
-    print(data[i][1])
-    print(data[i][2].shape)
+    # print(data[i][0].shape)
+    # print(data[i][1].shape)
+    # print(data[i][1])
+    # print(data[i][2].shape)
 
 
 

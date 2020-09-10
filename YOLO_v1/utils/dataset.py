@@ -49,7 +49,7 @@ class yoloDataset(data.Dataset):
             os.system('cat %s > %s' % (' '.join(list_file), tmp_file))
             list_file = tmp_file
         else:
-            list_file = os.path.join(root, list_file)
+            list_file = os.path.join(root, list_file)  # 训练文本, 保存所有文件路径
 
         # 处理标签
         with open(list_file) as f:
@@ -61,10 +61,10 @@ class yoloDataset(data.Dataset):
             box = []
             label = []
             for i in range(num_boxes):
-                x = float(splited[1 + 5 * i])
-                y = float(splited[2 + 5 * i])
-                x2 = float(splited[3 + 5 * i])
-                y2 = float(splited[4 + 5 * i])
+                x = float(splited[1 + 5 * i] - 1)
+                y = float(splited[2 + 5 * i] - 1)
+                x2 = float(splited[3 + 5 * i] - 1)
+                y2 = float(splited[4 + 5 * i] - 1)
                 c_label = splited[5 + 5 * i]
                 box.append([x, y, x2, y2])
                 label.append(int(c_label) + 1)
@@ -109,6 +109,8 @@ class yoloDataset(data.Dataset):
         img = self.BGR2RGB(img)  # because pytorch pretrained model use RGB
         img = self.subMean(img, self.mean)  # 减去均值
         img = cv2.resize(img, (self.image_size, self.image_size))
+
+        # 对boxes 和 labels 需要进行进一步处理才可以
         target = self.encoder(boxes, labels)  # 7x7x30
         for t in self.transform:
             img = t(img)
@@ -133,7 +135,6 @@ class yoloDataset(data.Dataset):
             cxcy_sample = cxcy[i]
             ij = (cxcy_sample / cell_size).ceil() - 1  # ij 是一个list, 表示目标中心点cxcy在归一化后的图片中所处的x y 方向的第几个网格
             delta_xy = (cxcy_sample / cell_size) - ij  # 相对位移坐标情况
-            # 0 1      2 3   4    5 6   7 8   9
             # [中心坐标,长宽,置信度,中心坐标,长宽,置信度, 20个类别] x 7x7
             target[int(ij[1]), int(ij[0]), 4] = 1  # 第一个框的置信度
             target[int(ij[1]), int(ij[0]), 9] = 1  # 第二个框的置信度
