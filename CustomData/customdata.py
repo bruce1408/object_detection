@@ -20,7 +20,7 @@ class RoiDataset(Dataset):
         super(RoiDataset, self).__init__()
         self._imdb = imdb
 
-        # list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[]x1, y1, x2, y2], "gt_classes":array([[label]]}
+        # _roidb 是一个list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[]x1, y1, x2, y2], "gt_classes":array([[label]]}
         self._roidb = imdb.roidb
         self.train = train
 
@@ -119,7 +119,7 @@ def detection_collate(batch):
 
 
 if __name__ == "__main__":
-    data = RoiDataset(get_imdb("voc_2012_train"))
+    data = RoiDataset(get_imdb("voc_2007_train"))
     i = 0
     print(data[i].__len__())
     print(data[i][0].shape)

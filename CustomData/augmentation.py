@@ -32,7 +32,7 @@ def random_scale_translation(img, boxes, jitter=0.2):
     sw = w - pl - pr
     sh = h - pt - pb
 
-    # 经过转换之后,图像大小变成 sw - 1, sh - 1
+    # 经过转换之后,图像大小变成 w - pr - 1, h - pb - 1
     cropped = img.crop((pl, pt, pl + sw - 1, pt + sh - 1))
     # boxes = [ 155, 96, 350, 269]
     # update boxes accordingly
@@ -72,18 +72,19 @@ def convert_color(img, source, dest):
 
 
 def rand_scale(s):
-    scale = np.random.uniform(1, s)
+    scale = np.random.uniform(1, s)  # 均匀分布采样
     if np.random.randint(1, 10000) % 2:
         return scale
     return 1./scale
 
 
 def random_distort(img, hue=.1, sat=1.5, val=1.5):
-
+    #
     hue = np.random.uniform(-hue, hue)
     sat = rand_scale(sat)
     val = rand_scale(val)
 
+    # 把RGB颜色空间转换成HSV颜色空间,这样的好处是HSV颜色空间对色调,饱和度,亮度值进行调整.图像处理领域用的更多
     img = img.convert('HSV')
     cs = list(img.split())
     cs[1] = cs[1].point(lambda i: i * sat)
@@ -193,8 +194,13 @@ def augment_img(img, boxes, gt_classes):
     boxes = np.copy(boxes).astype(np.float32)
 
     for i in range(5):
+        # random_scale_translation 图片进行缩放, 框也相应的进行等比例缩放
         img_t, boxes_t = random_scale_translation(img.copy(), boxes.copy(), jitter=cfg.jitter)
+
+        # x1 != x2 并且 y1 != y2
         keep = (boxes_t[:, 0] != boxes_t[:, 2]) & (boxes_t[:, 1] != boxes_t[:, 3])
+
+        # True 保留整个boxes, False则设置为空
         boxes_t = boxes_t[keep, :]
         if boxes_t.shape[0] > 0:
             img = img_t
