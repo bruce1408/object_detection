@@ -61,10 +61,10 @@ class yoloDataset(data.Dataset):
             box = []
             label = []
             for i in range(num_boxes):
-                x = float(splited[1 + 5 * i] - 1)
-                y = float(splited[2 + 5 * i] - 1)
-                x2 = float(splited[3 + 5 * i] - 1)
-                y2 = float(splited[4 + 5 * i] - 1)
+                x = float(splited[1 + 5 * i]) - 1
+                y = float(splited[2 + 5 * i]) - 1
+                x2 = float(splited[3 + 5 * i]) - 1
+                y2 = float(splited[4 + 5 * i]) - 1
                 c_label = splited[5 + 5 * i]
                 box.append([x, y, x2, y2])
                 label.append(int(c_label) + 1)

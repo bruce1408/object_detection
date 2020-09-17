@@ -36,63 +36,96 @@ class yoloLoss(nn.Module):
         N = box1.size(0)
         M = box2.size(0)
 
-        lt = torch.max(  # 左上角的点
-            box1[:, :2].unsqueeze(1).expand(N, M, 2),  # [N,2] -> [N,1,2] -> [N,M,2]
-            box2[:, :2].unsqueeze(0).expand(N, M, 2),  # [M,2] -> [1,M,2] -> [N,M,2]
+        # 左上角的点, shape是[N, M, 2]
+        lt = torch.max(
+            box1[:, :2].unsqueeze(1).expand(N, M, 2),  # [N,2] -> [N,1,2] -> [N,M,2] 重复行
+            box2[:, :2].unsqueeze(0).expand(N, M, 2),  # [M,2] -> [1,M,2] -> [N,M,2] 重复batch
         )
 
-        rb = torch.min(  # 右下角的点
+        # 右下角的点,大小还是[N, M, 2]
+        rb = torch.min(
             box1[:, 2:].unsqueeze(1).expand(N, M, 2),  # [N,2] -> [N,1,2] -> [N,M,2]
             box2[:, 2:].unsqueeze(0).expand(N, M, 2),  # [M,2] -> [1,M,2] -> [N,M,2]
         )
 
+        # wh1 = torch.max(rb-lt, box1.new(1).fill_(0))
         wh = rb - lt  # [N,M,2]
-        wh[wh < 0] = 0  # clip at 指两个box没有重叠区域
-        inter = wh[:, :, 0] * wh[:, :, 1]  # [N,M]
+        wh[wh < 0] = 0  # clip at 指两个box没有重叠区域, 小于0的情况置0
+        inter = wh[:, :, 0] * wh[:, :, 1]  # [N, M], 交集部分
 
         area1 = (box1[:, 2]-box1[:, 0]) * (box1[:, 3]-box1[:, 1])  # [N,]
         area2 = (box2[:, 2]-box2[:, 0]) * (box2[:, 3]-box2[:, 1])  # [M,]
-        area1 = area1.unsqueeze(1).expand_as(inter)  # [N,] -> [N,1] -> [N,M]
-        area2 = area2.unsqueeze(0).expand_as(inter)  # [M,] -> [1,M] -> [N,M]
+        area1 = area1.view(N, 1)
+        area2 = area2.view(1, M)
+        # area1 = area1.unsqueeze(1).expand_as(inter)  # [N,] -> [N,1] -> [N,M]
+        # area2 = area2.unsqueeze(0).expand_as(inter)  # [M,] -> [1,M] -> [N,M]
 
         iou = inter / (area1 + area2 - inter)
         return iou
 
     def forward(self, pred_tensor, target_tensor):
         """
-        pred_tensor: (tensor) size(batchsize,S,S,Bx5+20=30) [x,y,w,h,c]
-        target_tensor: (tensor) size(batchsize,S,S,30)
+        pred_tensor: (tensor) size(batchsize, S, S, B x 5 + 20 = 30) [x,y,w,h,c]
+        target_tensor: (tensor) size(batchsize, S, S, 30)
         """
         N = pred_tensor.size()[0]
+
         # 具有目标标签的索引(bs, 7, 7, 30)中7*7方格中的哪个方格包含目标
         coo_mask = target_tensor[:, :, :, 4] > 0  # coo_mask.shape = (bs, 7, 7)
         noo_mask = target_tensor[:, :, :, 4] == 0  # 不具有目标的标签索引
-        # 得到含物体的坐标等信息(coo_mask扩充到与target_tensor一样形状, 沿最后一维扩充)
-        coo_mask = coo_mask.unsqueeze(-1).expand_as(target_tensor)
-        noo_mask = noo_mask.unsqueeze(-1).expand_as(target_tensor)
 
-        #  coo_pred：tensor[, 30](所有batch数据都压缩在一起)
+        # 得到含物体的坐标等信息(coo_mask扩充到与target_tensor一样形状, 沿最后一维扩充), 然后用来在真实的数据上进行筛选
+        coo_mask = coo_mask.unsqueeze(-1).expand_as(target_tensor)  # [batch, 7, 7, 30]
+
+        # 不含有目标框的bool矩阵
+        noo_mask = noo_mask.unsqueeze(-1).expand_as(target_tensor)  # [batch, 7, 7, 30]
+
+        """
+        _pred表示预测结果， _target表示真实结果
+        """
+        #  预测结果有目标框部分， 不一定是[14*14×batch, 30]
         coo_pred = pred_tensor[coo_mask].view(-1, 30)
-        box_pred = coo_pred[:, :10].contiguous().view(-1, 5)  # box[x1,y1,w1,h1,c1], [x2,y2,w2,h2,c2]
-        class_pred = coo_pred[:, 10:]
-        
+
+        # 真实结果有目标框的部分
         coo_target = target_tensor[coo_mask].view(-1, 30)
+
+        # 含有目标框的预测值的坐标部分
+        box_pred = coo_pred[:, :10].contiguous().view(-1, 5)  # box[x1,y1,w1,h1,c1], [x2,y2,w2,h2,c2]
+
+        # 含有目标框的预测值的label
+        class_pred = coo_pred[:, 10:]
+
+        # 真实结果目标框的坐标部分
         box_target = coo_target[:, :10].contiguous().view(-1, 5)
+
+        # 真实结果目标框的label
         class_target = coo_target[:, 10:]
 
-        # compute not contain obj loss
+        """
+        不含有目标框的预测值和真实数据部分
+        """
+        # 不含有目标框的预测结果
         noo_pred = pred_tensor[noo_mask].view(-1, 30)
+
+        # 不含有目标框的真实结果
         noo_target = target_tensor[noo_mask].view(-1, 30)
 
+        # 不含目标框的部分重新生成一个布尔值矩阵。
         noo_pred_mask = torch.cuda.ByteTensor(noo_pred.size()).bool()
-        noo_pred_mask.zero_()
+        noo_pred_mask.zero_()  # 全部置0
+
+        # 对不含目标框的部分置信度置1
         noo_pred_mask[:, 4] = 1
         noo_pred_mask[:, 9] = 1
+
+        # 不含目标框部分×2， 如果含有目标的是185, 不含目标的是11,
         noo_pred_c = noo_pred[noo_pred_mask]  # noo pred只需要计算 c 的损失 size[-1,2]
         noo_target_c = noo_target[noo_pred_mask]
+
+        # 不含有目标框的置信度损失函数，就这一个
         nooobj_loss = F.mse_loss(noo_pred_c, noo_target_c, size_average=False)
 
-        # compute contain obj loss
+        # 计算含有目标框的损失
         coo_response_mask = torch.cuda.ByteTensor(box_target.size()).bool()
         coo_response_mask.zero_()
         coo_not_response_mask = torch.cuda.ByteTensor(box_target.size()).bool()
@@ -121,7 +154,7 @@ class yoloLoss(nn.Module):
             # and the ground truth
             #####
             # iou value 作为box包含目标的confidence(赋值在向量的第五个位置)
-            box_target_iou[i+max_index, torch.LongTensor([4]).cuda()] = (max_iou).data.cuda()
+            box_target_iou[i+max_index, torch.LongTensor([4]).cuda()] = max_iou.data.cuda()
         box_target_iou = box_target_iou.cuda()
         # 1.response loss
         box_pred_response = box_pred[coo_response_mask].view(-1, 5)
@@ -148,5 +181,49 @@ class yoloLoss(nn.Module):
                 not_contain_loss + self.l_noobj*nooobj_loss + class_loss)/N
 
 
+def iou_comput(box1, box2):
+
+    N = box1.size(0)
+    M = box2.size(0)
+    print(N, M)
+
+    leftTop = torch.max(
+        box1[:, :2].unsqueeze(1).expand(N, M, 2),
+        box2[:, :2].unsqueeze(0).expand(N, M, 2))
+
+    rightBottom = torch.min(
+        box1[:, 2:].unsqueeze(1).expand(N, M, 2),
+        box2[:, 2:].unsqueeze(0).expand(N, M, 2)
+    )
+
+    wh = torch.max(rightBottom - leftTop, box1.new(1).fill_(0))
+
+    inter = wh[:, :, 0] * wh[:, :, 1]
+
+    box1_area = (box1[:, 2] - box1[:, 0])*(box1[:, 3] - box1[:, 1])
+    box2_area = (box2[:, 2] - box2[:, 0])*(box2[:, 3] - box2[:, 1])
+
+    box1_area = box1_area.view(N, 1)
+    box2_area = box2_area.view(1, M)
+
+    iou = inter / (box1_area + box2_area - inter)
+    return iou
 
 
+if __name__ == "__main__":
+    loss = yoloLoss(7, 2, 5, 0.5)
+    a = torch.tensor([[10, 20, 30, 40], [30, 45, 120, 230]], dtype=torch.float)
+    b = torch.tensor([[20, 30, 56, 78], [31, 44, 50, 89], [77, 80, 97, 220]], dtype=torch.float)
+    c = loss.compute_iou(a, b)
+    d = iou_comput(a, b)
+    box1 = torch.range(0, 5879).view(-1, 14, 14, 30)
+    box1[:, 12:, 13:, 4] = 1
+    box1[:, :12, :13, 4] = 0
+    box1 = box1.to('cuda')
+    box2 = torch.range(2, 5881).view(-1, 14, 14, 30)
+    box2[:, :13, :13, 4] = 0
+    box2[:, 13:, 13:, 4] = 1
+    box2 = box2.to('cuda')
+    loss_ = loss(box1, box2)
+    print(c)
+    print(d)

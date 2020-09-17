@@ -112,9 +112,6 @@ class Bottleneck(nn.Module):
 
 
 class detnet_bottleneck(nn.Module):
-    # no expansion
-    # dilation = 2
-    # type B use 1x1 conv
     expansion = 1
 
     def __init__(self, in_planes, planes, stride=1, block_type='A'):
