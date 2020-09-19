@@ -24,7 +24,8 @@ class pascal_voc(imdb):
         super(pascal_voc, self).__init__('voc_' + year + '_' + image_set)  # 继承了父类, 写入父类的方法即可
         self._year = year
         self._image_set = image_set
-        self._devkit_path = self._get_default_path()
+        self._devkit_path = data_dir
+        print(self._devkit_path)
         # "测试的时候用: /home/bruce/PycharmProjects/yolov2.pytorch/data/test/VOCdevkit"
         # self._devkit_path = "/home/bruce/PycharmProjects/yolov2.pytorch/data/VOCdevkit2007"
         self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
@@ -40,7 +41,11 @@ class pascal_voc(imdb):
         self._image_ext = '.jpg'
 
         # 图片名称images_name
-        self._image_index = self._load_image_set_index()
+        image_set_file = os.path.join(self._data_path, 'ImageSets', 'Main', self._image_set + '.txt')
+        assert os.path.exists(image_set_file), 'Path does not exist: {}'.format(image_set_file)
+        with open(image_set_file) as f:
+            image_index = [x.strip() for x in f.readlines()]
+        self._image_index = image_index
 
         # 继承父类方法, 且把子类方法gt_roidb 函数名称直接赋值给子类
         self._roidb_handler = self.gt_roidb
@@ -84,6 +89,7 @@ class pascal_voc(imdb):
         """
         Return the default path where PASCAL VOC is expected to be installed.
         """
+
         return os.path.join(data_dir, 'VOCdevkit' + self._year)
 
     def _load_image_set_index(self):
@@ -148,8 +154,7 @@ class pascal_voc(imdb):
             boxes[ix, :] = [x1, y1, x2, y2]
             gt_classes[ix] = cls
 
-        return {'boxes': boxes,
-                'gt_classes': gt_classes, }
+        return {'boxes': boxes, 'gt_classes': gt_classes, }
 
     def _get_comp_id(self):
         comp_id = (self._comp_id + '_' + self._salt if self.config['use_salt']

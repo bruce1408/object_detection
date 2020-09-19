@@ -2,6 +2,7 @@
 import torch
 import cv2
 import PIL
+import os
 from get_imdb import get_imdb
 from PIL import Image
 import numpy as np
@@ -19,26 +20,50 @@ class RoiDataset(Dataset):
         """
         super(RoiDataset, self).__init__()
         self._imdb = imdb
+        self._year = "2012"
+        self._image_set = "train"
+        self._devkit_path = "/home/chenxi/dataset/VOCdevkit"
+        print(self._devkit_path)
+        self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
+        self._classes = ('aeroplane', 'bicycle', 'bird', 'boat',
+                         'bottle', 'bus', 'car', 'cat', 'chair',
+                         'cow', 'diningtable', 'dog', 'horse',
+                         'motorbike', 'person', 'pottedplant',
+                         'sheep', 'sofa', 'train', 'tvmonitor')
 
-        # _roidb 是一个list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[]x1, y1, x2, y2], "gt_classes":array([[label]]}
+        # self.num_classes 是父类的方法, 在此处继承父类方法,且父类中将其变成了属性,所以直接调用属性即可.
+        self._class_to_ind = dict(zip(self.classes, range(self.num_classes)))  # 类别对应数字序号
+
+        self._image_ext = '.jpg'
+
+        # _roidb 是一个list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[x1, y1, x2, y2]], "gt_classes":array([[label]]}
         self._roidb = imdb.roidb
         self.train = train
 
         # list, 存放图片的路径
+        image_set_file = os.path.join(self._data_path, 'ImageSets', 'Main', self._image_set + '.txt')
+        assert os.path.exists(image_set_file), 'Path does not exist: {}'.format(image_set_file)
+        with open(image_set_file) as f:
+            image_index = [x.strip() for x in f.readlines()]
+        self._image_index = image_index
+
         self._image_paths = [self._imdb.image_path_at(i) for i in range(len(self._roidb))]
 
-    def roi_at(self, i):
-        image_path = self._image_paths[i]
-        im_data = Image.open(image_path)
-        boxes = self._roidb[i]['boxes']
-        gt_classes = self._roidb[i]['gt_classes']
-
-        return im_data, boxes, gt_classes
+    # def roi_at(self, i):
+    #     image_path = self._image_paths[i]
+    #     im_data = Image.open(image_path)
+    #     boxes = self._roidb[i]['boxes']
+    #     gt_classes = self._roidb[i]['gt_classes']
+    #
+    #     return im_data, boxes, gt_classes
 
     def __getitem__(self, i):
 
         # 得到的是最原始的图像, 标签信息数据
-        im_data, boxes, gt_classes = self.roi_at(i)
+        image_path = self._image_paths[i]
+        im_data = Image.open(image_path)
+        boxes = self._roidb[i]['boxes']
+        gt_classes = self._roidb[i]['gt_classes']
 
         # 获得原始图像的 w, h
         im_info = torch.FloatTensor([im_data.size[0], im_data.size[1]])
@@ -125,13 +150,13 @@ def detection_collate(batch):
 
 
 if __name__ == "__main__":
-    data = RoiDataset(get_imdb("voc_2007_train"))
+    data = RoiDataset(get_imdb("voc_2012_train"))
     i = 0
     print(data[i].__len__())
-    # print(data[i][0].shape)
-    # print(data[i][1].shape)
-    # print(data[i][1])
-    # print(data[i][2].shape)
+    print(data[i][0].shape)
+    print(data[i][1].shape)
+    print(data[i][1])
+    print(data[i][2].shape)
 
 
 
