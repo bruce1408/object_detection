@@ -3,7 +3,8 @@ import torch
 import cv2
 import PIL
 import os
-from get_imdb import get_imdb
+import pickle
+# from get_imdb import get_imdb
 from PIL import Image
 import numpy as np
 from torch.utils.data import Dataset
@@ -12,18 +13,21 @@ from augmentation import augment_img
 
 
 class RoiDataset(Dataset):
-    def __init__(self, imdb, train=True):
+    def __init__(self, filename, train=True):
         """
         函数构造函数是imdb, imdb 是类 pascal_voc, 把该类作为初始化参数加到构造函数里面
         :param imdb: 类名pascal_voc
         :param train:
         """
         super(RoiDataset, self).__init__()
-        self._imdb = imdb
+        # self._imdb = imdb
         self._year = "2012"
         self._image_set = "train"
         self._devkit_path = "/home/chenxi/dataset/VOCdevkit"
         print(self._devkit_path)
+        self.data_dir = "/home/chenxi/dataset/VOCdevkit"
+        self.name = 'voc_' + self._year + '_' + self._image_set
+
         self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
         self._classes = ('aeroplane', 'bicycle', 'bird', 'boat',
                          'bottle', 'bus', 'car', 'cat', 'chair',
@@ -32,12 +36,13 @@ class RoiDataset(Dataset):
                          'sheep', 'sofa', 'train', 'tvmonitor')
 
         # self.num_classes 是父类的方法, 在此处继承父类方法,且父类中将其变成了属性,所以直接调用属性即可.
-        self._class_to_ind = dict(zip(self.classes, range(self.num_classes)))  # 类别对应数字序号
+        self._class_to_ind = dict(zip(self._classes, range(len(self._classes))))  # 类别对应数字序号
 
         self._image_ext = '.jpg'
 
         # _roidb 是一个list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[x1, y1, x2, y2]], "gt_classes":array([[label]]}
-        self._roidb = imdb.roidb
+        self._roidb = self.gt_roidb()
+
         self.train = train
 
         # list, 存放图片的路径
@@ -47,15 +52,22 @@ class RoiDataset(Dataset):
             image_index = [x.strip() for x in f.readlines()]
         self._image_index = image_index
 
-        self._image_paths = [self._imdb.image_path_at(i) for i in range(len(self._roidb))]
+        self._image_paths = [self.image_path_from_index(self._image_index[i]) for i in range(len(self._image_index))]
 
-    # def roi_at(self, i):
-    #     image_path = self._image_paths[i]
-    #     im_data = Image.open(image_path)
-    #     boxes = self._roidb[i]['boxes']
-    #     gt_classes = self._roidb[i]['gt_classes']
-    #
-    #     return im_data, boxes, gt_classes
+    def image_path_from_index(self, index):
+        """
+        Construct an image path from the image's "index" identifier.
+        """
+        image_path = os.path.join(self._data_path, 'JPEGImages', index + self._image_ext)
+        assert os.path.exists(image_path), 'Path does not exist: {}'.format(image_path)
+        return image_path
+
+    @property
+    def cache_path(self):
+        cache_path = os.path.abspath(os.path.join(self.data_dir, 'cache'))
+        if not os.path.exists(cache_path):
+            os.makedirs(cache_path)
+        return cache_path
 
     def __getitem__(self, i):
 
@@ -101,6 +113,25 @@ class RoiDataset(Dataset):
             im_data_resize = torch.from_numpy(np.array(im_data)).float() / 255
             im_data_resize = im_data_resize.permute(2, 0, 1)
             return im_data_resize, im_info
+
+
+    def gt_roidb(self):
+        """
+        Return the database of ground-truth regions of interest.
+        This function loads/saves from/to a cache file to speed up future calls.
+        """
+        cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
+        if os.path.exists(cache_file):
+            with open(cache_file, 'rb') as fid:
+                roidb = pickle.load(fid)
+            print('{} gt roidb loaded from {}'.format(self.name, cache_file))
+            return roidb
+
+        gt_roidb = [self._load_pascal_annotation(index) for index in self.image_index]
+        with open(cache_file, 'wb') as fid:
+            pickle.dump(gt_roidb, fid, pickle.HIGHEST_PROTOCOL)
+        print('wrote gt roidb to {}'.format(cache_file))
+        return gt_roidb
 
     def __len__(self):
         return len(self._roidb)
@@ -150,7 +181,7 @@ def detection_collate(batch):
 
 
 if __name__ == "__main__":
-    data = RoiDataset(get_imdb("voc_2012_train"))
+    data = RoiDataset("voc_2012_train")
     i = 0
     print(data[i].__len__())
     print(data[i][0].shape)
