@@ -67,14 +67,13 @@ if resume:
     net.load_state_dict(torch.load('checkpoints/best.pth'))
 else:
     print('loading pre-trained model ......')
-    if use_resnet:  # 对应自己网络结构的官方预训练模型
+    if use_resnet:  # 对应自己网络结构的加载官方预训练模型参数
         offiNet = officalModel.resnet50(pretrained=True)  # 官方模型
         new_state_dict = offiNet.state_dict()
         dd = net.state_dict()
         for k in new_state_dict.keys():
             print(k)
             if k in dd.keys() and not k.startswith('fc'):
-                # print('yes')
                 dd[k] = new_state_dict[k]
         net.load_state_dict(dd)
     else:
@@ -133,8 +132,8 @@ for epoch in range(num_epochs):
             images, target = images.cuda(), target.cuda()
 
         pred = net(images)
-        # print('the pred shape is: ', pred.shape)
-        # print('target shape ', target.shape)
+        # print('the pred shape is: ', pred.shape)  # [batch, 14, 14, 30]
+        # print('target shape ', target.shape)  # [batch, 14, 14, 30]
         loss = criterion(pred, target)
         total_loss += loss.data.item()
 

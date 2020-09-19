@@ -130,13 +130,16 @@ class yoloLoss(nn.Module):
         coo_response_mask.zero_()
         coo_not_response_mask = torch.cuda.ByteTensor(box_target.size()).bool()
         coo_not_response_mask.zero_()
+
         box_target_iou = torch.zeros(box_target.size()).cuda()
+
         for i in range(0, box_target.size()[0], 2):  # choose the best iou box
             box1 = box_pred[i:i+2]   # 获取当前格点预测的b个box
             box1_xyxy = torch.FloatTensor(box1.size())
             # (x,y,w,h)
-            box1_xyxy[:, :2] = box1[:, :2]/14. - 0.5 * box1[:, 2:4]
-            box1_xyxy[:, 2:4] = box1[:, :2]/14. + 0.5 * box1[:, 2:4]
+            box1_xyxy[:, :2] = box1[:, :2]/14. - 0.5 * box1[:, 2:4]  # xy
+            box1_xyxy[:, 2:4] = box1[:, :2]/14. + 0.5 * box1[:, 2:4]  # wh
+
             box2 = box_target[i].view(-1, 5)
             box2_xyxy = torch.FloatTensor(box2.size())
             box2_xyxy[:, :2] = box2[:, :2]/14. - 0.5*box2[:, 2:4]
@@ -156,6 +159,7 @@ class yoloLoss(nn.Module):
             # iou value 作为box包含目标的confidence(赋值在向量的第五个位置)
             box_target_iou[i+max_index, torch.LongTensor([4]).cuda()] = max_iou.data.cuda()
         box_target_iou = box_target_iou.cuda()
+
         # 1.response loss
         box_pred_response = box_pred[coo_response_mask].view(-1, 5)
         box_target_response_iou = box_target_iou[coo_response_mask].view(-1, 5)
