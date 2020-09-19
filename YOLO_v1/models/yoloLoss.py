@@ -18,6 +18,13 @@ class yoloLoss(nn.Module):
     s = 7, b = 2, l_coord = 5, l_noobj = 0.5
     """
     def __init__(self, S, B, l_coord, l_noobj):
+        """
+        损失函数部分计算，
+        :param S:
+        :param B:
+        :param l_coord:
+        :param l_noobj:
+        """
         super(yoloLoss, self).__init__()
         self.S = S  # 7
         self.B = B  # 2
@@ -67,27 +74,35 @@ class yoloLoss(nn.Module):
         """
         pred_tensor: (tensor) size(batchsize, S, S, B x 5 + 20 = 30) [x,y,w,h,c]
         target_tensor: (tensor) size(batchsize, S, S, 30)
+        首先得到 N 是 batch_size,然后筛选出有目标框的部分，因为真实数据[:, :, :, 4]和[:, :, :, 9]都是相同的，所以只把4拿出来。
+        来筛选出是否是含有目标框的coo_mask 是有目标框的索引，noo_mask 是没有目标框的索引；
+        然后对有目标框的索引 coo_mask 和 没有目标框的索引 noo_mask 坐标扩大原始数据尺寸。
+
         """
         N = pred_tensor.size()[0]
 
         # 具有目标标签的索引(bs, 7, 7, 30)中7*7方格中的哪个方格包含目标
-        coo_mask = target_tensor[:, :, :, 4] > 0  # coo_mask.shape = (bs, 7, 7)
-        noo_mask = target_tensor[:, :, :, 4] == 0  # 不具有目标的标签索引
-
-        # 得到含物体的坐标等信息(coo_mask扩充到与target_tensor一样形状, 沿最后一维扩充), 然后用来在真实的数据上进行筛选
-        coo_mask = coo_mask.unsqueeze(-1).expand_as(target_tensor)  # [batch, 7, 7, 30]
-
-        # 不含有目标框的bool矩阵
-        noo_mask = noo_mask.unsqueeze(-1).expand_as(target_tensor)  # [batch, 7, 7, 30]
+        coo_obj_index = target_tensor[:, :, :, 4] > 0  # coo_mask.shape = (bs, 7, 7)
+        noo_obj_index = target_tensor[:, :, :, 4] == 0  # 不具有目标的标签索引
 
         """
-        _pred表示预测结果， _target表示真实结果
+        上面的coo_obj_index只是在原来的数据上最后一个维度进行筛选，判断置信度有没有大于0，返回的是这个30维度的整个判断
+        如果大于0，那么需要得到置信度大于0的整个30个维度的信息。所以，这里采用和原来的维度保持一致，即可取到置信度大于0的整个数组的信息。
         """
-        #  预测结果有目标框部分， 不一定是[14*14×batch, 30]
-        coo_pred = pred_tensor[coo_mask].view(-1, 30)
+        # (coo_mask扩充到与target_tensor一样形状, 沿最后一维扩充), 然后用来在真实的数据上进行筛选
+        coo_obj_index = coo_obj_index.unsqueeze(-1).expand_as(target_tensor)  # [batch, 7, 7, 30]
 
-        # 真实结果有目标框的部分
-        coo_target = target_tensor[coo_mask].view(-1, 30)
+        # 不含有目标框的bool索引
+        noo_obj_index = noo_obj_index.unsqueeze(-1).expand_as(target_tensor)  # [batch, 7, 7, 30]
+
+        """
+        _pred表示预测结果， _target表示真实结果，含有目标框检测的部分
+        """
+        #  置信度大于0的有目标框的预测值， 不一定是[14*14×batch, 30]，包含所有部分，坐标和置信度
+        coo_pred = pred_tensor[coo_obj_index].view(-1, 30)
+
+        # 置信度大于0的有目标框的真实值，包含所有部分，坐标和置信度
+        coo_target = target_tensor[coo_obj_index].view(-1, 30)
 
         # 含有目标框的预测值的坐标部分
         box_pred = coo_pred[:, :10].contiguous().view(-1, 5)  # box[x1,y1,w1,h1,c1], [x2,y2,w2,h2,c2]
@@ -104,25 +119,25 @@ class yoloLoss(nn.Module):
         """
         不含有目标框的预测值和真实数据部分
         """
-        # 不含有目标框的预测结果
-        noo_pred = pred_tensor[noo_mask].view(-1, 30)
+        # 不含有目标框的预测值
+        noo_obj_predValue = pred_tensor[noo_obj_index].view(-1, 30)
 
-        # 不含有目标框的真实结果
-        noo_target = target_tensor[noo_mask].view(-1, 30)
+        # 不含有目标框的真实值
+        noo_obj_targetValue = target_tensor[noo_obj_index].view(-1, 30)
 
-        # 不含目标框的部分重新生成一个布尔值矩阵。
-        noo_pred_mask = torch.cuda.ByteTensor(noo_pred.size()).bool()
-        noo_pred_mask.zero_()  # 全部置0
+        # 不含目标框的预测部分重新生成一个布尔值矩阵。
+        noo_obj_pred_index = torch.cuda.ByteTensor(noo_obj_predValue.size()).bool()
+        noo_obj_pred_index.zero_()  # 全部置0
 
-        # 对不含目标框的部分置信度置1
-        noo_pred_mask[:, 4] = 1
-        noo_pred_mask[:, 9] = 1
+        # 对不含目标框的预测部分置信度置1
+        noo_obj_pred_index[:, 4] = 1
+        noo_obj_pred_index[:, 9] = 1
 
-        # 不含目标框部分×2， 如果含有目标的是185, 不含目标的是11,
-        noo_pred_c = noo_pred[noo_pred_mask]  # noo pred只需要计算 c 的损失 size[-1,2]
-        noo_target_c = noo_target[noo_pred_mask]
+        # 不含目标框的预测部分×2， 如果含有目标的是185, 不含目标的是11
+        noo_pred_c = noo_obj_predValue[noo_obj_pred_index]  # noo pred只需要计算 c 的损失 size[-1,2]
+        noo_target_c = noo_obj_targetValue[noo_obj_pred_index]
 
-        # 不含有目标框的置信度损失函数，就这一个
+        # todo 不含有目标框的置信度损失函数，就这一个
         nooobj_loss = F.mse_loss(noo_pred_c, noo_target_c, size_average=False)
 
         # 计算含有目标框的损失
@@ -130,26 +145,46 @@ class yoloLoss(nn.Module):
         coo_response_mask.zero_()
         coo_not_response_mask = torch.cuda.ByteTensor(box_target.size()).bool()
         coo_not_response_mask.zero_()
+        # 计算含有目标框的损失的部分, 设置两个索引判断iou是否最大与否，然后进行判断
+        coo_iou_index = torch.cuda.ByteTensor(box_target.size()).bool()
+        coo_iou_index.zero_()
+
+        coo_not_iou_index = torch.cuda.ByteTensor(box_target.size()).bool()
+        coo_not_iou_index.zero_()
 
         box_target_iou = torch.zeros(box_target.size()).cuda()
 
         for i in range(0, box_target.size()[0], 2):  # choose the best iou box
-            box1 = box_pred[i:i+2]   # 获取当前格点预测的b个box
+            """
+            提取2个预测值box1和1个真实值box2的坐标，然后进行变换之后求iou值，iou最大的那个提取出来
+            """
+            # 获取当前预测格点的2个box
+            box1 = box_pred[i:i+2]
+
+            # 随机生成Box1大小的矩阵
             box1_xyxy = torch.FloatTensor(box1.size())
             # (x,y,w,h)
             box1_xyxy[:, :2] = box1[:, :2]/14. - 0.5 * box1[:, 2:4]  # xy
             box1_xyxy[:, 2:4] = box1[:, :2]/14. + 0.5 * box1[:, 2:4]  # wh
 
+            # (x, y, w, h)->(x1, y1, x2, y2)
+            box1_xyxy[:, :2] = box1[:, :2]/14. - 0.5 * box1[:, 2:4]  # x1, y1
+            box1_xyxy[:, 2:4] = box1[:, :2]/14. + 0.5 * box1[:, 2:4]  # x2, y2
+
+            # 真实数据
             box2 = box_target[i].view(-1, 5)
             box2_xyxy = torch.FloatTensor(box2.size())
-            box2_xyxy[:, :2] = box2[:, :2]/14. - 0.5*box2[:, 2:4]
-            box2_xyxy[:, 2:4] = box2[:, :2]/14. + 0.5*box2[:, 2:4]
+            box2_xyxy[:, :2] = box2[:, :2]/14. - 0.5*box2[:, 2:4]  # x1, y1
+            box2_xyxy[:, 2:4] = box2[:, :2]/14. + 0.5*box2[:, 2:4]  # x2, y2
+
+            # 计算2个预测框box1 和 1个真实框box2的iou值
             iou = self.compute_iou(box1_xyxy[:, :4], box2_xyxy[:, :4])  # [2,1]
             max_iou, max_index = iou.max(0)
             max_index = max_index.data.cuda()
-            
-            coo_response_mask[i+max_index] = 1
-            coo_not_response_mask[i+1-max_index] = 1
+
+            # 最终iou最大的框对应的index
+            coo_iou_index[i+max_index] = 1
+            coo_not_iou_index[i+1-max_index] = 1
 
             #####
             # we want the confidence score to equal the
@@ -164,25 +199,40 @@ class yoloLoss(nn.Module):
         box_pred_response = box_pred[coo_response_mask].view(-1, 5)
         box_target_response_iou = box_target_iou[coo_response_mask].view(-1, 5)
         box_target_response = box_target[coo_response_mask].view(-1, 5)
+        """
+        因为box_pred是[54, 5]，预测的是两个bounding_box,通过coo_iou_index可以筛掉其中一个框，然后留下的是iou最大的那个选择框，
+        box_pred_response表示最大iou对应的预测数据；
+        box_target_response表示最大iou对应的真实数据；
+        """
+        # 预测值：计算含有box的最大iou所在的框的所有信息，包括坐标和置信度筛选出来
+        box_pred_response = box_pred[coo_iou_index].view(-1, 5)
+
+        # 真实框：计算含有box的最大iou所在的框的所有信息，包括坐标和置信度筛选出来
+        box_target_response = box_target[coo_iou_index].view(-1, 5)
+
+        # 最大iou的值筛选出来
+        box_target_response_iou = box_target_iou[coo_iou_index].view(-1, 5)
+
+        # todo 包含目标框的置信度损失
         contain_loss = F.mse_loss(box_pred_response[:, 4], box_target_response_iou[:, 4], size_average=False)
+
+        # todo 坐标损失部分计算
         loc_loss = F.mse_loss(box_pred_response[:, :2], box_target_response[:, :2], size_average=False) + \
                    F.mse_loss(torch.sqrt(box_pred_response[:, 2:4]), torch.sqrt(box_target_response[:, 2:4]),
                               size_average=False)
 
         # 2.not response loss
-        box_pred_not_response = box_pred[coo_not_response_mask].view(-1, 5)
-        box_target_not_response = box_target[coo_not_response_mask].view(-1, 5)
-        box_target_not_response[:, 4] = 0
-        # not_contain_loss = F.mse_loss(box_pred_response[:,4],box_target_response[:,4],size_average=False)
-        
-        # I believe this bug is simply a typo
+        # todo iou最小的那个也没有丢掉，而是加到了这部分来计算置信度损失
+        box_pred_not_response = box_pred[coo_not_iou_index].view(-1, 5)
+        box_target_not_response = box_target[coo_not_iou_index].view(-1, 5)
+        box_target_not_response[:, 4] = 0  # 置信度置位0
         not_contain_loss = F.mse_loss(box_pred_not_response[:, 4], box_target_not_response[:, 4], size_average=False)
 
-        # 3.class loss
+        # todo 类别损失部分
         class_loss = F.mse_loss(class_pred, class_target, size_average=False)
 
-        return (self.l_coord*loc_loss + self.B*contain_loss +
-                not_contain_loss + self.l_noobj*nooobj_loss + class_loss)/N
+        # todo 分别对应的是坐标损失(xy + wh),　包含物体置信度损失,　不包含物体的置信度损失, 类别损失
+        return (self.l_coord*loc_loss + self.B*contain_loss + self.l_noobj*nooobj_loss + class_loss + not_contain_loss)/N
 
 
 def iou_comput(box1, box2):

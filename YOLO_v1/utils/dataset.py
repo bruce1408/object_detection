@@ -32,6 +32,14 @@ class yoloDataset(data.Dataset):
     # train=True, transform = [transforms.ToTensor()] )
 
     def __init__(self, root, list_file, train, transform):
+        """
+        函数首先把txt中的坐标读出来，然后进行一系列变换，通过encode变换，把经过尺寸归一化之后的(x1, y1, x2, y2)/wh作为输入进行变换，
+        变换之后得到target是一个7*7*30的矩阵，每个target不再是xy坐标系，而是中心坐标系，(cx,cy, w, h)
+        :param root:
+        :param list_file:
+        :param train:
+        :param transform:
+        """
         self.root = root  # 数据集根目录
         self.train = train  # 是否为训练
         self.transform = transform  # 转换
@@ -61,12 +69,12 @@ class yoloDataset(data.Dataset):
             box = []
             label = []
             for i in range(num_boxes):
-                x = float(splited[1 + 5 * i]) - 1
-                y = float(splited[2 + 5 * i]) - 1
+                x1 = float(splited[1 + 5 * i]) - 1
+                y1 = float(splited[2 + 5 * i]) - 1
                 x2 = float(splited[3 + 5 * i]) - 1
                 y2 = float(splited[4 + 5 * i]) - 1
                 c_label = splited[5 + 5 * i]
-                box.append([x, y, x2, y2])
+                box.append([x1, y1, x2, y2])
                 label.append(int(c_label) + 1)
             self.boxes.append(torch.Tensor(box))
             self.labels.append(torch.LongTensor(label))
@@ -106,6 +114,8 @@ class yoloDataset(data.Dataset):
         # print(fname)
         h, w, _ = img.shape  # 不管通道数 _
         boxes /= torch.Tensor([w, h, w, h]).expand_as(boxes)  # 一张图片中框的坐标归一化，即转换为对于0,0点的(0,1)范围内的表述
+
+        # 图片数据进行操作
         img = self.BGR2RGB(img)  # because pytorch pretrained model use RGB
         img = self.subMean(img, self.mean)  # 减去均值
         img = cv2.resize(img, (self.image_size, self.image_size))
@@ -122,9 +132,14 @@ class yoloDataset(data.Dataset):
 
     def encoder(self, boxes, labels):
         """
+        boxes是原来的x1, y1, x2, y2/wh之后归一化的值，通过此函数，把这个归一化之后的值经过变换在7*7网格内的
+        cx, cy, w, h 归一化之后的类型，cx和cy是坐标的相对偏移位置。
+        这里的wh没有进行其他变换，单纯的对原来的坐标相见得到的，而中心坐标进行了变换,是相当于14尺寸进行的相对坐标。映射到14*14的图片上
         boxes (tensor) [[x1,y1,x2,y2],[]], 且boxes是进过除以[w, h]之后归一化的值
         labels (tensor) [...]
-        return 7x7x30
+        return 7x7x30的向量, 注意：
+        cx, cy是通过乘以14之后, 相当于框在14尺寸的图上进行新的标注的框, 而wh没有变化, 在损失函数中需要把cx, cy转换到xy坐标的时候
+        需要先对其除以14放到同一尺度上进行计算
         """
         grid_num = 14  # 论文中设为7
         target = torch.zeros((grid_num, grid_num, 30))
@@ -132,16 +147,24 @@ class yoloDataset(data.Dataset):
         wh = boxes[:, 2:] - boxes[:, :2]  # 宽高
         cxcy = (boxes[:, 2:] + boxes[:, :2]) / 2  # 中心点
         for i in range(cxcy.size()[0]):  # 对于数据集中的每个框 这里cxcy.size() == num_samples
+
             cxcy_sample = cxcy[i]
-            ij = (cxcy_sample / cell_size).ceil() - 1  # ij 是一个list, 表示目标中心点cxcy在归一化后的图片中所处的x y 方向的第几个网格
-            delta_xy = (cxcy_sample / cell_size) - ij  # 相对位移坐标情况
-            # [中心坐标,长宽,置信度,中心坐标,长宽,置信度, 20个类别] x 7x7
+
+            # ij 是一个list, 表示目标中心点cxcy在归一化后的图片中所处的x y 方向的第几个网格
+            ij = (cxcy_sample / cell_size).ceil() - 1
+
+            # 相对位移坐标情况
+            delta_xy = (cxcy_sample / cell_size) - ij
+
+            # [中心坐标,长宽,置信度,中心坐标,长宽,置信度, 20个类别] x 7 x 7
             target[int(ij[1]), int(ij[0]), 4] = 1  # 第一个框的置信度
             target[int(ij[1]), int(ij[0]), 9] = 1  # 第二个框的置信度
             target[int(ij[1]), int(ij[0]), int(labels[i]) + 9] = 1
             xy = ij * cell_size  # 匹配到划分后的子网格的左上角相对坐标
             # delta_xy = (cxcy_sample - xy) / cell_size  # delta_xy对于目标中心点落入的子网格，目标中心坐标相对于子网格左上点的位置比例
-            target[int(ij[1]), int(ij[0]), 2:4] = wh[i]  # 坐标w,h代表了预测边界框的width、height相对于整幅图像width,height的比例，范围为(0,1)
+
+            # 坐标w,h代表了预测边界框的width, height相对于整幅图像width,height的比例，范围为(0,1)
+            target[int(ij[1]), int(ij[0]), 2:4] = wh[i]
             target[int(ij[1]), int(ij[0]), :2] = delta_xy
             target[int(ij[1]), int(ij[0]), 7:9] = wh[i]
             target[int(ij[1]), int(ij[0]), 5:7] = delta_xy
