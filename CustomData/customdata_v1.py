@@ -108,7 +108,7 @@ class RoiDataset(Dataset):
 
         # 得到的是最原始的图像, 标签信息数据
         image_path = self._image_paths[i]
-        image_path = "/home/chenxi/dataset/VOCdevkit/VOC2012/JPEGImages/2008_002370.jpg"
+        image_path = "/home/chenxi/dataset/VOCdevkit/VOC2012/JPEGImages/2008_001813.jpg"
         index = 0
         for i in self._image_paths:
             if image_path == i:

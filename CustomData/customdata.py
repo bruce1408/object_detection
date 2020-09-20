@@ -249,7 +249,7 @@ def detection_collate(batch):
 
 if __name__ == "__main__":
     data = RoiDataset("voc_2012_train")
-    i = 0
+    i = 1
     print(data[i].__len__())
     print(data[i][0].shape)
     print(data[i][1].shape)
