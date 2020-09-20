@@ -60,33 +60,34 @@ class RoiDataset(Dataset):
         with open(image_set_file) as f:
             image_index = [x.strip() for x in f.readlines()]
         self.image_index = image_index
-        # ==================================
-        with open("/home/chenxi/tempfile/YOLO_v1/utils/voc2007test.txt") as f:
-            lines = f.readlines()
-        for line in lines:
-            splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
-            self.fnames.append(splited[0])
-            num_boxes = (len(splited) - 1) // 5
-            box = []
-            label = []
-            for i in range(num_boxes):
-                x1 = float(splited[1 + 5 * i]) - 1
-                y1 = float(splited[2 + 5 * i]) - 1
-                x2 = float(splited[3 + 5 * i]) - 1
-                y2 = float(splited[4 + 5 * i]) - 1
-                c_label = splited[5 + 5 * i]
-                box.append([x1, y1, x2, y2])
-                label.append(int(c_label) + 1)
-            self.boxes.append(torch.Tensor(box))
-            self.labels.append(torch.LongTensor(label))
-        self.num_samples = len(self.boxes)  # 数据集中包含所有Ground truth个数
-        # ==================================
+        # ========================================================================
+        # with open("/home/chenxi/tempfile/YOLO_v1/utils/voc2007test.txt") as f:
+        #     lines = f.readlines()
+        # for line in lines:
+        #     splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
+        #     self.fnames.append(splited[0])
+        #     num_boxes = (len(splited) - 1) // 5
+        #     box = []
+        #     label = []
+        #     for i in range(num_boxes):
+        #         x1 = float(splited[1 + 5 * i]) - 1
+        #         y1 = float(splited[2 + 5 * i]) - 1
+        #         x2 = float(splited[3 + 5 * i]) - 1
+        #         y2 = float(splited[4 + 5 * i]) - 1
+        #         c_label = splited[5 + 5 * i]
+        #         box.append([x1, y1, x2, y2])
+        #         label.append(int(c_label) + 1)
+        #     self.boxes.append(torch.Tensor(box))
+        #     self.labels.append(torch.LongTensor(label))
+        # self.num_samples = len(self.boxes)  # 数据集中包含所有Ground truth个数
+        # =========================================================================
         # _roidb 是一个list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[x1, y1, x2, y2]], "gt_classes":array([[label]]}
         self._roidb = self.gt_roidb()
 
         self.train = train
 
         self._image_paths = [self.image_path_from_index(self.image_index[i]) for i in range(len(self.image_index))]
+        # print(self._image_paths)
 
     def image_path_from_index(self, index):
         """
@@ -107,9 +108,19 @@ class RoiDataset(Dataset):
 
         # 得到的是最原始的图像, 标签信息数据
         image_path = self._image_paths[i]
+        image_path = "/home/chenxi/dataset/VOCdevkit/VOC2012/JPEGImages/2008_002370.jpg"
+        index = 0
+        for i in self._image_paths:
+            if image_path == i:
+                print(index)
+                print(self._image_paths[index])
+                break
+            else:
+                index += 1
+
         im_data = Image.open(image_path)
-        boxes = self._roidb[i]['boxes']
-        gt_classes = self._roidb[i]['gt_classes']
+        boxes = self._roidb[index]['boxes']
+        gt_classes = self._roidb[index]['gt_classes']
 
         # 获得原始图像的 w, h
         im_info = torch.FloatTensor([im_data.size[0], im_data.size[1]])
