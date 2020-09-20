@@ -327,7 +327,7 @@ if __name__ == '__main__':
     # file_root = "/home/bruce/PycharmProjects/yolov1_pytorch/datasets"
     file_root = "/home/chenxi/tempfile/YOLO_v1/utils"
     train_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=True, transform=[transforms.ToTensor()])
-    train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=0)
+    train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=4)
     train_iter = iter(train_loader)
     for i in range(len(train_iter)):
         try:
