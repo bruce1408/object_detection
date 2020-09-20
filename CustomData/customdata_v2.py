@@ -15,12 +15,6 @@ from augmentation import augment_img
 
 class RoiDataset(Dataset):
 
-    # _classes = ['aeroplane', 'bicycle', 'bird', 'boat',
-    #             'bottle', 'bus', 'car', 'cat', 'chair',
-    #             'cow', 'diningtable', 'dog', 'horse',
-    #             'motorbike', 'person', 'pottedplant',
-    #             'sheep', 'sofa', 'train', 'tvmonitor']
-
     def __init__(self, filename, train=True):
         """
         函数构造函数是imdb, imdb 是类 pascal_voc, 把该类作为初始化参数加到构造函数里面
@@ -28,24 +22,22 @@ class RoiDataset(Dataset):
         :param train:
         """
         super(RoiDataset, self).__init__()
-        # self._imdb = imdb
         self._year = "2012"
         self._image_set = "train"
         self._devkit_path = "/home/chenxi/dataset/VOCdevkit"
         self.data_dir = "/home/chenxi/dataset/VOCdevkit"
         self.name = 'voc_' + self._year + '_' + self._image_set
-
+        self.totalData = []
+        self.imageName = []
         self.boxes = []  # boxes  [ [box], [[x1,y1,x2,y2], ...], ... ]
         self.labels = []  # labels [ [1], [2], ... ]
         self.mean = (123, 117, 104)  # RGB 形式的均值
         self.num_samples = 0  # 样本总数
 
-        self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
+        self._data_path = "/home/chenxi/dataset/VOCdevkit/VOC2012/"
 
         # self.num_classes 是父类的方法, 在此处继承父类方法,且父类中将其变成了属性,所以直接调用属性即可.
         self._class_to_ind = dict(zip(cfg.classes, range(len(cfg.classes))))  # 类别对应数字序号
-
-        self._image_ext = '.jpg'
 
         self.config = {'cleanup': False,
                        'use_salt': True,
@@ -60,40 +52,46 @@ class RoiDataset(Dataset):
         with open(image_set_file) as f:
             image_index = [x.strip() for x in f.readlines()]
         self.image_index = image_index
-        # ========================================================================
-        # with open("/home/chenxi/tempfile/YOLO_v1/utils/voc2007test.txt") as f:
-        #     lines = f.readlines()
-        # for line in lines:
-        #     splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
-        #     self.fnames.append(splited[0])
-        #     num_boxes = (len(splited) - 1) // 5
-        #     box = []
-        #     label = []
-        #     for i in range(num_boxes):
-        #         x1 = float(splited[1 + 5 * i]) - 1
-        #         y1 = float(splited[2 + 5 * i]) - 1
-        #         x2 = float(splited[3 + 5 * i]) - 1
-        #         y2 = float(splited[4 + 5 * i]) - 1
-        #         c_label = splited[5 + 5 * i]
-        #         box.append([x1, y1, x2, y2])
-        #         label.append(int(c_label) + 1)
-        #     self.boxes.append(torch.Tensor(box))
-        #     self.labels.append(torch.LongTensor(label))
-        # self.num_samples = len(self.boxes)  # 数据集中包含所有Ground truth个数
-        # =========================================================================
+        # ==================================
+        with open("/home/chenxi/tempfile/YOLO_v1/utils/voc2007test.txt") as f:
+            lines = f.readlines()
+        for line in lines:
+            splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
+            self.imageName.append(splited[0])
+            num_boxes = (len(splited) - 1) // 5
+            box = []
+            label = []
+            restore_dict = {}
+
+            for i in range(num_boxes):
+                x1 = float(splited[1 + 5 * i]) - 1
+                y1 = float(splited[2 + 5 * i]) - 1
+                x2 = float(splited[3 + 5 * i]) - 1
+                y2 = float(splited[4 + 5 * i]) - 1
+                c_label = splited[5 + 5 * i]
+                box.append([x1, y1, x2, y2])
+                label.append(int(c_label))
+            self.boxes.append(box)
+            self.labels.append(label)
+
+            restore_dict['boxes'] = np.array(box)
+            restore_dict['gt_class'] = np.array(label)
+
+            self.totalData.append(restore_dict)
+        self.num_samples = len(self.boxes)  # 数据集中包含所有Ground truth个数
+        # ==================================
         # _roidb 是一个list, 存放的是每一个xml内部标签,写成字典的格式{"boxes":array([[x1, y1, x2, y2]], "gt_classes":array([[label]]}
-        self._roidb = self.gt_roidb()
+        self._roidb = self.load_data()
 
         self.train = train
 
-        self._image_paths = [self.image_path_from_index(self.image_index[i]) for i in range(len(self.image_index))]
-        # print(self._image_paths)
+        self._image_paths = [self.image_path_from_index(self.imageName[i]) for i in range(len(self.imageName))]
 
     def image_path_from_index(self, index):
         """
         Construct an image path from the image's "index" identifier.
         """
-        image_path = os.path.join(self._data_path, 'JPEGImages', index + self._image_ext)
+        image_path = os.path.join(self._data_path, "JPEGImages", index)
         assert os.path.exists(image_path), 'Path does not exist: {}'.format(image_path)
         return image_path
 
@@ -104,25 +102,15 @@ class RoiDataset(Dataset):
             os.makedirs(cache_path)
         return cache_path
 
-    def __getitem__(self, index):
+    def __getitem__(self, i):
 
         # 得到的是最原始的图像, 标签信息数据
-        image_path = self._image_paths[index]
-        # =======================
-        image_path = "/home/chenxi/dataset/VOCdevkit/VOC2012/JPEGImages/2008_002370.jpg"
-        index = 0
-        for i in self._image_paths:
-            if image_path == i:
-                # print(index)
-                # print(self._image_paths[index])
-                break
-            else:
-                index += 1
-        # ========================
-
+        image_path = self._image_paths[i]
         im_data = Image.open(image_path)
-        boxes = self._roidb[index]['boxes']
-        gt_classes = self._roidb[index]['gt_classes']
+        boxes = self.boxes[i]
+        gt_classes = self.labels[i]
+        print(self.totalData[i]['boxes'])
+        print(boxes)
 
         # 获得原始图像的 w, h
         im_info = torch.FloatTensor([im_data.size[0], im_data.size[1]])
@@ -161,12 +149,12 @@ class RoiDataset(Dataset):
             im_data_resize = im_data_resize.permute(2, 0, 1)
             return im_data_resize, im_info
 
-    def gt_roidb(self):
+    def load_data(self):
         """
         Return the database of ground-truth regions of interest.
         This function loads/saves from/to a cache file to speed up future calls.
         """
-        cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
+        cache_file = os.path.join(self.data_dir, self.name + '_gt_roidb.pkl')
         # if os.path.exists(cache_file):
         #     with open(cache_file, 'rb') as fid:
         #         roidb = pickle.load(fid)
@@ -268,6 +256,5 @@ if __name__ == "__main__":
     print(data[i][1])
     print(data[i][2].shape)
     print(data[i][2])
-
 
 
