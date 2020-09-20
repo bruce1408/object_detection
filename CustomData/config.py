@@ -6,6 +6,7 @@ classes = ['aeroplane', 'bicycle', 'bird', 'boat',
            'motorbike', 'person', 'pottedplant',
            'sheep', 'sofa', 'train', 'tvmonitor']
 
+
 object_scale = 5
 noobject_scale = 1
 class_scale = 1

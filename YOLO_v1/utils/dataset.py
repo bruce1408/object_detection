@@ -43,7 +43,7 @@ class yoloDataset(data.Dataset):
         self.root = root  # 数据集根目录
         self.train = train  # 是否为训练
         self.transform = transform  # 转换
-        self.fnames = []  # 文件名s [001.jpg, 002.jpg]
+        self.fnames = []  # 文件名 [001.jpg, 002.jpg]
         self.boxes = []  # boxes  [ [box], [[x1,y1,x2,y2], ...], ... ]
         self.labels = []  # labels [ [1], [2], ... ]
         self.mean = (123, 117, 104)  # RGB 形式的均值
@@ -63,7 +63,7 @@ class yoloDataset(data.Dataset):
         with open(list_file) as f:
             lines = f.readlines()
         for line in lines:
-            splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] 坐标 + 类型（labels）
+            splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
             self.fnames.append(splited[0])
             num_boxes = (len(splited) - 1) // 5
             box = []
@@ -324,8 +324,9 @@ class yoloDataset(data.Dataset):
 
 if __name__ == '__main__':
 
-    file_root = "/home/bruce/PycharmProjects/yolov1_pytorch/datasets"
-    train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
+    # file_root = "/home/bruce/PycharmProjects/yolov1_pytorch/datasets"
+    file_root = "/home/chenxi/tempfile/YOLO_v1/utils"
+    train_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=True, transform=[transforms.ToTensor()])
     train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=0)
     train_iter = iter(train_loader)
     for i in range(len(train_iter)):

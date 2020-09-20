@@ -16,7 +16,7 @@ def parse_rec(filename):
     for obj in tree.findall('object'):
         obj_struct = {}
         difficult = int(obj.find('difficult').text)
-        if difficult == 1: # 剔除困难标签的图片
+        if difficult == 1:  # 剔除困难标签的图片
             # print(filename)
             continue
         obj_struct['name'] = obj.find('name').text
@@ -31,12 +31,12 @@ def parse_rec(filename):
 
 
 txt_file = open('voc2007test.txt', 'w')
-test_file = open('voc07testimg.txt', 'r')
+test_file = open('/home/chenxi/dataset/VOCdevkit/VOC2012/ImageSets/Main/train.txt', 'r')
 lines = test_file.readlines()
 lines = [x[:-1] for x in lines]
 print(lines)
 
-Annotations = 'path/to/VOC2007/Annotations/'
+Annotations = '/home/chenxi/dataset/VOCdevkit/VOC2012/Annotations/'
 xml_files = os.listdir(Annotations)
 
 count = 0
