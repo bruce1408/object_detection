@@ -8,16 +8,17 @@ import pickle
 from PIL import Image
 import numpy as np
 from torch.utils.data import Dataset
-import config as cfg
+import config.config as cfg
 import xml.etree.ElementTree as ET
-from augmentation import augment_img
+from util.augmentation import augment_img
 
 
 class RoiDataset(Dataset):
 
     def __init__(self, root_dir, filename, train=True):
         """
-        函数构造函数是imdb, imdb 是类 pascal_voc, 把该类作为初始化参数加到构造函数里面
+        返回的是每一个index对应的图片重新resize之后的数据, 以及boxes, label, num_obj个数
+        boxes 是经过归一化之后的 [x1, y1, x2, y2]
         :param imdb: 类名pascal_voc
         :param train:
         """
@@ -72,16 +73,18 @@ class RoiDataset(Dataset):
         image_info = torch.FloatTensor([im_data.size[0], im_data.size[1]])
 
         if self.train:
-
-            # 数据增强
+            # 数据增强,最图片和box进行随机尺度缩放,不进行归一化操作
             im_data, boxes, gt_classes = augment_img(im_data, boxes, gt_classes)
 
             w, h = im_data.size[0], im_data.size[1]
+
+            # boxes 进行归一化操作,最小0.001, 最大是0.999
             boxes[:, 0::2] = np.clip(boxes[:, 0::2] / w, 0.001, 0.999)
             boxes[:, 1::2] = np.clip(boxes[:, 1::2] / h, 0.001, 0.999)
 
             # resize image, 图像缩放到416尺寸即可
             input_h, input_w = cfg.input_size
+            # print("the data is:, ", cfg.input_size)
             im_data = im_data.resize((input_w, input_h))
 
             # 缩放之后的尺寸
@@ -150,7 +153,7 @@ class RoiDataset(Dataset):
         return self.totalData
 
     def __len__(self):
-        return len(self._roidb)
+        return len(self.totalData)
 
 
 def detection_collate(batch):
@@ -195,10 +198,9 @@ if __name__ == "__main__":
     data = RoiDataset("/home/bruce/PycharmProjects/yolov1_pytorch/datasets", "/home/bruce/PycharmProjects/yolov1_pytorch/datasets/images.txt")
     i = 0
     print(data[i].__len__())
-    print(data[i][0].shape)
-    print(data[i][1].shape)
-    print(data[i][1])
-    print(data[i][2].shape)
-    print(data[i][2])
+    print('image size is: ', data[i][0].shape)
+    print('box is: ', data[i][1].shape, data[i][1])
+    print("gt_class is: ", data[i][2].shape, data[i][2])
+    print('num obj is: ', data[i][3].shape, data[i][3])
 
 

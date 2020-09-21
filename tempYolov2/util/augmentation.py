@@ -1,13 +1,13 @@
 import cv2
 import numpy as np
 from PIL import Image
-import config as cfg
+import config.config as cfg
 np.random.seed(0)
 
 
 def random_scale_translation(img, boxes, jitter=0.2):
     """
-    把图像和框都按照一定比例进行随机缩放
+    把图像和框都按照一定比例进行随机缩放,不会对框进行归一化
     Arguments:
     img -- PIL.Image
     boxes -- numpy array of shape (N, 4) N is number of boxes
