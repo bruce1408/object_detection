@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import config as cfg
-
+np.random.seed(0)
 
 def random_scale_translation(img, boxes, jitter=0.2):
     """
@@ -206,6 +206,8 @@ def augment_img(img, boxes, gt_classes):
     """
 
     # img = np.array(img).astype(np.float32)
+    boxes = np.array(boxes)
+    gt_classes = np.array(gt_classes)
     boxes = np.copy(boxes).astype(np.float32)
 
     for i in range(5):

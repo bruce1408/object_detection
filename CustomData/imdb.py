@@ -9,8 +9,9 @@ import os
 import os.path as osp
 
 
-root_dir = "/home/bruce/PycharmProjects/yolov2.pytorch/"
-data_dir = osp.join(root_dir, 'data')
+root_dir = "/home/chenxi/dataset/VOCdevkit"
+# data_dir = osp.join(root_dir, 'data')
+data_dir = root_dir
 
 
 class imdb(object):
@@ -18,7 +19,7 @@ class imdb(object):
         self._name = name
         self._classes = []
         self._image_index = []
-        self._roidb = None
+        self._roidb = None  # roidb 是表示box 数据
         self._roidb_handler = self.default_roidb
 
     @property
@@ -85,7 +86,7 @@ class imdb(object):
 
 
 if __name__ == "__main__":
-    im = imdb('voc_2007_train')
+    im = imdb('voc_2012_train')
 
 
 
