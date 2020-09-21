@@ -11,6 +11,8 @@ import numpy as np
 from torch.utils.data import Dataset
 import config as cfg
 from augmentation import augment_img
+from CustomData.get_imdb import get_imdb
+from torch.utils.data import DataLoader
 
 
 class RoiDataset(Dataset):
@@ -111,8 +113,24 @@ class TinyRoiDataset(RoiDataset):
         self._roidb = self._roidb[:num_roi]
 
 
+def get_dataset(datasetnames):
+    names = datasetnames.split('+')
+    print(get_imdb(names[0]))
+    dataset = RoiDataset(get_imdb(names[0]))
+    print('load dataset {}'.format(names[0]))
+    for name in names[1:]:
+        tmp = RoiDataset(get_imdb(name))
+        dataset += tmp
+        print('load and add dataset {}'.format(name))
+    return dataset
 
 
+if __name__ == "__main__":
 
-
-
+    imdb_name = 'voc_2007_trainval+voc_2012_trainval'
+    train_dataset = get_dataset(imdb_name)
+    print('train datasets is: ', train_dataset)
+    print('dataset loaded.')
+    print('training rois number: {}'.format(len(train_dataset)))
+    train_dataloader = DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=4,
+                                  collate_fn=detection_collate, drop_last=True)
