@@ -140,11 +140,6 @@ class yoloLoss(nn.Module):
         # todo 不含有目标框的置信度损失函数，就这一个
         nooobj_loss = F.mse_loss(noo_pred_c, noo_target_c, size_average=False)
 
-        # 计算含有目标框的损失
-        coo_response_mask = torch.cuda.ByteTensor(box_target.size()).bool()
-        coo_response_mask.zero_()
-        coo_not_response_mask = torch.cuda.ByteTensor(box_target.size()).bool()
-        coo_not_response_mask.zero_()
         # 计算含有目标框的损失的部分, 设置两个索引判断iou是否最大与否，然后进行判断
         coo_iou_index = torch.cuda.ByteTensor(box_target.size()).bool()
         coo_iou_index.zero_()
@@ -154,6 +149,10 @@ class yoloLoss(nn.Module):
 
         box_target_iou = torch.zeros(box_target.size()).cuda()
 
+        """
+        坐标部分参考此链接https://www.jianshu.com/p/13ec2aa50c12，认为xy是以及转换到S的格子所在的尺度，wh是归一化以后的尺度，
+        所以这里xy只要进行除以S即可和wh进行加减操作;
+        """
         for i in range(0, box_target.size()[0], 2):  # choose the best iou box
             """
             提取2个预测值box1和1个真实值box2的坐标，然后进行变换之后求iou值，iou最大的那个提取出来
@@ -163,15 +162,12 @@ class yoloLoss(nn.Module):
 
             # 随机生成Box1大小的矩阵
             box1_xyxy = torch.FloatTensor(box1.size())
-            # (x,y,w,h)
-            box1_xyxy[:, :2] = box1[:, :2]/14. - 0.5 * box1[:, 2:4]  # xy
-            box1_xyxy[:, 2:4] = box1[:, :2]/14. + 0.5 * box1[:, 2:4]  # wh
 
             # (x, y, w, h)->(x1, y1, x2, y2)
             box1_xyxy[:, :2] = box1[:, :2]/14. - 0.5 * box1[:, 2:4]  # x1, y1
             box1_xyxy[:, 2:4] = box1[:, :2]/14. + 0.5 * box1[:, 2:4]  # x2, y2
 
-            # 真实数据
+            # 真实数据是xywh格式
             box2 = box_target[i].view(-1, 5)
             box2_xyxy = torch.FloatTensor(box2.size())
             box2_xyxy[:, :2] = box2[:, :2]/14. - 0.5*box2[:, 2:4]  # x1, y1
@@ -196,9 +192,6 @@ class yoloLoss(nn.Module):
         box_target_iou = box_target_iou.cuda()
 
         # 1.response loss
-        box_pred_response = box_pred[coo_response_mask].view(-1, 5)
-        box_target_response_iou = box_target_iou[coo_response_mask].view(-1, 5)
-        box_target_response = box_target[coo_response_mask].view(-1, 5)
         """
         因为box_pred是[54, 5]，预测的是两个bounding_box,通过coo_iou_index可以筛掉其中一个框，然后留下的是iou最大的那个选择框，
         box_pred_response表示最大iou对应的预测数据；
