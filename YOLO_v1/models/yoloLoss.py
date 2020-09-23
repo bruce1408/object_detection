@@ -72,8 +72,8 @@ class yoloLoss(nn.Module):
 
     def forward(self, pred_tensor, target_tensor):
         """
-        pred_tensor: (tensor) size(batchsize, S, S, B x 5 + 20 = 30) [x,y,w,h,c]
-        target_tensor: (tensor) size(batchsize, S, S, 30)
+        pred_tensor: size(batchsize, S, S, B x 5 + 20 = 30) [x,y,w,h,c]
+        target_tensor: size(batchsize, S, S, 30)
         首先得到 N 是 batch_size,然后筛选出有目标框的部分，因为真实数据[:, :, :, 4]和[:, :, :, 9]都是相同的，所以只把4拿出来。
         来筛选出是否是含有目标框的coo_mask 是有目标框的索引，noo_mask 是没有目标框的索引；
         然后对有目标框的索引 coo_mask 和 没有目标框的索引 noo_mask 坐标扩大原始数据尺寸。
