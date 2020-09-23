@@ -8,7 +8,6 @@ VOC_CLASSES = (    # always index 0
     'motorbike', 'person', 'pottedplant',
     'sheep', 'sofa', 'train', 'tvmonitor')
 
-
 def parse_rec(filename):
     """ Parse a PASCAL VOC xml file """
     tree = ET.parse(filename)
@@ -30,14 +29,14 @@ def parse_rec(filename):
     return objects
 
 
-txt_file = open('voc2007train.txt', 'w')
-test_file = open('/home/bruce/bigVolumn/Datasets/VOCdevkit/VOC2007/ImageSets/Main/train.txt', 'r')
+txt_file = open('voc2007test.txt', 'w')
+test_file = open('/home/bruce/PycharmProjects/yolov2.pytorch/data/test/VOCdevkit/VOC2007/ImageSets/Main/test.txt', 'r')
 lines = test_file.readlines()
 lines = [x[:-1] for x in lines]
 print(lines)
 
 
-Annotations = '/home/bruce/bigVolumn/Datasets/VOCdevkit/VOC2007/Annotations/'
+Annotations = '/home/bruce/PycharmProjects/yolov2.pytorch/data/test/VOCdevkit/VOC2007/Annotations'
 xml_files = os.listdir(Annotations)
 
 count = 0
@@ -47,7 +46,7 @@ for xml_file in xml_files:
         # print(xml_file.split('.')[0])
         continue
     image_path = xml_file.split('.')[0] + '.jpg'
-    results = parse_rec(Annotations + xml_file)
+    results = parse_rec(os.path.join(Annotations, xml_file))
     if len(results) == 0:
         print(xml_file)
         continue

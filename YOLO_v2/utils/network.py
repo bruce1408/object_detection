@@ -1,6 +1,8 @@
 import numpy as np
 import torch
 import torch.nn as nn
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def adjust_learning_rate(optimizer, lr):
@@ -79,3 +81,29 @@ class WeightLoader(object):
         assert size == self.start
 
 
+class ReorgLayer(nn.Module):
+    def __init__(self, stride=2):
+        """
+        convert [b, c, h, w] -> [b, c * stride * stride, h/stride, w/stride]
+        :param stride:
+        """
+        super(ReorgLayer, self).__init__()
+        self.stride = stride
+
+    def forward(self, x):
+        B, C, H, W = x.data.size()
+        ws = self.stride
+        hs = self.stride
+
+        # x = [b, c, h/2, w/2]=[16, 64, 13, 13, 2, 2]
+        x = x.contiguous().view(B, C, int(H // hs), hs, int(W // ws), ws).transpose(3, 4)
+
+        # x = [b, c, (h/2 * w/2), 2*2] = [16, 64, 169, 4]->[16, 64, 4, 169]
+        x = x.contiguous().view(B, C, int(H // hs * W // ws), hs * ws).transpose(2, 3).contiguous()
+
+        # x = [b, c, 2*2, h/2, h/2] = [16, 64, 4, 13, 13]
+        x = x.contiguous().view(B, C, hs * ws, int(H // hs), int(W // ws)).transpose(1, 2).contiguous()
+
+        # x = [b, 4*64, 13, 13]
+        x = x.contiguous().view(B, hs * ws * C, int(H // hs), int(W // ws))
+        return x

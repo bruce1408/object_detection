@@ -1,4 +1,14 @@
+"""
+COCO: (0.57273, 0.677385), (1.87446, 2.06253), (3.33843, 5.47434), (7.88282, 3.52778), (9.77052, 9.16828)
+VOC: (1.3221, 1.73145), (3.19275, 4.00944), (5.05587, 8.09892), (9.47112, 4.84053), (11.2364, 10.0071)
+"""
 anchors = [[1.3221, 1.73145], [3.19275, 4.00944], [5.05587, 8.09892], [9.47112, 4.84053], [11.2364, 10.0071]]
+
+classes = ['aeroplane', 'bicycle', 'bird', 'boat',
+           'bottle', 'bus', 'car', 'cat', 'chair',
+           'cow', 'diningtable', 'dog', 'horse',
+           'motorbike', 'person', 'pottedplant',
+           'sheep', 'sofa', 'train', 'tvmonitor']
 
 object_scale = 5
 noobject_scale = 1
@@ -31,7 +41,7 @@ weight_decay = 0.0005
 multi_scale = True
 
 # number of steps to change input size
-scale_step = 40
+scale_step = 40  # 每40次iter就开始改变输入尺寸的大小
 
 scale_range = (0, 4)
 
