@@ -94,7 +94,7 @@ def make_layers(cfg, batch_norm=False):
     first_flag = True
     for v in cfg:
         s = 1
-        if (v == 64 and first_flag):
+        if v == 64 and first_flag:
             s = 2
             first_flag = False
         if v == 'M':

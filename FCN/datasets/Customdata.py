@@ -64,5 +64,5 @@ class CustomData(data.Dataset):
 
 
 if __name__ == "__main__":
-    data = CustomData("/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/BagImages", mode="val")
-    print(data[0])
+    data = CustomData("/home/chenxi/tmp/FCN/data/BagImages", mode="val")
+    print(data[0][0].shape)

@@ -69,12 +69,12 @@ else:
     print('loading pre-trained model ......')
     if use_resnet:  # 对应自己网络结构的加载官方预训练模型参数
         offiNet = officalModel.resnet50(pretrained=True)  # 官方模型
-        new_state_dict = offiNet.state_dict()
+        offiNew_state_dict = offiNet.state_dict()
         dd = net.state_dict()
-        for k in new_state_dict.keys():
+        for k in offiNew_state_dict.keys():
             print(k)
             if k in dd.keys() and not k.startswith('fc'):
-                dd[k] = new_state_dict[k]
+                dd[k] = offiNew_state_dict[k]
         net.load_state_dict(dd)
     else:
         vgg = officalModel.vgg16_bn(pretrained=True)
