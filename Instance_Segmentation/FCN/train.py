@@ -69,17 +69,23 @@ def main():
     if not os.path.exists(args.save_dir):
         os.makedirs(args.save_dir)
 
-    # 第一种模型保存方法
+    """
+    第一种模型保存方法
+    如果用这种保存模型会比较麻烦,因为要考虑到多卡的情况或者是单卡的情况,在后面的模型保存那里
+    也需要进行判断是否使用了多卡
+    """
     # if CUDA and args.mGPUs:
     #     net.to(torch.device("cuda"))
     #     net = nn.DataParallel(net)
     # elif CUDA:
     #     net.to(torch.device("cuda"))
-    # 第二种模型保存的方法
+    """
+    第二种模型保存的方法
+    最常用的和方便的写法,保存模型可以适应单卡和多卡的情况(推荐使用)
+    """
     if CUDA:
         net.to(torch.device("cuda"))
         net = nn.DataParallel(net)
-
 
     # loading the datasets
     customdata = CustomData("/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/BagImages", mode="train")
