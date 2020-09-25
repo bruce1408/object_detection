@@ -94,7 +94,6 @@ def train():
         else:
             writer = SummaryWriter('runs/' + args.exp_name)
 
-
     output_dir = args.output_dir
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -127,6 +126,8 @@ def train():
         resume_checkpoint_name = 'yolov2_epoch_{}.pth'.format(args.checkpoint_epoch)
         resume_checkpoint_path = os.path.join(output_dir, resume_checkpoint_name)
         print('resume from {}'.format(resume_checkpoint_path))
+
+        # 模型加载
         checkpoint = torch.load(resume_checkpoint_path)
         model.load_state_dict(checkpoint['model'])
         args.start_epoch = checkpoint['epoch'] + 1
@@ -236,7 +237,8 @@ def train():
 
             torch.save({
                 'model': model.module.state_dict() if args.mGPUs else model.state_dict(),
-                'epoch': epoch, 'lr': lr},
+                'epoch': epoch,
+                'lr': lr},
                 save_name)
 
 

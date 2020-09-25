@@ -5,9 +5,9 @@ import torch.nn as nn
 from PIL import Image
 import torch.utils.data as data
 import torchvision.transforms as transforms
-
-
 IMAGE_SIZE = 256
+
+
 class CustomData(data.Dataset):
     def __init__(self, imgdir, mode="train"):
         """
