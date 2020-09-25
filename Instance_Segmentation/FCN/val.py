@@ -18,16 +18,15 @@ def modelTest():
     batch_size = 8
     back_bone = 'vgg'
     num_classes = 2
-    modelPath = "./checkpoints/080.pth"
+    modelPath = "./checkpoints/fcn_epoch_076_loss_0.389963.pth"
     net = FCNs(num_classes, back_bone)
-
+    checkpoint = torch.load(modelPath)
+    net.load_state_dict(checkpoint['model'])
     CUDA = torch.cuda.is_available()
     if CUDA:
         net.to(torch.device('cuda'))
         net = nn.DataParallel(net)
 
-    checkpoint = torch.load(modelPath)
-    net.load_state_dict(checkpoint['model'])
     print('load the models from %s and epoch is %d' % (modelPath, checkpoint['epoch']))
 
     test_set = CustomData(imagePath, mode="test")

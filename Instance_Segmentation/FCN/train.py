@@ -21,13 +21,13 @@ def parse_args():
 
     parser.add_argument("--num_works", dest="num_works", help="num of data loading workers ", default=1, type=int)
 
-    parser.add_argument("--epochs", dest="epochs", help="number of epochs (default: 80)", default=80, type=int)
+    parser.add_argument("--epochs", dest="epochs", help="number of epochs (default: 80)", default=300, type=int)
 
     parser.add_argument("--batch_size", dest="batch_size", help="number of batch (default: 32)", default=16, type=int)
 
     parser.add_argument("--resume", dest="resume", help="resume training(default: False)", default=False, type=bool)
 
-    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/053.pth")
+    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/fcn_epoch_076_loss_0.395389.pth")
 
     parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=2, type=int)
 
@@ -102,7 +102,7 @@ def main():
     print('Start training: Total epochs: {}, Batch size: {}, Training size: {}, Validation size: {}'.
                  format(args.epochs, args.batch_size, len(train_set), len(val_set)))
 
-    for epoch in range(start_epoch, args.epochs):
+    for epoch in range(start_epoch, args.epochs+1):
         train(net, train_dataloader, epoch, criterion, optimizer)
         validate(net, val_dataloader, criterion)
 
@@ -120,6 +120,8 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
             target = target.cuda()
         optimizer.zero_grad()
         output = net(image)
+
+        # [batch, 2, 256, 256]
         loss = criterion(output, target)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(net.parameters(), 1)
@@ -135,8 +137,7 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
         """
         第一种保存模型的方式
         """
-        save_name = os.path.join(args.save_dir, "fcn_epoch_%03d_loss_%.6f.pth" % (epoch + 1, epoch_loss / batches))
-        print(save_name)
+        save_name = os.path.join(args.save_dir, "fcn_epoch_%03d_loss_%.6f.pth" % (epoch, epoch_loss / batches))
         # torch.save({
         #     "model": net.module.state_dict() if args.mGPUs else net.state_dict(),
         #     "epoch": epoch+1,

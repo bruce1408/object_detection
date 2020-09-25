@@ -43,15 +43,23 @@ class CustomData(data.Dataset):
     def __getitem__(self, index):
         if self.mode in ["train", "val"]:
             img = Image.open(self.imgPath[index])
+
+            # mask 是灰度图(0-255之间黑色0, 白色255), 不是黑白图
             mask = Image.open(self.labelpth[index])
-            mask = np.array(mask.convert('1').resize((IMAGE_SIZE, IMAGE_SIZE)))
+
+            # 转成二值图(黑白图),黑色0, 黑色false; 白色255, 白色true
+            mask = np.array(mask.convert('1').resize((IMAGE_SIZE, IMAGE_SIZE)))  # true, false
+
             masks = np.zeros((mask.shape[0], mask.shape[1], 2), dtype=np.uint8)
             masks[:, :, 0] = mask
             masks[:, :, 1] = ~mask
 
             img = self.transform(img)
+
+            # 变成归一化之后的值(1/255=0.0039和0两个数)重新变成0和1
             masks = self.transform_label(masks) * 255
 
+            # masks->[2, 256, 256]
             return img, masks
         else:
             img = Image.open(self.imgPath[index])
@@ -64,5 +72,6 @@ class CustomData(data.Dataset):
 
 
 if __name__ == "__main__":
-    data = CustomData("/home/chenxi/tmp/FCN/data/BagImages", mode="val")
+    data = CustomData("/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/BagImages", mode="train")
     print(data[0][0].shape)
+    print(data[0][1].shape)
