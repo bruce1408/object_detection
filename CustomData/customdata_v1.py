@@ -62,7 +62,7 @@ class RoiDataset(Dataset):
             image_index = [x.strip() for x in f.readlines()]
         self.image_index = image_index
         # ==================================
-        with open("/home/chenxi/tempfile/YOLO_v1/utils/voc2007test.txt") as f:
+        with open("/home/chenxi/tempfile/YOLO_v1/tools/voc2007test.txt") as f:
             lines = f.readlines()
         for line in lines:
             splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)

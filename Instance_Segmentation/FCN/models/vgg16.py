@@ -59,30 +59,30 @@ class VGG(nn.Module):
         x = self.relu1_1(self.conv1_1(x))
         x = self.relu1_2(self.conv1_2(x))
         x = self.pool1(x)
-        pool1 = x
+        pool1 = x  # [112]
 
         x = self.relu2_1(self.conv2_1(x))
         x = self.relu2_2(self.conv2_2(x))
         x = self.pool2(x)
-        pool2 = x
+        pool2 = x  # [56]
 
         x = self.relu3_1(self.conv3_1(x))
         x = self.relu3_2(self.conv3_2(x))
         x = self.relu3_3(self.conv3_3(x))
         x = self.pool3(x)
-        pool3 = x
+        pool3 = x  # [28]
 
         x = self.relu4_1(self.conv4_1(x))
         x = self.relu4_2(self.conv4_2(x))
         x = self.relu4_3(self.conv4_3(x))
         x = self.pool4(x)
-        pool4 = x
+        pool4 = x  # [14]
 
         x = self.relu5_1(self.conv5_1(x))
         x = self.relu5_2(self.conv5_2(x))
         x = self.relu5_3(self.conv5_3(x))
         x = self.pool5(x)
-        pool5 = x
+        pool5 = x  # [7]
 
         return pool1, pool2, pool3, pool4, pool5
 
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         print(net(x)[-1].shape)
     else:
         x = torch.rand((2, 3, 224, 224))
-        print(net(x)[-1])
+        print(net(x)[-1].shape)
 
 
 

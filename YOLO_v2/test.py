@@ -114,7 +114,7 @@ def test():
     # val_imdb = get_imdb(args.imdbval_name)
 
     val_dataset = RoiDataset("/home/bruce/PycharmProjects/yolov2.pytorch/data/test",
-                             "/home/bruce/PycharmProjects/object_detection/YOLO_v2/utils/voc2007test.txt",
+                             "/home/bruce/PycharmProjects/object_detection/YOLO_v2/tools/voc2007test.txt",
                              "/home/bruce/PycharmProjects/yolov2.pytorch/data/test/images", train=False)
     val_dataloader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False)
 
