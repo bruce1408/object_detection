@@ -1,21 +1,3 @@
-# # Naive U-net with Pytorch
-
-# Simple code to run a baseline-like experiment with pytorch that includes:
-
-#  - Our own pytorch dataset/loader class with the CARVANA dataset
-#  - Our own u-net like model
-#  - Our own loss-function
-#  - Setup the training loop
-#  - Log the intermediate results and model graph in tensorboard
-
-# Features to add
-
-#  - [ ] define the validation function
-#  - [ ] add a custom transform operation for data-augmentation
-#  - [X] connect with tensorboard to log the experiments
-#  - [X] store checkpoints while training
-#  - [ ] save output as a .csv ready to upload to the competition
-
 # Code is available at https://github.com/mlagunas/car_segmentation
 
 import os
@@ -106,7 +88,6 @@ class CARVANA(Dataset):
 
     def __getitem__(self, index):
         """
-
         :param index:
         :return: tuple (img, target) with the input data and its label
         """

@@ -1,22 +1,16 @@
 import os
 import torch
-import torch.nn as nn
-import numpy as np
 import time
-from torch.utils.data import random_split, DataLoader
-from datasets.Customdata import CustomData
-# from datasets.dataset import CustomData
-from PIL import Image
-from models.fcn import FCNs
-import torch.optim as optim
 import argparse
-
-
-CUDA = torch.cuda.is_available()
+import torch.nn as nn
+from model.models import UNet
+from torch.utils.data import DataLoader, random_split
+from dataset.Customdata import BasicDataset
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="FCNs")
+
+    parser = argparse.ArgumentParser(description="Unet")
 
     parser.add_argument("--start_epoch", dest='start_epoch', default=1, type=int)
 
@@ -53,8 +47,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    assert args.mode in ['train', 'val']
-    net = FCNs(args.num_classes, args.back_bone)
+    net = UNet(n_channels=3, args.num_classes)
     start_epoch = 0
 
     # 加载之前的模型继续训练
@@ -185,3 +178,5 @@ def validate(net, val_dataloader, criterion):
 
 if __name__ == "__main__":
     main()
+
+

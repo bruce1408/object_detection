@@ -12,13 +12,13 @@ import torch.optim as optim
 import argparse
 
 imagePath = "/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/testImages"
+modelPath = "./checkpoints/fcn_epoch_180.pth"
 
 
 def modelTest():
     batch_size = 16
     back_bone = 'vgg'
     num_classes = 2
-    modelPath = "./checkpoints/fcn_epoch_110.pth"
     net = FCNs(num_classes, back_bone)
     net.eval()
 
