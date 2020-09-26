@@ -4,7 +4,8 @@ import torch.nn as nn
 import numpy as np
 import time
 from torch.utils.data import random_split, DataLoader
-from datasets.Customdata import CustomData
+# from datasets.Customdata import CustomData
+from datasets.dataset import CustomData
 from PIL import Image
 from models.fcn import FCNs
 import torch.optim as optim
@@ -19,11 +20,11 @@ def parse_args():
 
     parser.add_argument("--start_epoch", dest='start_epoch', default=1, type=int)
 
-    parser.add_argument("--num_works", dest="num_works", help="num of data loading workers ", default=1, type=int)
+    parser.add_argument("--num_works", dest="num_works", help="num of data loading workers ", default=4, type=int)
 
-    parser.add_argument("--epochs", dest="epochs", help="number of epochs (default: 80)", default=300, type=int)
+    parser.add_argument("--epochs", dest="epochs", help="number of epochs (default: 80)", default=500, type=int)
 
-    parser.add_argument("--batch_size", dest="batch_size", help="number of batch (default: 32)", default=16, type=int)
+    parser.add_argument("--batch_size", dest="batch_size", help="number of batch (default: 16)", default=16, type=int)
 
     parser.add_argument("--resume", dest="resume", help="resume training(default: False)", default=False, type=bool)
 
@@ -52,7 +53,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    assert args.mode in ['train', 'test']
+    assert args.mode in ['train', 'val']
     net = FCNs(args.num_classes, args.back_bone)
     start_epoch = 0
 
@@ -87,7 +88,6 @@ def main():
         net.to(torch.device("cuda"))
         net = nn.DataParallel(net)
 
-    # loading the datasets
     customdata = CustomData("/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/BagImages", mode="train")
     train_size = int(0.9 * len(customdata))
     val_size = len(customdata) - train_size
@@ -96,7 +96,7 @@ def main():
     train_dataloader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True)
     val_dataloader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False)
 
-    optimizer = optim.Adam(net.parameters(), lr=args.lr)
+    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=0.000001)
     criterion = nn.BCEWithLogitsLoss()  # 二分类
 
     print('Start training: Total epochs: {}, Batch size: {}, Training size: {}, Validation size: {}'.
@@ -118,13 +118,14 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
         if CUDA:
             image = image.cuda()
             target = target.cuda()
+
         optimizer.zero_grad()
         output = net(image)
 
         # [batch, 2, 256, 256]
         loss = criterion(output, target)
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(net.parameters(), 1)
+        # torch.nn.utils.clip_grad_norm_(net.parameters(), 1)
         optimizer.step()
         epoch_loss += loss.item()
         batches += 1
@@ -137,7 +138,7 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
         """
         第一种保存模型的方式
         """
-        save_name = os.path.join(args.save_dir, "fcn_epoch_%03d_loss_%.6f.pth" % (epoch, epoch_loss / batches))
+        save_name = os.path.join(args.save_dir, "fcn_epoch_%03d.pth" % (epoch))
         # torch.save({
         #     "model": net.module.state_dict() if args.mGPUs else net.state_dict(),
         #     "epoch": epoch+1,
@@ -158,7 +159,7 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
         }, save_name)
 
     end_time = time.time()
-    print('Train Loss: %.6f Time: %d' % (epoch_loss, end_time - start_time))
+    print('Train Loss: %.6f Time: %d' % (epoch_loss/batches, end_time - start_time))
 
 
 def validate(net, val_dataloader, criterion):

@@ -47,13 +47,21 @@ class VGG(nn.Module):
         self.pool5 = nn.MaxPool2d(kernel_size=2, stride=2)
 
         if pretrained:
-            pretrained_model = vgg16(pretrained=True)
-            pretrained_state_dict = pretrained_model.state_dict()
-            net = self.state_dict()
-            for k in pretrained_state_dict.keys():
-                if k in net.keys():
-                    net[k] = pretrained_state_dict[k]
-            self.load_state_dict(net)
+            pretrained_model = vgg16(pretrained=pretrained)
+            pretrained_params = pretrained_model.state_dict()
+            keys = list(pretrained_params.keys())
+            new_dict = {}
+            for index, key in enumerate(self.state_dict().keys()):
+                new_dict[key] = pretrained_params[keys[index]]
+            self.load_state_dict(new_dict)
+
+            # pretrained_model = vgg16(pretrained=True)
+            # pretrained_state_dict = pretrained_model.state_dict()
+            # net = self.state_dict()
+            # for k in pretrained_state_dict.keys():
+            #     if k in net.keys():
+            #         net[k] = pretrained_state_dict[k]
+            # self.load_state_dict(net)
 
     def forward(self, x):
         x = self.relu1_1(self.conv1_1(x))

@@ -67,7 +67,6 @@ class CARVANA(Dataset):
 
     def __init__(self, root, subset="train", transform=None):
         """
-
         :param root: it has to be a path to the folder that contains the dataset folders
         :param train: boolean true if you want the train set false for the test one
         :param transform: transform the images and labels

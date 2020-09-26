@@ -29,11 +29,11 @@ class CustomData(data.Dataset):
 
         if mode in ["train", "val"]:
             self.mask_path = self.imgdir+"Masks"
-            self.labelpth = [os.path.join(self.mask_path, path) for path in os.listdir(self.mask_path)]
+            self.labelpth = [os.path.join(self.mask_path, path) for path in self.imgName]
 
         self.transform = transforms.Compose([
             transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),  # 尺寸变化
-            transforms.CenterCrop((IMAGE_SIZE, IMAGE_SIZE)),  # 中心裁剪
+            # transforms.CenterCrop((IMAGE_SIZE, IMAGE_SIZE)),  # 中心裁剪
             transforms.ToTensor(),  # 归一化
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
@@ -55,7 +55,6 @@ class CustomData(data.Dataset):
             masks[:, :, 1] = ~mask
 
             img = self.transform(img)
-
             # 变成归一化之后的值(1/255=0.0039和0两个数)重新变成0和1
             masks = self.transform_label(masks) * 255
 

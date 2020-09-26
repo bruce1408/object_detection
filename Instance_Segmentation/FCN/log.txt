@@ -1,0 +1,1113 @@
+/home/bruce/anaconda3/envs/pytorch1.5.0/bin/python /home/bruce/PycharmProjects/object_detection/Instance_Segmentation/FCN/train.py
+Start training: Total epochs: 500, Batch size: 16, Training size: 471, Validation size: 53
+Epoch 001, Learning Rate 0.01 , Training Loss: 0.682513
+Epoch 001, Learning Rate 0.01 , Training Loss: 0.641663
+Epoch 001, Learning Rate 0.01 , Training Loss: 0.604142
+Train Loss: 0.604142 Time: 13
+Val Loss: 2.405539 Time: 1
+Epoch 002, Learning Rate 0.01 , Training Loss: 0.482105
+Epoch 002, Learning Rate 0.01 , Training Loss: 0.469053
+Epoch 002, Learning Rate 0.01 , Training Loss: 0.451174
+Train Loss: 0.451174 Time: 13
+Val Loss: 2.322852 Time: 1
+Epoch 003, Learning Rate 0.01 , Training Loss: 0.412263
+Epoch 003, Learning Rate 0.01 , Training Loss: 0.392565
+Epoch 003, Learning Rate 0.01 , Training Loss: 0.383323
+Train Loss: 0.383323 Time: 12
+Val Loss: 1.956885 Time: 1
+Epoch 004, Learning Rate 0.01 , Training Loss: 0.369402
+Epoch 004, Learning Rate 0.01 , Training Loss: 0.360661
+Epoch 004, Learning Rate 0.01 , Training Loss: 0.360141
+Train Loss: 0.360141 Time: 12
+Val Loss: 5.973170 Time: 1
+Epoch 005, Learning Rate 0.01 , Training Loss: 0.311953
+Epoch 005, Learning Rate 0.01 , Training Loss: 0.336640
+Epoch 005, Learning Rate 0.01 , Training Loss: 0.336338
+Train Loss: 0.336338 Time: 12
+Val Loss: 7.695086 Time: 1
+Epoch 006, Learning Rate 0.01 , Training Loss: 0.320274
+Epoch 006, Learning Rate 0.01 , Training Loss: 0.326628
+Epoch 006, Learning Rate 0.01 , Training Loss: 0.316074
+Train Loss: 0.316074 Time: 12
+Val Loss: 2.443219 Time: 1
+Epoch 007, Learning Rate 0.01 , Training Loss: 0.305284
+Epoch 007, Learning Rate 0.01 , Training Loss: 0.314882
+Epoch 007, Learning Rate 0.01 , Training Loss: 0.309223
+Train Loss: 0.309223 Time: 13
+Val Loss: 1.676543 Time: 1
+Epoch 008, Learning Rate 0.01 , Training Loss: 0.297953
+Epoch 008, Learning Rate 0.01 , Training Loss: 0.295277
+Epoch 008, Learning Rate 0.01 , Training Loss: 0.295840
+Train Loss: 0.295840 Time: 13
+Val Loss: 2.174121 Time: 1
+Epoch 009, Learning Rate 0.01 , Training Loss: 0.276817
+Epoch 009, Learning Rate 0.01 , Training Loss: 0.292702
+Epoch 009, Learning Rate 0.01 , Training Loss: 0.286026
+Train Loss: 0.286026 Time: 12
+Val Loss: 1.505268 Time: 1
+Epoch 010, Learning Rate 0.01 , Training Loss: 0.277898
+Epoch 010, Learning Rate 0.01 , Training Loss: 0.263446
+Epoch 010, Learning Rate 0.01 , Training Loss: 0.275975
+Train Loss: 0.275975 Time: 13
+Val Loss: 1.460367 Time: 1
+Epoch 011, Learning Rate 0.01 , Training Loss: 0.287208
+Epoch 011, Learning Rate 0.01 , Training Loss: 0.287675
+Epoch 011, Learning Rate 0.01 , Training Loss: 0.276632
+Train Loss: 0.276632 Time: 13
+Val Loss: 1.332763 Time: 1
+Epoch 012, Learning Rate 0.01 , Training Loss: 0.245310
+Epoch 012, Learning Rate 0.01 , Training Loss: 0.264207
+Epoch 012, Learning Rate 0.01 , Training Loss: 0.260290
+Train Loss: 0.260290 Time: 12
+Val Loss: 1.341833 Time: 1
+Epoch 013, Learning Rate 0.01 , Training Loss: 0.239713
+Epoch 013, Learning Rate 0.01 , Training Loss: 0.250706
+Epoch 013, Learning Rate 0.01 , Training Loss: 0.248770
+Train Loss: 0.248770 Time: 12
+Val Loss: 2.644610 Time: 1
+Epoch 014, Learning Rate 0.01 , Training Loss: 0.243104
+Epoch 014, Learning Rate 0.01 , Training Loss: 0.237321
+Epoch 014, Learning Rate 0.01 , Training Loss: 0.241067
+Train Loss: 0.241067 Time: 12
+Val Loss: 1.248955 Time: 1
+Epoch 015, Learning Rate 0.01 , Training Loss: 0.228543
+Epoch 015, Learning Rate 0.01 , Training Loss: 0.232665
+Epoch 015, Learning Rate 0.01 , Training Loss: 0.232022
+Train Loss: 0.232022 Time: 12
+Val Loss: 2.296366 Time: 1
+Epoch 016, Learning Rate 0.01 , Training Loss: 0.215419
+Epoch 016, Learning Rate 0.01 , Training Loss: 0.223400
+Epoch 016, Learning Rate 0.01 , Training Loss: 0.229291
+Train Loss: 0.229291 Time: 12
+Val Loss: 1.728065 Time: 1
+Epoch 017, Learning Rate 0.01 , Training Loss: 0.218961
+Epoch 017, Learning Rate 0.01 , Training Loss: 0.231172
+Epoch 017, Learning Rate 0.01 , Training Loss: 0.227194
+Train Loss: 0.227194 Time: 12
+Val Loss: 2.508661 Time: 1
+Epoch 018, Learning Rate 0.01 , Training Loss: 0.210415
+Epoch 018, Learning Rate 0.01 , Training Loss: 0.219397
+Epoch 018, Learning Rate 0.01 , Training Loss: 0.214964
+Train Loss: 0.214964 Time: 13
+Val Loss: 1.456910 Time: 1
+Epoch 019, Learning Rate 0.01 , Training Loss: 0.209009
+Epoch 019, Learning Rate 0.01 , Training Loss: 0.204101
+Epoch 019, Learning Rate 0.01 , Training Loss: 0.205603
+Train Loss: 0.205603 Time: 15
+Val Loss: 1.632578 Time: 1
+Epoch 020, Learning Rate 0.01 , Training Loss: 0.198623
+Epoch 020, Learning Rate 0.01 , Training Loss: 0.192503
+Epoch 020, Learning Rate 0.01 , Training Loss: 0.205935
+Train Loss: 0.205935 Time: 13
+Val Loss: 2.213669 Time: 1
+Epoch 021, Learning Rate 0.01 , Training Loss: 0.217934
+Epoch 021, Learning Rate 0.01 , Training Loss: 0.205262
+Epoch 021, Learning Rate 0.01 , Training Loss: 0.201552
+Train Loss: 0.201552 Time: 14
+Val Loss: 1.818601 Time: 1
+Epoch 022, Learning Rate 0.01 , Training Loss: 0.183427
+Epoch 022, Learning Rate 0.01 , Training Loss: 0.189961
+Epoch 022, Learning Rate 0.01 , Training Loss: 0.197350
+Train Loss: 0.197350 Time: 13
+Val Loss: 1.354018 Time: 1
+Epoch 023, Learning Rate 0.01 , Training Loss: 0.206216
+Epoch 023, Learning Rate 0.01 , Training Loss: 0.191650
+Epoch 023, Learning Rate 0.01 , Training Loss: 0.191505
+Train Loss: 0.191505 Time: 12
+Val Loss: 1.302523 Time: 1
+Epoch 024, Learning Rate 0.01 , Training Loss: 0.197030
+Epoch 024, Learning Rate 0.01 , Training Loss: 0.192426
+Epoch 024, Learning Rate 0.01 , Training Loss: 0.185682
+Train Loss: 0.185682 Time: 13
+Val Loss: 1.076680 Time: 1
+Epoch 025, Learning Rate 0.01 , Training Loss: 0.171352
+Epoch 025, Learning Rate 0.01 , Training Loss: 0.178776
+Epoch 025, Learning Rate 0.01 , Training Loss: 0.175478
+Train Loss: 0.175478 Time: 12
+Val Loss: 1.436533 Time: 1
+Epoch 026, Learning Rate 0.01 , Training Loss: 0.165412
+Epoch 026, Learning Rate 0.01 , Training Loss: 0.161320
+Epoch 026, Learning Rate 0.01 , Training Loss: 0.171694
+Train Loss: 0.171694 Time: 13
+Val Loss: 1.357702 Time: 1
+Epoch 027, Learning Rate 0.01 , Training Loss: 0.154962
+Epoch 027, Learning Rate 0.01 , Training Loss: 0.157023
+Epoch 027, Learning Rate 0.01 , Training Loss: 0.167855
+Train Loss: 0.167855 Time: 12
+Val Loss: 1.259412 Time: 1
+Epoch 028, Learning Rate 0.01 , Training Loss: 0.155539
+Epoch 028, Learning Rate 0.01 , Training Loss: 0.156388
+Epoch 028, Learning Rate 0.01 , Training Loss: 0.161561
+Train Loss: 0.161561 Time: 12
+Val Loss: 3.756306 Time: 1
+Epoch 029, Learning Rate 0.01 , Training Loss: 0.162259
+Epoch 029, Learning Rate 0.01 , Training Loss: 0.154598
+Epoch 029, Learning Rate 0.01 , Training Loss: 0.156945
+Train Loss: 0.156945 Time: 12
+Val Loss: 1.129923 Time: 1
+Epoch 030, Learning Rate 0.01 , Training Loss: 0.142043
+Epoch 030, Learning Rate 0.01 , Training Loss: 0.147996
+Epoch 030, Learning Rate 0.01 , Training Loss: 0.147041
+Train Loss: 0.147041 Time: 12
+Val Loss: 1.078236 Time: 1
+Epoch 031, Learning Rate 0.01 , Training Loss: 0.135797
+Epoch 031, Learning Rate 0.01 , Training Loss: 0.137986
+Epoch 031, Learning Rate 0.01 , Training Loss: 0.145841
+Train Loss: 0.145841 Time: 13
+Val Loss: 1.069242 Time: 1
+Epoch 032, Learning Rate 0.01 , Training Loss: 0.159779
+Epoch 032, Learning Rate 0.01 , Training Loss: 0.147746
+Epoch 032, Learning Rate 0.01 , Training Loss: 0.144208
+Train Loss: 0.144208 Time: 12
+Val Loss: 3.182030 Time: 1
+Epoch 033, Learning Rate 0.01 , Training Loss: 0.146430
+Epoch 033, Learning Rate 0.01 , Training Loss: 0.133212
+Epoch 033, Learning Rate 0.01 , Training Loss: 0.133219
+Train Loss: 0.133219 Time: 12
+Val Loss: 1.326324 Time: 1
+Epoch 034, Learning Rate 0.01 , Training Loss: 0.117058
+Epoch 034, Learning Rate 0.01 , Training Loss: 0.130521
+Epoch 034, Learning Rate 0.01 , Training Loss: 0.139722
+Train Loss: 0.139722 Time: 13
+Val Loss: 1.320337 Time: 1
+Epoch 035, Learning Rate 0.01 , Training Loss: 0.129009
+Epoch 035, Learning Rate 0.01 , Training Loss: 0.127950
+Epoch 035, Learning Rate 0.01 , Training Loss: 0.137512
+Train Loss: 0.137512 Time: 12
+Val Loss: 1.239451 Time: 1
+Epoch 036, Learning Rate 0.01 , Training Loss: 0.136514
+Epoch 036, Learning Rate 0.01 , Training Loss: 0.144290
+Epoch 036, Learning Rate 0.01 , Training Loss: 0.140621
+Train Loss: 0.140621 Time: 12
+Val Loss: 1.139336 Time: 1
+Epoch 037, Learning Rate 0.01 , Training Loss: 0.126803
+Epoch 037, Learning Rate 0.01 , Training Loss: 0.125709
+Epoch 037, Learning Rate 0.01 , Training Loss: 0.126788
+Train Loss: 0.126788 Time: 12
+Val Loss: 1.370372 Time: 1
+Epoch 038, Learning Rate 0.01 , Training Loss: 0.116573
+Epoch 038, Learning Rate 0.01 , Training Loss: 0.117422
+Epoch 038, Learning Rate 0.01 , Training Loss: 0.114040
+Train Loss: 0.114040 Time: 12
+Val Loss: 1.438939 Time: 1
+Epoch 039, Learning Rate 0.01 , Training Loss: 0.113453
+Epoch 039, Learning Rate 0.01 , Training Loss: 0.108677
+Epoch 039, Learning Rate 0.01 , Training Loss: 0.104384
+Train Loss: 0.104384 Time: 12
+Val Loss: 1.330981 Time: 1
+Epoch 040, Learning Rate 0.01 , Training Loss: 0.089958
+Epoch 040, Learning Rate 0.01 , Training Loss: 0.095005
+Epoch 040, Learning Rate 0.01 , Training Loss: 0.101802
+Train Loss: 0.101802 Time: 12
+Val Loss: 1.193604 Time: 1
+Epoch 041, Learning Rate 0.01 , Training Loss: 0.089589
+Epoch 041, Learning Rate 0.01 , Training Loss: 0.095674
+Epoch 041, Learning Rate 0.01 , Training Loss: 0.096285
+Train Loss: 0.096285 Time: 12
+Val Loss: 1.983799 Time: 1
+Epoch 042, Learning Rate 0.01 , Training Loss: 0.108068
+Epoch 042, Learning Rate 0.01 , Training Loss: 0.099471
+Epoch 042, Learning Rate 0.01 , Training Loss: 0.093570
+Train Loss: 0.093570 Time: 12
+Val Loss: 1.685766 Time: 1
+Epoch 043, Learning Rate 0.01 , Training Loss: 0.086261
+Epoch 043, Learning Rate 0.01 , Training Loss: 0.091768
+Epoch 043, Learning Rate 0.01 , Training Loss: 0.088195
+Train Loss: 0.088195 Time: 12
+Val Loss: 1.178461 Time: 1
+Epoch 044, Learning Rate 0.01 , Training Loss: 0.093702
+Epoch 044, Learning Rate 0.01 , Training Loss: 0.088899
+Epoch 044, Learning Rate 0.01 , Training Loss: 0.084737
+Train Loss: 0.084737 Time: 12
+Val Loss: 1.215488 Time: 1
+Epoch 045, Learning Rate 0.01 , Training Loss: 0.070209
+Epoch 045, Learning Rate 0.01 , Training Loss: 0.080048
+Epoch 045, Learning Rate 0.01 , Training Loss: 0.078940
+Train Loss: 0.078940 Time: 12
+Val Loss: 1.669825 Time: 1
+Epoch 046, Learning Rate 0.01 , Training Loss: 0.090893
+Epoch 046, Learning Rate 0.01 , Training Loss: 0.082523
+Epoch 046, Learning Rate 0.01 , Training Loss: 0.078987
+Train Loss: 0.078987 Time: 12
+Val Loss: 1.430872 Time: 1
+Epoch 047, Learning Rate 0.01 , Training Loss: 0.066258
+Epoch 047, Learning Rate 0.01 , Training Loss: 0.064824
+Epoch 047, Learning Rate 0.01 , Training Loss: 0.069136
+Train Loss: 0.069136 Time: 12
+Val Loss: 1.154997 Time: 1
+Epoch 048, Learning Rate 0.01 , Training Loss: 0.075184
+Epoch 048, Learning Rate 0.01 , Training Loss: 0.074375
+Epoch 048, Learning Rate 0.01 , Training Loss: 0.071707
+Train Loss: 0.071707 Time: 12
+Val Loss: 1.880366 Time: 1
+Epoch 049, Learning Rate 0.01 , Training Loss: 0.063333
+Epoch 049, Learning Rate 0.01 , Training Loss: 0.070754
+Epoch 049, Learning Rate 0.01 , Training Loss: 0.070746
+Train Loss: 0.070746 Time: 12
+Val Loss: 1.341568 Time: 1
+Epoch 050, Learning Rate 0.01 , Training Loss: 0.066678
+Epoch 050, Learning Rate 0.01 , Training Loss: 0.073166
+Epoch 050, Learning Rate 0.01 , Training Loss: 0.072842
+Train Loss: 0.072842 Time: 12
+Val Loss: 1.738265 Time: 1
+Epoch 051, Learning Rate 0.01 , Training Loss: 0.062874
+Epoch 051, Learning Rate 0.01 , Training Loss: 0.060148
+Epoch 051, Learning Rate 0.01 , Training Loss: 0.065127
+Train Loss: 0.065127 Time: 12
+Val Loss: 1.202620 Time: 1
+Epoch 052, Learning Rate 0.01 , Training Loss: 0.055488
+Epoch 052, Learning Rate 0.01 , Training Loss: 0.061270
+Epoch 052, Learning Rate 0.01 , Training Loss: 0.061422
+Train Loss: 0.061422 Time: 12
+Val Loss: 1.248236 Time: 1
+Epoch 053, Learning Rate 0.01 , Training Loss: 0.053070
+Epoch 053, Learning Rate 0.01 , Training Loss: 0.050352
+Epoch 053, Learning Rate 0.01 , Training Loss: 0.054608
+Train Loss: 0.054608 Time: 12
+Val Loss: 1.829134 Time: 1
+Epoch 054, Learning Rate 0.01 , Training Loss: 0.045336
+Epoch 054, Learning Rate 0.01 , Training Loss: 0.052078
+Epoch 054, Learning Rate 0.01 , Training Loss: 0.051601
+Train Loss: 0.051601 Time: 12
+Val Loss: 1.623087 Time: 1
+Epoch 055, Learning Rate 0.01 , Training Loss: 0.045512
+Epoch 055, Learning Rate 0.01 , Training Loss: 0.051764
+Epoch 055, Learning Rate 0.01 , Training Loss: 0.050784
+Train Loss: 0.050784 Time: 13
+Val Loss: 1.608592 Time: 1
+Epoch 056, Learning Rate 0.01 , Training Loss: 0.046861
+Epoch 056, Learning Rate 0.01 , Training Loss: 0.045822
+Epoch 056, Learning Rate 0.01 , Training Loss: 0.050816
+Train Loss: 0.050816 Time: 12
+Val Loss: 1.255686 Time: 1
+Epoch 057, Learning Rate 0.01 , Training Loss: 0.052422
+Epoch 057, Learning Rate 0.01 , Training Loss: 0.051004
+Epoch 057, Learning Rate 0.01 , Training Loss: 0.050937
+Train Loss: 0.050937 Time: 13
+Val Loss: 1.923237 Time: 1
+Epoch 058, Learning Rate 0.01 , Training Loss: 0.048848
+Epoch 058, Learning Rate 0.01 , Training Loss: 0.046894
+Epoch 058, Learning Rate 0.01 , Training Loss: 0.054050
+Train Loss: 0.054050 Time: 12
+Val Loss: 1.473082 Time: 1
+Epoch 059, Learning Rate 0.01 , Training Loss: 0.063680
+Epoch 059, Learning Rate 0.01 , Training Loss: 0.058166
+Epoch 059, Learning Rate 0.01 , Training Loss: 0.056064
+Train Loss: 0.056064 Time: 13
+Val Loss: 2.121866 Time: 1
+Epoch 060, Learning Rate 0.01 , Training Loss: 0.044340
+Epoch 060, Learning Rate 0.01 , Training Loss: 0.048362
+Epoch 060, Learning Rate 0.01 , Training Loss: 0.047037
+Train Loss: 0.047037 Time: 14
+Val Loss: 1.422536 Time: 1
+Epoch 061, Learning Rate 0.01 , Training Loss: 0.040938
+Epoch 061, Learning Rate 0.01 , Training Loss: 0.041182
+Epoch 061, Learning Rate 0.01 , Training Loss: 0.045840
+Train Loss: 0.045840 Time: 13
+Val Loss: 1.366258 Time: 1
+Epoch 062, Learning Rate 0.01 , Training Loss: 0.041970
+Epoch 062, Learning Rate 0.01 , Training Loss: 0.040747
+Epoch 062, Learning Rate 0.01 , Training Loss: 0.047031
+Train Loss: 0.047031 Time: 13
+Val Loss: 1.486699 Time: 1
+Epoch 063, Learning Rate 0.01 , Training Loss: 0.047676
+Epoch 063, Learning Rate 0.01 , Training Loss: 0.048717
+Epoch 063, Learning Rate 0.01 , Training Loss: 0.053108
+Train Loss: 0.053108 Time: 13
+Val Loss: 1.877925 Time: 1
+Epoch 064, Learning Rate 0.01 , Training Loss: 0.051632
+Epoch 064, Learning Rate 0.01 , Training Loss: 0.049214
+Epoch 064, Learning Rate 0.01 , Training Loss: 0.046032
+Train Loss: 0.046032 Time: 13
+Val Loss: 2.173879 Time: 1
+Epoch 065, Learning Rate 0.01 , Training Loss: 0.035956
+Epoch 065, Learning Rate 0.01 , Training Loss: 0.041765
+Epoch 065, Learning Rate 0.01 , Training Loss: 0.044106
+Train Loss: 0.044106 Time: 13
+Val Loss: 1.582097 Time: 1
+Epoch 066, Learning Rate 0.01 , Training Loss: 0.042571
+Epoch 066, Learning Rate 0.01 , Training Loss: 0.044888
+Epoch 066, Learning Rate 0.01 , Training Loss: 0.044297
+Train Loss: 0.044297 Time: 13
+Val Loss: 1.401536 Time: 1
+Epoch 067, Learning Rate 0.01 , Training Loss: 0.040664
+Epoch 067, Learning Rate 0.01 , Training Loss: 0.044125
+Epoch 067, Learning Rate 0.01 , Training Loss: 0.043119
+Train Loss: 0.043119 Time: 13
+Val Loss: 2.127270 Time: 1
+Epoch 068, Learning Rate 0.01 , Training Loss: 0.050093
+Epoch 068, Learning Rate 0.01 , Training Loss: 0.042669
+Epoch 068, Learning Rate 0.01 , Training Loss: 0.039648
+Train Loss: 0.039648 Time: 13
+Val Loss: 1.433385 Time: 1
+Epoch 069, Learning Rate 0.01 , Training Loss: 0.033926
+Epoch 069, Learning Rate 0.01 , Training Loss: 0.032294
+Epoch 069, Learning Rate 0.01 , Training Loss: 0.035417
+Train Loss: 0.035417 Time: 13
+Val Loss: 1.301131 Time: 1
+Epoch 070, Learning Rate 0.01 , Training Loss: 0.030227
+Epoch 070, Learning Rate 0.01 , Training Loss: 0.036554
+Epoch 070, Learning Rate 0.01 , Training Loss: 0.035800
+Train Loss: 0.035800 Time: 13
+Val Loss: 1.438560 Time: 1
+Epoch 071, Learning Rate 0.01 , Training Loss: 0.032569
+Epoch 071, Learning Rate 0.01 , Training Loss: 0.033655
+Epoch 071, Learning Rate 0.01 , Training Loss: 0.034871
+Train Loss: 0.034871 Time: 13
+Val Loss: 1.380287 Time: 1
+Epoch 072, Learning Rate 0.01 , Training Loss: 0.036629
+Epoch 072, Learning Rate 0.01 , Training Loss: 0.033507
+Epoch 072, Learning Rate 0.01 , Training Loss: 0.032783
+Train Loss: 0.032783 Time: 13
+Val Loss: 1.439882 Time: 1
+Epoch 073, Learning Rate 0.01 , Training Loss: 0.028915
+Epoch 073, Learning Rate 0.01 , Training Loss: 0.028928
+Epoch 073, Learning Rate 0.01 , Training Loss: 0.032757
+Train Loss: 0.032757 Time: 13
+Val Loss: 1.364435 Time: 1
+Epoch 074, Learning Rate 0.01 , Training Loss: 0.033643
+Epoch 074, Learning Rate 0.01 , Training Loss: 0.032525
+Epoch 074, Learning Rate 0.01 , Training Loss: 0.035392
+Train Loss: 0.035392 Time: 13
+Val Loss: 1.504412 Time: 1
+Epoch 075, Learning Rate 0.01 , Training Loss: 0.030923
+Epoch 075, Learning Rate 0.01 , Training Loss: 0.034582
+Epoch 075, Learning Rate 0.01 , Training Loss: 0.035164
+Train Loss: 0.035164 Time: 14
+Val Loss: 1.909745 Time: 1
+Epoch 076, Learning Rate 0.01 , Training Loss: 0.028065
+Epoch 076, Learning Rate 0.01 , Training Loss: 0.032726
+Epoch 076, Learning Rate 0.01 , Training Loss: 0.032174
+Train Loss: 0.032174 Time: 14
+Val Loss: 1.679004 Time: 1
+Epoch 077, Learning Rate 0.01 , Training Loss: 0.027972
+Epoch 077, Learning Rate 0.01 , Training Loss: 0.031976
+Epoch 077, Learning Rate 0.01 , Training Loss: 0.030715
+Train Loss: 0.030715 Time: 12
+Val Loss: 1.451688 Time: 1
+Epoch 078, Learning Rate 0.01 , Training Loss: 0.029621
+Epoch 078, Learning Rate 0.01 , Training Loss: 0.027507
+Epoch 078, Learning Rate 0.01 , Training Loss: 0.028372
+Train Loss: 0.028372 Time: 12
+Val Loss: 1.780834 Time: 1
+Epoch 079, Learning Rate 0.01 , Training Loss: 0.026513
+Epoch 079, Learning Rate 0.01 , Training Loss: 0.031037
+Epoch 079, Learning Rate 0.01 , Training Loss: 0.030202
+Train Loss: 0.030202 Time: 12
+Val Loss: 1.581318 Time: 1
+Epoch 080, Learning Rate 0.01 , Training Loss: 0.036178
+Epoch 080, Learning Rate 0.01 , Training Loss: 0.033761
+Epoch 080, Learning Rate 0.01 , Training Loss: 0.031259
+Train Loss: 0.031259 Time: 12
+Val Loss: 1.722496 Time: 1
+Epoch 081, Learning Rate 0.01 , Training Loss: 0.033095
+Epoch 081, Learning Rate 0.01 , Training Loss: 0.031309
+Epoch 081, Learning Rate 0.01 , Training Loss: 0.029603
+Train Loss: 0.029603 Time: 12
+Val Loss: 1.593842 Time: 1
+Epoch 082, Learning Rate 0.01 , Training Loss: 0.025631
+Epoch 082, Learning Rate 0.01 , Training Loss: 0.028555
+Epoch 082, Learning Rate 0.01 , Training Loss: 0.030692
+Train Loss: 0.030692 Time: 12
+Val Loss: 2.507502 Time: 1
+Epoch 083, Learning Rate 0.01 , Training Loss: 0.038729
+Epoch 083, Learning Rate 0.01 , Training Loss: 0.040508
+Epoch 083, Learning Rate 0.01 , Training Loss: 0.037124
+Train Loss: 0.037124 Time: 13
+Val Loss: 1.680266 Time: 1
+Epoch 084, Learning Rate 0.01 , Training Loss: 0.035270
+Epoch 084, Learning Rate 0.01 , Training Loss: 0.030384
+Epoch 084, Learning Rate 0.01 , Training Loss: 0.029799
+Train Loss: 0.029799 Time: 13
+Val Loss: 1.647050 Time: 1
+Epoch 085, Learning Rate 0.01 , Training Loss: 0.024599
+Epoch 085, Learning Rate 0.01 , Training Loss: 0.030153
+Epoch 085, Learning Rate 0.01 , Training Loss: 0.030040
+Train Loss: 0.030040 Time: 13
+Val Loss: 2.010294 Time: 1
+Epoch 086, Learning Rate 0.01 , Training Loss: 0.033710
+Epoch 086, Learning Rate 0.01 , Training Loss: 0.030434
+Epoch 086, Learning Rate 0.01 , Training Loss: 0.029931
+Train Loss: 0.029931 Time: 14
+Val Loss: 1.713387 Time: 1
+Epoch 087, Learning Rate 0.01 , Training Loss: 0.024289
+Epoch 087, Learning Rate 0.01 , Training Loss: 0.026416
+Epoch 087, Learning Rate 0.01 , Training Loss: 0.026648
+Train Loss: 0.026648 Time: 14
+Val Loss: 1.632276 Time: 1
+Epoch 088, Learning Rate 0.01 , Training Loss: 0.026425
+Epoch 088, Learning Rate 0.01 , Training Loss: 0.028094
+Epoch 088, Learning Rate 0.01 , Training Loss: 0.030566
+Train Loss: 0.030566 Time: 14
+Val Loss: 1.512990 Time: 1
+Epoch 089, Learning Rate 0.01 , Training Loss: 0.027957
+Epoch 089, Learning Rate 0.01 , Training Loss: 0.026851
+Epoch 089, Learning Rate 0.01 , Training Loss: 0.028606
+Train Loss: 0.028606 Time: 13
+Val Loss: 1.689595 Time: 1
+Epoch 090, Learning Rate 0.01 , Training Loss: 0.024058
+Epoch 090, Learning Rate 0.01 , Training Loss: 0.022992
+Epoch 090, Learning Rate 0.01 , Training Loss: 0.024729
+Train Loss: 0.024729 Time: 15
+Val Loss: 1.429182 Time: 1
+Epoch 091, Learning Rate 0.01 , Training Loss: 0.022524
+Epoch 091, Learning Rate 0.01 , Training Loss: 0.025423
+Epoch 091, Learning Rate 0.01 , Training Loss: 0.024182
+Train Loss: 0.024182 Time: 14
+Val Loss: 1.869086 Time: 1
+Epoch 092, Learning Rate 0.01 , Training Loss: 0.029006
+Epoch 092, Learning Rate 0.01 , Training Loss: 0.026183
+Epoch 092, Learning Rate 0.01 , Training Loss: 0.025891
+Train Loss: 0.025891 Time: 13
+Val Loss: 1.544443 Time: 1
+Epoch 093, Learning Rate 0.01 , Training Loss: 0.024712
+Epoch 093, Learning Rate 0.01 , Training Loss: 0.024051
+Epoch 093, Learning Rate 0.01 , Training Loss: 0.026553
+Train Loss: 0.026553 Time: 12
+Val Loss: 1.598468 Time: 1
+Epoch 094, Learning Rate 0.01 , Training Loss: 0.028222
+Epoch 094, Learning Rate 0.01 , Training Loss: 0.030662
+Epoch 094, Learning Rate 0.01 , Training Loss: 0.028982
+Train Loss: 0.028982 Time: 12
+Val Loss: 1.580272 Time: 1
+Epoch 095, Learning Rate 0.01 , Training Loss: 0.023618
+Epoch 095, Learning Rate 0.01 , Training Loss: 0.026285
+Epoch 095, Learning Rate 0.01 , Training Loss: 0.025581
+Train Loss: 0.025581 Time: 12
+Val Loss: 1.787415 Time: 1
+Epoch 096, Learning Rate 0.01 , Training Loss: 0.024707
+Epoch 096, Learning Rate 0.01 , Training Loss: 0.026348
+Epoch 096, Learning Rate 0.01 , Training Loss: 0.025471
+Train Loss: 0.025471 Time: 12
+Val Loss: 1.540106 Time: 1
+Epoch 097, Learning Rate 0.01 , Training Loss: 0.024808
+Epoch 097, Learning Rate 0.01 , Training Loss: 0.024643
+Epoch 097, Learning Rate 0.01 , Training Loss: 0.022980
+Train Loss: 0.022980 Time: 12
+Val Loss: 1.449220 Time: 1
+Epoch 098, Learning Rate 0.01 , Training Loss: 0.023917
+Epoch 098, Learning Rate 0.01 , Training Loss: 0.021802
+Epoch 098, Learning Rate 0.01 , Training Loss: 0.022049
+Train Loss: 0.022049 Time: 12
+Val Loss: 1.611444 Time: 1
+Epoch 099, Learning Rate 0.01 , Training Loss: 0.023832
+Epoch 099, Learning Rate 0.01 , Training Loss: 0.022111
+Epoch 099, Learning Rate 0.01 , Training Loss: 0.021301
+Train Loss: 0.021301 Time: 12
+Val Loss: 1.842881 Time: 1
+Epoch 100, Learning Rate 0.01 , Training Loss: 0.017974
+Epoch 100, Learning Rate 0.01 , Training Loss: 0.021220
+Epoch 100, Learning Rate 0.01 , Training Loss: 0.022324
+Train Loss: 0.022324 Time: 13
+Val Loss: 1.723256 Time: 1
+Epoch 101, Learning Rate 0.01 , Training Loss: 0.027519
+Epoch 101, Learning Rate 0.01 , Training Loss: 0.025488
+Epoch 101, Learning Rate 0.01 , Training Loss: 0.024535
+Train Loss: 0.024535 Time: 12
+Val Loss: 1.614411 Time: 1
+Epoch 102, Learning Rate 0.01 , Training Loss: 0.020978
+Epoch 102, Learning Rate 0.01 , Training Loss: 0.023572
+Epoch 102, Learning Rate 0.01 , Training Loss: 0.023512
+Train Loss: 0.023512 Time: 12
+Val Loss: 1.583444 Time: 1
+Epoch 103, Learning Rate 0.01 , Training Loss: 0.027143
+Epoch 103, Learning Rate 0.01 , Training Loss: 0.025003
+Epoch 103, Learning Rate 0.01 , Training Loss: 0.023471
+Train Loss: 0.023471 Time: 13
+Val Loss: 1.784809 Time: 1
+Epoch 104, Learning Rate 0.01 , Training Loss: 0.020695
+Epoch 104, Learning Rate 0.01 , Training Loss: 0.021750
+Epoch 104, Learning Rate 0.01 , Training Loss: 0.021309
+Train Loss: 0.021309 Time: 12
+Val Loss: 1.655625 Time: 1
+Epoch 105, Learning Rate 0.01 , Training Loss: 0.020551
+Epoch 105, Learning Rate 0.01 , Training Loss: 0.020476
+Epoch 105, Learning Rate 0.01 , Training Loss: 0.020388
+Train Loss: 0.020388 Time: 12
+Val Loss: 1.827995 Time: 1
+Epoch 106, Learning Rate 0.01 , Training Loss: 0.017396
+Epoch 106, Learning Rate 0.01 , Training Loss: 0.017989
+Epoch 106, Learning Rate 0.01 , Training Loss: 0.020868
+Train Loss: 0.020868 Time: 13
+Val Loss: 1.629818 Time: 1
+Epoch 107, Learning Rate 0.01 , Training Loss: 0.025215
+Epoch 107, Learning Rate 0.01 , Training Loss: 0.022679
+Epoch 107, Learning Rate 0.01 , Training Loss: 0.020910
+Train Loss: 0.020910 Time: 12
+Val Loss: 1.714877 Time: 1
+Epoch 108, Learning Rate 0.01 , Training Loss: 0.018331
+Epoch 108, Learning Rate 0.01 , Training Loss: 0.023615
+Epoch 108, Learning Rate 0.01 , Training Loss: 0.024034
+Train Loss: 0.024034 Time: 12
+Val Loss: 1.758209 Time: 1
+Epoch 109, Learning Rate 0.01 , Training Loss: 0.022356
+Epoch 109, Learning Rate 0.01 , Training Loss: 0.024932
+Epoch 109, Learning Rate 0.01 , Training Loss: 0.025449
+Train Loss: 0.025449 Time: 12
+Val Loss: 1.941360 Time: 1
+Epoch 110, Learning Rate 0.01 , Training Loss: 0.024219
+Epoch 110, Learning Rate 0.01 , Training Loss: 0.023000
+Epoch 110, Learning Rate 0.01 , Training Loss: 0.023872
+Train Loss: 0.023872 Time: 12
+Val Loss: 1.567029 Time: 1
+Epoch 111, Learning Rate 0.01 , Training Loss: 0.020636
+Epoch 111, Learning Rate 0.01 , Training Loss: 0.023531
+Epoch 111, Learning Rate 0.01 , Training Loss: 0.024355
+Train Loss: 0.024355 Time: 13
+Val Loss: 1.651670 Time: 1
+Epoch 112, Learning Rate 0.01 , Training Loss: 0.020382
+Epoch 112, Learning Rate 0.01 , Training Loss: 0.019614
+Epoch 112, Learning Rate 0.01 , Training Loss: 0.021295
+Train Loss: 0.021295 Time: 12
+Val Loss: 1.464205 Time: 1
+Epoch 113, Learning Rate 0.01 , Training Loss: 0.018771
+Epoch 113, Learning Rate 0.01 , Training Loss: 0.020666
+Epoch 113, Learning Rate 0.01 , Training Loss: 0.019875
+Train Loss: 0.019875 Time: 12
+Val Loss: 1.766339 Time: 1
+Epoch 114, Learning Rate 0.01 , Training Loss: 0.016873
+Epoch 114, Learning Rate 0.01 , Training Loss: 0.020822
+Epoch 114, Learning Rate 0.01 , Training Loss: 0.020605
+Train Loss: 0.020605 Time: 12
+Val Loss: 1.666797 Time: 1
+Epoch 115, Learning Rate 0.01 , Training Loss: 0.017033
+Epoch 115, Learning Rate 0.01 , Training Loss: 0.017791
+Epoch 115, Learning Rate 0.01 , Training Loss: 0.019406
+Train Loss: 0.019406 Time: 12
+Val Loss: 1.581972 Time: 1
+Epoch 116, Learning Rate 0.01 , Training Loss: 0.027102
+Epoch 116, Learning Rate 0.01 , Training Loss: 0.022960
+Epoch 116, Learning Rate 0.01 , Training Loss: 0.021925
+Train Loss: 0.021925 Time: 12
+Val Loss: 1.979326 Time: 1
+Epoch 117, Learning Rate 0.01 , Training Loss: 0.024084
+Epoch 117, Learning Rate 0.01 , Training Loss: 0.021632
+Epoch 117, Learning Rate 0.01 , Training Loss: 0.020054
+Train Loss: 0.020054 Time: 12
+Val Loss: 1.672838 Time: 1
+Epoch 118, Learning Rate 0.01 , Training Loss: 0.016986
+Epoch 118, Learning Rate 0.01 , Training Loss: 0.016311
+Epoch 118, Learning Rate 0.01 , Training Loss: 0.018015
+Train Loss: 0.018015 Time: 12
+Val Loss: 1.601866 Time: 1
+Epoch 119, Learning Rate 0.01 , Training Loss: 0.017814
+Epoch 119, Learning Rate 0.01 , Training Loss: 0.018943
+Epoch 119, Learning Rate 0.01 , Training Loss: 0.019174
+Train Loss: 0.019174 Time: 12
+Val Loss: 1.728453 Time: 1
+Epoch 120, Learning Rate 0.01 , Training Loss: 0.017268
+Epoch 120, Learning Rate 0.01 , Training Loss: 0.016785
+Epoch 120, Learning Rate 0.01 , Training Loss: 0.017923
+Train Loss: 0.017923 Time: 12
+Val Loss: 1.668104 Time: 1
+Epoch 121, Learning Rate 0.01 , Training Loss: 0.017611
+Epoch 121, Learning Rate 0.01 , Training Loss: 0.016190
+Epoch 121, Learning Rate 0.01 , Training Loss: 0.017881
+Train Loss: 0.017881 Time: 13
+Val Loss: 1.589437 Time: 1
+Epoch 122, Learning Rate 0.01 , Training Loss: 0.017230
+Epoch 122, Learning Rate 0.01 , Training Loss: 0.016755
+Epoch 122, Learning Rate 0.01 , Training Loss: 0.018153
+Train Loss: 0.018153 Time: 12
+Val Loss: 1.738946 Time: 1
+Epoch 123, Learning Rate 0.01 , Training Loss: 0.019115
+Epoch 123, Learning Rate 0.01 , Training Loss: 0.021880
+Epoch 123, Learning Rate 0.01 , Training Loss: 0.020106
+Train Loss: 0.020106 Time: 12
+Val Loss: 1.727686 Time: 1
+Epoch 124, Learning Rate 0.01 , Training Loss: 0.018605
+Epoch 124, Learning Rate 0.01 , Training Loss: 0.021333
+Epoch 124, Learning Rate 0.01 , Training Loss: 0.023355
+Train Loss: 0.023355 Time: 12
+Val Loss: 3.258215 Time: 1
+Epoch 125, Learning Rate 0.01 , Training Loss: 0.023006
+Epoch 125, Learning Rate 0.01 , Training Loss: 0.022417
+Epoch 125, Learning Rate 0.01 , Training Loss: 0.028073
+Train Loss: 0.028073 Time: 12
+Val Loss: 2.110447 Time: 1
+Epoch 126, Learning Rate 0.01 , Training Loss: 0.041439
+Epoch 126, Learning Rate 0.01 , Training Loss: 0.037155
+Epoch 126, Learning Rate 0.01 , Training Loss: 0.038513
+Train Loss: 0.038513 Time: 13
+Val Loss: 1.845435 Time: 1
+Epoch 127, Learning Rate 0.01 , Training Loss: 0.036333
+Epoch 127, Learning Rate 0.01 , Training Loss: 0.030681
+Epoch 127, Learning Rate 0.01 , Training Loss: 0.028015
+Train Loss: 0.028015 Time: 12
+Val Loss: 1.731571 Time: 1
+Epoch 128, Learning Rate 0.01 , Training Loss: 0.028600
+Epoch 128, Learning Rate 0.01 , Training Loss: 0.024707
+Epoch 128, Learning Rate 0.01 , Training Loss: 0.022812
+Train Loss: 0.022812 Time: 14
+Val Loss: 1.654040 Time: 1
+Epoch 129, Learning Rate 0.01 , Training Loss: 0.024803
+Epoch 129, Learning Rate 0.01 , Training Loss: 0.022515
+Epoch 129, Learning Rate 0.01 , Training Loss: 0.021128
+Train Loss: 0.021128 Time: 14
+Val Loss: 1.716694 Time: 1
+Epoch 130, Learning Rate 0.01 , Training Loss: 0.016596
+Epoch 130, Learning Rate 0.01 , Training Loss: 0.017020
+Epoch 130, Learning Rate 0.01 , Training Loss: 0.018567
+Train Loss: 0.018567 Time: 15
+Val Loss: 1.727370 Time: 1
+Epoch 131, Learning Rate 0.01 , Training Loss: 0.023504
+Epoch 131, Learning Rate 0.01 , Training Loss: 0.021922
+Epoch 131, Learning Rate 0.01 , Training Loss: 0.020762
+Train Loss: 0.020762 Time: 14
+Val Loss: 1.666351 Time: 1
+Epoch 132, Learning Rate 0.01 , Training Loss: 0.021766
+Epoch 132, Learning Rate 0.01 , Training Loss: 0.019876
+Epoch 132, Learning Rate 0.01 , Training Loss: 0.018806
+Train Loss: 0.018806 Time: 13
+Val Loss: 1.737043 Time: 1
+Epoch 133, Learning Rate 0.01 , Training Loss: 0.015806
+Epoch 133, Learning Rate 0.01 , Training Loss: 0.018139
+Epoch 133, Learning Rate 0.01 , Training Loss: 0.017067
+Train Loss: 0.017067 Time: 13
+Val Loss: 1.634017 Time: 1
+Epoch 134, Learning Rate 0.01 , Training Loss: 0.016055
+Epoch 134, Learning Rate 0.01 , Training Loss: 0.015664
+Epoch 134, Learning Rate 0.01 , Training Loss: 0.016962
+Train Loss: 0.016962 Time: 14
+Val Loss: 1.628246 Time: 1
+Epoch 135, Learning Rate 0.01 , Training Loss: 0.016063
+Epoch 135, Learning Rate 0.01 , Training Loss: 0.015145
+Epoch 135, Learning Rate 0.01 , Training Loss: 0.015981
+Train Loss: 0.015981 Time: 14
+Val Loss: 1.710932 Time: 1
+Epoch 136, Learning Rate 0.01 , Training Loss: 0.015185
+Epoch 136, Learning Rate 0.01 , Training Loss: 0.017594
+Epoch 136, Learning Rate 0.01 , Training Loss: 0.017222
+Train Loss: 0.017222 Time: 14
+Val Loss: 1.724932 Time: 1
+Epoch 137, Learning Rate 0.01 , Training Loss: 0.014436
+Epoch 137, Learning Rate 0.01 , Training Loss: 0.014348
+Epoch 137, Learning Rate 0.01 , Training Loss: 0.016833
+Train Loss: 0.016833 Time: 14
+Val Loss: 1.663729 Time: 1
+Epoch 138, Learning Rate 0.01 , Training Loss: 0.017170
+Epoch 138, Learning Rate 0.01 , Training Loss: 0.017616
+Epoch 138, Learning Rate 0.01 , Training Loss: 0.016957
+Train Loss: 0.016957 Time: 15
+Val Loss: 1.665660 Time: 1
+Epoch 139, Learning Rate 0.01 , Training Loss: 0.014497
+Epoch 139, Learning Rate 0.01 , Training Loss: 0.014573
+Epoch 139, Learning Rate 0.01 , Training Loss: 0.015888
+Train Loss: 0.015888 Time: 14
+Val Loss: 1.633337 Time: 1
+Epoch 140, Learning Rate 0.01 , Training Loss: 0.017286
+Epoch 140, Learning Rate 0.01 , Training Loss: 0.016104
+Epoch 140, Learning Rate 0.01 , Training Loss: 0.015621
+Train Loss: 0.015621 Time: 14
+Val Loss: 1.798038 Time: 1
+Epoch 141, Learning Rate 0.01 , Training Loss: 0.018150
+Epoch 141, Learning Rate 0.01 , Training Loss: 0.018207
+Epoch 141, Learning Rate 0.01 , Training Loss: 0.017347
+Train Loss: 0.017347 Time: 15
+Val Loss: 2.066985 Time: 1
+Epoch 142, Learning Rate 0.01 , Training Loss: 0.014761
+Epoch 142, Learning Rate 0.01 , Training Loss: 0.014822
+Epoch 142, Learning Rate 0.01 , Training Loss: 0.016506
+Train Loss: 0.016506 Time: 15
+Val Loss: 1.781957 Time: 1
+Epoch 143, Learning Rate 0.01 , Training Loss: 0.023403
+Epoch 143, Learning Rate 0.01 , Training Loss: 0.019568
+Epoch 143, Learning Rate 0.01 , Training Loss: 0.018222
+Train Loss: 0.018222 Time: 17
+Val Loss: 1.695941 Time: 1
+Epoch 144, Learning Rate 0.01 , Training Loss: 0.024085
+Epoch 144, Learning Rate 0.01 , Training Loss: 0.019986
+Epoch 144, Learning Rate 0.01 , Training Loss: 0.018732
+Train Loss: 0.018732 Time: 17
+Val Loss: 1.834819 Time: 1
+Epoch 145, Learning Rate 0.01 , Training Loss: 0.018417
+Epoch 145, Learning Rate 0.01 , Training Loss: 0.016248
+Epoch 145, Learning Rate 0.01 , Training Loss: 0.015406
+Train Loss: 0.015406 Time: 16
+Val Loss: 1.718529 Time: 1
+Epoch 146, Learning Rate 0.01 , Training Loss: 0.015866
+Epoch 146, Learning Rate 0.01 , Training Loss: 0.014829
+Epoch 146, Learning Rate 0.01 , Training Loss: 0.015094
+Train Loss: 0.015094 Time: 18
+Val Loss: 1.711894 Time: 1
+Epoch 147, Learning Rate 0.01 , Training Loss: 0.015741
+Epoch 147, Learning Rate 0.01 , Training Loss: 0.015259
+Epoch 147, Learning Rate 0.01 , Training Loss: 0.014915
+Train Loss: 0.014915 Time: 17
+Val Loss: 1.950848 Time: 1
+Epoch 148, Learning Rate 0.01 , Training Loss: 0.016885
+Epoch 148, Learning Rate 0.01 , Training Loss: 0.015707
+Epoch 148, Learning Rate 0.01 , Training Loss: 0.015201
+Train Loss: 0.015201 Time: 17
+Val Loss: 1.869945 Time: 1
+Epoch 149, Learning Rate 0.01 , Training Loss: 0.018039
+Epoch 149, Learning Rate 0.01 , Training Loss: 0.015797
+Epoch 149, Learning Rate 0.01 , Training Loss: 0.015228
+Train Loss: 0.015228 Time: 17
+Val Loss: 1.691080 Time: 1
+Epoch 150, Learning Rate 0.01 , Training Loss: 0.012117
+Epoch 150, Learning Rate 0.01 , Training Loss: 0.015045
+Epoch 150, Learning Rate 0.01 , Training Loss: 0.015621
+Train Loss: 0.015621 Time: 17
+Val Loss: 1.717290 Time: 1
+Epoch 151, Learning Rate 0.01 , Training Loss: 0.018149
+Epoch 151, Learning Rate 0.01 , Training Loss: 0.017101
+Epoch 151, Learning Rate 0.01 , Training Loss: 0.016182
+Train Loss: 0.016182 Time: 17
+Val Loss: 2.090596 Time: 1
+Epoch 152, Learning Rate 0.01 , Training Loss: 0.019901
+Epoch 152, Learning Rate 0.01 , Training Loss: 0.018989
+Epoch 152, Learning Rate 0.01 , Training Loss: 0.017948
+Train Loss: 0.017948 Time: 18
+Val Loss: 1.940585 Time: 1
+Epoch 153, Learning Rate 0.01 , Training Loss: 0.020094
+Epoch 153, Learning Rate 0.01 , Training Loss: 0.018135
+Epoch 153, Learning Rate 0.01 , Training Loss: 0.017416
+Train Loss: 0.017416 Time: 17
+Val Loss: 2.004691 Time: 1
+Epoch 154, Learning Rate 0.01 , Training Loss: 0.012791
+Epoch 154, Learning Rate 0.01 , Training Loss: 0.013384
+Epoch 154, Learning Rate 0.01 , Training Loss: 0.014998
+Train Loss: 0.014998 Time: 17
+Val Loss: 1.725130 Time: 1
+Epoch 155, Learning Rate 0.01 , Training Loss: 0.017019
+Epoch 155, Learning Rate 0.01 , Training Loss: 0.017894
+Epoch 155, Learning Rate 0.01 , Training Loss: 0.017628
+Train Loss: 0.017628 Time: 16
+Val Loss: 1.765917 Time: 1
+Epoch 156, Learning Rate 0.01 , Training Loss: 0.014557
+Epoch 156, Learning Rate 0.01 , Training Loss: 0.016199
+Epoch 156, Learning Rate 0.01 , Training Loss: 0.015599
+Train Loss: 0.015599 Time: 17
+Val Loss: 2.022904 Time: 1
+Epoch 157, Learning Rate 0.01 , Training Loss: 0.012810
+Epoch 157, Learning Rate 0.01 , Training Loss: 0.014363
+Epoch 157, Learning Rate 0.01 , Training Loss: 0.015326
+Train Loss: 0.015326 Time: 16
+Val Loss: 1.678892 Time: 1
+Epoch 158, Learning Rate 0.01 , Training Loss: 0.013187
+Epoch 158, Learning Rate 0.01 , Training Loss: 0.013273
+Epoch 158, Learning Rate 0.01 , Training Loss: 0.014904
+Train Loss: 0.014904 Time: 16
+Val Loss: 1.683028 Time: 1
+Epoch 159, Learning Rate 0.01 , Training Loss: 0.014471
+Epoch 159, Learning Rate 0.01 , Training Loss: 0.015353
+Epoch 159, Learning Rate 0.01 , Training Loss: 0.015739
+Train Loss: 0.015739 Time: 16
+Val Loss: 1.734118 Time: 1
+Epoch 160, Learning Rate 0.01 , Training Loss: 0.016745
+Epoch 160, Learning Rate 0.01 , Training Loss: 0.014683
+Epoch 160, Learning Rate 0.01 , Training Loss: 0.014177
+Train Loss: 0.014177 Time: 16
+Val Loss: 2.023002 Time: 1
+Epoch 161, Learning Rate 0.01 , Training Loss: 0.012350
+Epoch 161, Learning Rate 0.01 , Training Loss: 0.012455
+Epoch 161, Learning Rate 0.01 , Training Loss: 0.014485
+Train Loss: 0.014485 Time: 16
+Val Loss: 1.793225 Time: 1
+Epoch 162, Learning Rate 0.01 , Training Loss: 0.015119
+Epoch 162, Learning Rate 0.01 , Training Loss: 0.022654
+Epoch 162, Learning Rate 0.01 , Training Loss: 0.026450
+Train Loss: 0.026450 Time: 18
+Val Loss: 2.044705 Time: 1
+Epoch 163, Learning Rate 0.01 , Training Loss: 0.028385
+Epoch 163, Learning Rate 0.01 , Training Loss: 0.030006
+Epoch 163, Learning Rate 0.01 , Training Loss: 0.027847
+Train Loss: 0.027847 Time: 17
+Val Loss: 2.669748 Time: 1
+Epoch 164, Learning Rate 0.01 , Training Loss: 0.019131
+Epoch 164, Learning Rate 0.01 , Training Loss: 0.018222
+Epoch 164, Learning Rate 0.01 , Training Loss: 0.019701
+Train Loss: 0.019701 Time: 17
+Val Loss: 1.830471 Time: 1
+Epoch 165, Learning Rate 0.01 , Training Loss: 0.016232
+Epoch 165, Learning Rate 0.01 , Training Loss: 0.017454
+Epoch 165, Learning Rate 0.01 , Training Loss: 0.016931
+Train Loss: 0.016931 Time: 17
+Val Loss: 1.932438 Time: 1
+Epoch 166, Learning Rate 0.01 , Training Loss: 0.018170
+Epoch 166, Learning Rate 0.01 , Training Loss: 0.015396
+Epoch 166, Learning Rate 0.01 , Training Loss: 0.014972
+Train Loss: 0.014972 Time: 17
+Val Loss: 1.871221 Time: 1
+Epoch 167, Learning Rate 0.01 , Training Loss: 0.011783
+Epoch 167, Learning Rate 0.01 , Training Loss: 0.012772
+Epoch 167, Learning Rate 0.01 , Training Loss: 0.014370
+Train Loss: 0.014370 Time: 17
+Val Loss: 1.744683 Time: 1
+Epoch 168, Learning Rate 0.01 , Training Loss: 0.015120
+Epoch 168, Learning Rate 0.01 , Training Loss: 0.014580
+Epoch 168, Learning Rate 0.01 , Training Loss: 0.014683
+Train Loss: 0.014683 Time: 17
+Val Loss: 1.914737 Time: 1
+Epoch 169, Learning Rate 0.01 , Training Loss: 0.012380
+Epoch 169, Learning Rate 0.01 , Training Loss: 0.012659
+Epoch 169, Learning Rate 0.01 , Training Loss: 0.014050
+Train Loss: 0.014050 Time: 17
+Val Loss: 1.734606 Time: 1
+Epoch 170, Learning Rate 0.01 , Training Loss: 0.014997
+Epoch 170, Learning Rate 0.01 , Training Loss: 0.014189
+Epoch 170, Learning Rate 0.01 , Training Loss: 0.013305
+Train Loss: 0.013305 Time: 16
+Val Loss: 1.741338 Time: 1
+Epoch 171, Learning Rate 0.01 , Training Loss: 0.012518
+Epoch 171, Learning Rate 0.01 , Training Loss: 0.014250
+Epoch 171, Learning Rate 0.01 , Training Loss: 0.013669
+Train Loss: 0.013669 Time: 16
+Val Loss: 1.875477 Time: 1
+Epoch 172, Learning Rate 0.01 , Training Loss: 0.017242
+Epoch 172, Learning Rate 0.01 , Training Loss: 0.015174
+Epoch 172, Learning Rate 0.01 , Training Loss: 0.014725
+Train Loss: 0.014725 Time: 16
+Val Loss: 2.045479 Time: 1
+Epoch 173, Learning Rate 0.01 , Training Loss: 0.023009
+Epoch 173, Learning Rate 0.01 , Training Loss: 0.021534
+Epoch 173, Learning Rate 0.01 , Training Loss: 0.019519
+Train Loss: 0.019519 Time: 17
+Val Loss: 1.954782 Time: 1
+Epoch 174, Learning Rate 0.01 , Training Loss: 0.017639
+Epoch 174, Learning Rate 0.01 , Training Loss: 0.017153
+Epoch 174, Learning Rate 0.01 , Training Loss: 0.016201
+Train Loss: 0.016201 Time: 16
+Val Loss: 2.031480 Time: 1
+Epoch 175, Learning Rate 0.01 , Training Loss: 0.014336
+Epoch 175, Learning Rate 0.01 , Training Loss: 0.016103
+Epoch 175, Learning Rate 0.01 , Training Loss: 0.015294
+Train Loss: 0.015294 Time: 17
+Val Loss: 1.752101 Time: 1
+Epoch 176, Learning Rate 0.01 , Training Loss: 0.013242
+Epoch 176, Learning Rate 0.01 , Training Loss: 0.012889
+Epoch 176, Learning Rate 0.01 , Training Loss: 0.014193
+Train Loss: 0.014193 Time: 18
+Val Loss: 1.811008 Time: 1
+Epoch 177, Learning Rate 0.01 , Training Loss: 0.012973
+Epoch 177, Learning Rate 0.01 , Training Loss: 0.012297
+Epoch 177, Learning Rate 0.01 , Training Loss: 0.012951
+Train Loss: 0.012951 Time: 18
+Val Loss: 1.779348 Time: 1
+Epoch 178, Learning Rate 0.01 , Training Loss: 0.012099
+Epoch 178, Learning Rate 0.01 , Training Loss: 0.014578
+Epoch 178, Learning Rate 0.01 , Training Loss: 0.013517
+Train Loss: 0.013517 Time: 17
+Val Loss: 1.767754 Time: 1
+Epoch 179, Learning Rate 0.01 , Training Loss: 0.015785
+Epoch 179, Learning Rate 0.01 , Training Loss: 0.013999
+Epoch 179, Learning Rate 0.01 , Training Loss: 0.013343
+Train Loss: 0.013343 Time: 16
+Val Loss: 1.959182 Time: 1
+Epoch 180, Learning Rate 0.01 , Training Loss: 0.011424
+Epoch 180, Learning Rate 0.01 , Training Loss: 0.014516
+Epoch 180, Learning Rate 0.01 , Training Loss: 0.014114
+Train Loss: 0.014114 Time: 17
+Val Loss: 1.815211 Time: 1
+Epoch 181, Learning Rate 0.01 , Training Loss: 0.016558
+Epoch 181, Learning Rate 0.01 , Training Loss: 0.013910
+Epoch 181, Learning Rate 0.01 , Training Loss: 0.013092
+Train Loss: 0.013092 Time: 16
+Val Loss: 1.963331 Time: 1
+Epoch 182, Learning Rate 0.01 , Training Loss: 0.011795
+Epoch 182, Learning Rate 0.01 , Training Loss: 0.011897
+Epoch 182, Learning Rate 0.01 , Training Loss: 0.012943
+Train Loss: 0.012943 Time: 16
+Val Loss: 1.762834 Time: 1
+Epoch 183, Learning Rate 0.01 , Training Loss: 0.013586
+Epoch 183, Learning Rate 0.01 , Training Loss: 0.012608
+Epoch 183, Learning Rate 0.01 , Training Loss: 0.011884
+Train Loss: 0.011884 Time: 17
+Val Loss: 1.975561 Time: 1
+Epoch 184, Learning Rate 0.01 , Training Loss: 0.013954
+Epoch 184, Learning Rate 0.01 , Training Loss: 0.012505
+Epoch 184, Learning Rate 0.01 , Training Loss: 0.012303
+Train Loss: 0.012303 Time: 16
+Val Loss: 2.003691 Time: 1
+Epoch 185, Learning Rate 0.01 , Training Loss: 0.010416
+Epoch 185, Learning Rate 0.01 , Training Loss: 0.012489
+Epoch 185, Learning Rate 0.01 , Training Loss: 0.012223
+Train Loss: 0.012223 Time: 17
+Val Loss: 1.900798 Time: 1
+Epoch 186, Learning Rate 0.01 , Training Loss: 0.013913
+Epoch 186, Learning Rate 0.01 , Training Loss: 0.012641
+Epoch 186, Learning Rate 0.01 , Training Loss: 0.012175
+Train Loss: 0.012175 Time: 16
+Val Loss: 1.915026 Time: 1
+Epoch 187, Learning Rate 0.01 , Training Loss: 0.013095
+Epoch 187, Learning Rate 0.01 , Training Loss: 0.011860
+Epoch 187, Learning Rate 0.01 , Training Loss: 0.011480
+Train Loss: 0.011480 Time: 16
+Val Loss: 1.833973 Time: 1
+Epoch 188, Learning Rate 0.01 , Training Loss: 0.011752
+Epoch 188, Learning Rate 0.01 , Training Loss: 0.012124
+Epoch 188, Learning Rate 0.01 , Training Loss: 0.012262
+Train Loss: 0.012262 Time: 16
+Val Loss: 1.909158 Time: 1
+Epoch 189, Learning Rate 0.01 , Training Loss: 0.012239
+Epoch 189, Learning Rate 0.01 , Training Loss: 0.013514
+Epoch 189, Learning Rate 0.01 , Training Loss: 0.012779
+Train Loss: 0.012779 Time: 17
+Val Loss: 1.878123 Time: 1
+Epoch 190, Learning Rate 0.01 , Training Loss: 0.011614
+Epoch 190, Learning Rate 0.01 , Training Loss: 0.011534
+Epoch 190, Learning Rate 0.01 , Training Loss: 0.012036
+Train Loss: 0.012036 Time: 16
+Val Loss: 1.867919 Time: 1
+Epoch 191, Learning Rate 0.01 , Training Loss: 0.011193
+Epoch 191, Learning Rate 0.01 , Training Loss: 0.012711
+Epoch 191, Learning Rate 0.01 , Training Loss: 0.012211
+Train Loss: 0.012211 Time: 17
+Val Loss: 1.889802 Time: 1
+Epoch 192, Learning Rate 0.01 , Training Loss: 0.011738
+Epoch 192, Learning Rate 0.01 , Training Loss: 0.012430
+Epoch 192, Learning Rate 0.01 , Training Loss: 0.012207
+Train Loss: 0.012207 Time: 16
+Val Loss: 2.018194 Time: 1
+Epoch 193, Learning Rate 0.01 , Training Loss: 0.011614
+Epoch 193, Learning Rate 0.01 , Training Loss: 0.011285
+Epoch 193, Learning Rate 0.01 , Training Loss: 0.012993
+Train Loss: 0.012993 Time: 16
+Val Loss: 1.898196 Time: 1
+Epoch 194, Learning Rate 0.01 , Training Loss: 0.012464
+Epoch 194, Learning Rate 0.01 , Training Loss: 0.011870
+Epoch 194, Learning Rate 0.01 , Training Loss: 0.013922
+Train Loss: 0.013922 Time: 16
+Val Loss: 2.106941 Time: 1
+Epoch 195, Learning Rate 0.01 , Training Loss: 0.012272
+Epoch 195, Learning Rate 0.01 , Training Loss: 0.013975
+Epoch 195, Learning Rate 0.01 , Training Loss: 0.013272
+Train Loss: 0.013272 Time: 17
+Val Loss: 1.887894 Time: 1
+Epoch 196, Learning Rate 0.01 , Training Loss: 0.011867
+Epoch 196, Learning Rate 0.01 , Training Loss: 0.012229
+Epoch 196, Learning Rate 0.01 , Training Loss: 0.012055
+Train Loss: 0.012055 Time: 16
+Val Loss: 1.841759 Time: 1
+Epoch 197, Learning Rate 0.01 , Training Loss: 0.011039
+Epoch 197, Learning Rate 0.01 , Training Loss: 0.010450
+Epoch 197, Learning Rate 0.01 , Training Loss: 0.011507
+Train Loss: 0.011507 Time: 17
+Val Loss: 1.897994 Time: 1
+Epoch 198, Learning Rate 0.01 , Training Loss: 0.012050
+Epoch 198, Learning Rate 0.01 , Training Loss: 0.012018
+Epoch 198, Learning Rate 0.01 , Training Loss: 0.011720
+Train Loss: 0.011720 Time: 16
+Val Loss: 1.940832 Time: 1
+Epoch 199, Learning Rate 0.01 , Training Loss: 0.009947
+Epoch 199, Learning Rate 0.01 , Training Loss: 0.010703
+Epoch 199, Learning Rate 0.01 , Training Loss: 0.011838
+Train Loss: 0.011838 Time: 17
+Val Loss: 1.909287 Time: 1
+Epoch 200, Learning Rate 0.01 , Training Loss: 0.011160
+Epoch 200, Learning Rate 0.01 , Training Loss: 0.014027
+Epoch 200, Learning Rate 0.01 , Training Loss: 0.013739
+Train Loss: 0.013739 Time: 16
+Val Loss: 1.978269 Time: 1
+Epoch 201, Learning Rate 0.01 , Training Loss: 0.016485
+Epoch 201, Learning Rate 0.01 , Training Loss: 0.014980
+Epoch 201, Learning Rate 0.01 , Training Loss: 0.014164
+Train Loss: 0.014164 Time: 17
+Val Loss: 2.119621 Time: 1
+Epoch 202, Learning Rate 0.01 , Training Loss: 0.011032
+Epoch 202, Learning Rate 0.01 , Training Loss: 0.010953
+Epoch 202, Learning Rate 0.01 , Training Loss: 0.011648
+Train Loss: 0.011648 Time: 18
+Val Loss: 1.882714 Time: 1
+Epoch 203, Learning Rate 0.01 , Training Loss: 0.013120
+Epoch 203, Learning Rate 0.01 , Training Loss: 0.011637
+Epoch 203, Learning Rate 0.01 , Training Loss: 0.011051
+Train Loss: 0.011051 Time: 18
+Val Loss: 1.969703 Time: 1
+Epoch 204, Learning Rate 0.01 , Training Loss: 0.009965
+Epoch 204, Learning Rate 0.01 , Training Loss: 0.011159
+Epoch 204, Learning Rate 0.01 , Training Loss: 0.010882
+Train Loss: 0.010882 Time: 16
+Val Loss: 2.026397 Time: 1
+Epoch 205, Learning Rate 0.01 , Training Loss: 0.010061
+Epoch 205, Learning Rate 0.01 , Training Loss: 0.011280
+Epoch 205, Learning Rate 0.01 , Training Loss: 0.010830
+Train Loss: 0.010830 Time: 18
+Val Loss: 1.917179 Time: 1
+Epoch 206, Learning Rate 0.01 , Training Loss: 0.011246
+Epoch 206, Learning Rate 0.01 , Training Loss: 0.009848
+Epoch 206, Learning Rate 0.01 , Training Loss: 0.011307
+Train Loss: 0.011307 Time: 17
+Val Loss: 1.938857 Time: 1
+Epoch 207, Learning Rate 0.01 , Training Loss: 0.013142
+Epoch 207, Learning Rate 0.01 , Training Loss: 0.012622
+Epoch 207, Learning Rate 0.01 , Training Loss: 0.012093
+Train Loss: 0.012093 Time: 16
+Val Loss: 1.939262 Time: 1
+Epoch 208, Learning Rate 0.01 , Training Loss: 0.010934
+Epoch 208, Learning Rate 0.01 , Training Loss: 0.010955
+Epoch 208, Learning Rate 0.01 , Training Loss: 0.013377
+Train Loss: 0.013377 Time: 17
+Val Loss: 1.891077 Time: 1
+Epoch 209, Learning Rate 0.01 , Training Loss: 0.016989
+Epoch 209, Learning Rate 0.01 , Training Loss: 0.016202
+Epoch 209, Learning Rate 0.01 , Training Loss: 0.016136
+Train Loss: 0.016136 Time: 17
+Val Loss: 1.888332 Time: 1
+Epoch 210, Learning Rate 0.01 , Training Loss: 0.012953
+Epoch 210, Learning Rate 0.01 , Training Loss: 0.014702
+Epoch 210, Learning Rate 0.01 , Training Loss: 0.014841
+Train Loss: 0.014841 Time: 17
+Val Loss: 2.011475 Time: 1
+Epoch 211, Learning Rate 0.01 , Training Loss: 0.016666
+Epoch 211, Learning Rate 0.01 , Training Loss: 0.015346
+Epoch 211, Learning Rate 0.01 , Training Loss: 0.014053
+Train Loss: 0.014053 Time: 17
+Val Loss: 2.092212 Time: 1
+Epoch 212, Learning Rate 0.01 , Training Loss: 0.010983
+Epoch 212, Learning Rate 0.01 , Training Loss: 0.012960
+Epoch 212, Learning Rate 0.01 , Training Loss: 0.012222
+Train Loss: 0.012222 Time: 16
+Val Loss: 1.943136 Time: 1
+Epoch 213, Learning Rate 0.01 , Training Loss: 0.016328
+Epoch 213, Learning Rate 0.01 , Training Loss: 0.016523
+Epoch 213, Learning Rate 0.01 , Training Loss: 0.016333
+Train Loss: 0.016333 Time: 16
+Val Loss: 2.144495 Time: 1
+Epoch 214, Learning Rate 0.01 , Training Loss: 0.012479
+Epoch 214, Learning Rate 0.01 , Training Loss: 0.014044
+Epoch 214, Learning Rate 0.01 , Training Loss: 0.013695
+Train Loss: 0.013695 Time: 16
+Val Loss: 1.919879 Time: 1
+Epoch 215, Learning Rate 0.01 , Training Loss: 0.011789
+Epoch 215, Learning Rate 0.01 , Training Loss: 0.011135
+Epoch 215, Learning Rate 0.01 , Training Loss: 0.012657
+Train Loss: 0.012657 Time: 16
+Val Loss: 1.867477 Time: 1
+Epoch 216, Learning Rate 0.01 , Training Loss: 0.011387
+Epoch 216, Learning Rate 0.01 , Training Loss: 0.011070
+Epoch 216, Learning Rate 0.01 , Training Loss: 0.011600
+Train Loss: 0.011600 Time: 17
+Val Loss: 1.929022 Time: 1
+Epoch 217, Learning Rate 0.01 , Training Loss: 0.011884
+Epoch 217, Learning Rate 0.01 , Training Loss: 0.011320
+Epoch 217, Learning Rate 0.01 , Training Loss: 0.010655
+Train Loss: 0.010655 Time: 17
+Val Loss: 1.930824 Time: 1
+Epoch 218, Learning Rate 0.01 , Training Loss: 0.010339
+Epoch 218, Learning Rate 0.01 , Training Loss: 0.010161
+Epoch 218, Learning Rate 0.01 , Training Loss: 0.010181
+Train Loss: 0.010181 Time: 17
+Val Loss: 2.023599 Time: 1
+Epoch 219, Learning Rate 0.01 , Training Loss: 0.012611
+Epoch 219, Learning Rate 0.01 , Training Loss: 0.011563
+Epoch 219, Learning Rate 0.01 , Training Loss: 0.011211
+Train Loss: 0.011211 Time: 16
+Val Loss: 2.072621 Time: 1
+Epoch 220, Learning Rate 0.01 , Training Loss: 0.009187
+Epoch 220, Learning Rate 0.01 , Training Loss: 0.010524
+Epoch 220, Learning Rate 0.01 , Training Loss: 0.010339
+Train Loss: 0.010339 Time: 18
+Val Loss: 1.929156 Time: 1
+Epoch 221, Learning Rate 0.01 , Training Loss: 0.013898
+Epoch 221, Learning Rate 0.01 , Training Loss: 0.013275
+Epoch 221, Learning Rate 0.01 , Training Loss: 0.012820
+Train Loss: 0.012820 Time: 17
+Val Loss: 2.102444 Time: 1
+Epoch 222, Learning Rate 0.01 , Training Loss: 0.010631
+Epoch 222, Learning Rate 0.01 , Training Loss: 0.011509
+Epoch 222, Learning Rate 0.01 , Training Loss: 0.011072
+Train Loss: 0.011072 Time: 18
+Val Loss: 1.881068 Time: 1
+
