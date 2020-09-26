@@ -24,7 +24,7 @@ def parse_args():
 
     parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/fcn_epoch_076_loss_0.395389.pth")
 
-    parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=2, type=int)
+    parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=1, type=int)
 
     parser.add_argument("--back_bone", dest="back_bone", help="backbone network to extract feature", default='vgg')
 

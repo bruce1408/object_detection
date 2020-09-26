@@ -22,7 +22,7 @@ def parse_args():
 
     parser.add_argument("--num_works", dest="num_works", help="num of data loading workers ", default=4, type=int)
 
-    parser.add_argument("--epochs", dest="epochs", help="number of epochs (default: 80)", default=500, type=int)
+    parser.add_argument("--epochs", dest="epochs", help="number of epochs (default: 80)", default=300, type=int)
 
     parser.add_argument("--batch_size", dest="batch_size", help="number of batch (default: 16)", default=16, type=int)
 
