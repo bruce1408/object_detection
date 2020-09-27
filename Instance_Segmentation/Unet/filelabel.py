@@ -1,7 +1,7 @@
 import os
 from shutil import copyfile, move
-imgpath = "/home/bruce/bigVolumn/Datasets/human_instance_segment/testing"
-labeldir = "/home/bruce/bigVolumn/Datasets/human_instance_segment/testMask"
+imgpath = "/home/chenxi/dataset/human_mask/training"
+labeldir = "/home/chenxi/dataset/human_mask/trainMask"
 if not os.path.exists(labeldir):
     os.makedirs(labeldir)
 

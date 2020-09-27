@@ -11,6 +11,12 @@ import os
 
 class BasicDataset(Dataset):
     def __init__(self, imgs_dir, masks_dir, scale=1):
+        """
+        对img和mask进行图片归一化，除以255
+        :param imgs_dir:
+        :param masks_dir:
+        :param scale:
+        """
         self.imgs_dir = imgs_dir
         self.masks_dir = masks_dir
         self.scale = scale
@@ -22,6 +28,7 @@ class BasicDataset(Dataset):
     def __len__(self):
         return len(self.ids)
 
+    # 类方法
     @classmethod
     def preprocess(cls, pil_img, scale):
         w, h = pil_img.size
@@ -43,8 +50,8 @@ class BasicDataset(Dataset):
 
     def __getitem__(self, i):
         idx = self.ids[i]
-        mask_file = os.path.join(self.masks_dir, idx+"_matte.png")
         img_file = os.path.join(self.imgs_dir, idx+".png")
+        mask_file = os.path.join(self.masks_dir, idx+"_matte.png")
 
         mask = Image.open(mask_file)
         img = Image.open(img_file)
@@ -57,8 +64,7 @@ class BasicDataset(Dataset):
 
 
 if __name__ == "__main__":
-    data = BasicDataset("/home/bruce/bigVolumn/Datasets/human_instance_segment/training",
-                        "/home/bruce/bigVolumn/Datasets/human_instance_segment/trainMask")
+    data = BasicDataset("/home/chenxi/dataset/human_mask/training", "/home/chenxi/dataset/human_mask/trainMask")
 
-    print(data[0]['image'])
+    print(data[0]['image'].shape)
     print(data[0]['mask'])

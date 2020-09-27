@@ -1,6 +1,7 @@
 import os
 import torch
 import time
+import sys
 import numpy as np
 import argparse
 import torch.nn as nn
@@ -46,11 +47,12 @@ def parse_args():
 
     return args
 
-# def main():
-#     CUDA = torch.cuda.is_available()
-#     args = parse_args()
-#     net = UNet(n_channels=3, args.num_classes)
-#     start_epoch = 0
+
+def main():
+    CUDA = torch.cuda.is_available()
+    args = parse_args()
+    net = UNet(n_channels=3, n_classes=args.num_classes)
+    start_epoch = 0
 #     # 加载之前的模型继续训练
 #     if args.resume:
 #         ckpt = args.ckpt
@@ -177,7 +179,7 @@ def parse_args():
 #     print("Val Loss: %.6f Time: %d" % (epoch_loss, end_time - start_time))
 #
 #
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
 
