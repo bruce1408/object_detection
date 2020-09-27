@@ -10,6 +10,7 @@
     @Detail    :
 """
 import os
+import torch
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import numpy as np

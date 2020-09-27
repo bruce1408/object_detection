@@ -36,7 +36,7 @@ file_root = '/home/bruce/PycharmProjects/yolov1_pytorch/datasets'
 learning_rate = 0.001
 num_epochs = 100
 batch_size = 8
-resume = True
+resume = False
 
 # ---------------------数据读取---------------------
 train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
