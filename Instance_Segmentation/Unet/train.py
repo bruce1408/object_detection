@@ -7,6 +7,7 @@ import torch.nn as nn
 from model.models import UNet
 from torch.utils.data import DataLoader, random_split
 from dataset.Customdata import BasicDataset
+# 参考链接 https://github.com/leijue222/portrait-matting-unet-flask
 
 
 def parse_args():
@@ -44,7 +45,6 @@ def parse_args():
     args = parser.parse_args()
 
     return args
-
 
 # def main():
 #     CUDA = torch.cuda.is_available()
