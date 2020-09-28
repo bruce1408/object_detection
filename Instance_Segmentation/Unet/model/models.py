@@ -107,7 +107,7 @@ class UNet(nn.Module):
 
 if __name__ == "__main__":
 
-    net = UNet(3, 2)
+    net = UNet(3, 1)
     if torch.cuda.is_available():
         summary(net.cuda(), (3, 224, 224))
         x1 = torch.rand((2, 3, 224, 224)).to('cuda')

@@ -252,36 +252,36 @@ print(output.shape)
 ## Create the loss function
 
 # Define the Binary Cross Entropy loss function
-# class BCELoss2d(nn.Module):
-#     """
-#     Code taken from:
-#     https://www.kaggle.com/c/carvana-image-masking-challenge/discussion/37208
-#     """
-#
-#     def __init__(self, weight=None, size_average=True):
-#         super(BCELoss2d, self).__init__()
-#         self.bce_loss = nn.BCELoss(weight, size_average)
-#
-#     def forward(self, logits, targets):
-#         probs = F.sigmoid(logits)
-#         probs_flat = probs.view(-1)
-#         targets_flat = targets.view(-1)
-#         return self.bce_loss(probs_flat, targets_flat)
-#
-#
-# # Create the training function
-# # Set the model to train (batch norms, dropouts etc), set a progress bar and start to loop over the data.
-# # Get the inputs and targets, compute the loss, propagate gradients and update the progress-bar with the results
-# # Create a function to change a tensor to numpy
-# def to_np(x):
-#     """
-#     https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04-utils/tensorboard/main.py#L20
-#     :param x:
-#     :return:
-#     """
-#     return x.data.cpu().numpy()
-#
-#
+class BCELoss2d(nn.Module):
+    """
+    Code taken from:
+    https://www.kaggle.com/c/carvana-image-masking-challenge/discussion/37208
+    """
+
+    def __init__(self, weight=None, size_average=True):
+        super(BCELoss2d, self).__init__()
+        self.bce_loss = nn.BCELoss(weight, size_average)
+
+    def forward(self, logits, targets):
+        probs = F.sigmoid(logits)
+        probs_flat = probs.view(-1)
+        targets_flat = targets.view(-1)
+        return self.bce_loss(probs_flat, targets_flat)
+
+
+# Create the training function
+# Set the model to train (batch norms, dropouts etc), set a progress bar and start to loop over the data.
+# Get the inputs and targets, compute the loss, propagate gradients and update the progress-bar with the results
+# Create a function to change a tensor to numpy
+def to_np(x):
+    """
+    https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04-utils/tensorboard/main.py#L20
+    :param x:
+    :return:
+    """
+    return x.data.cpu().numpy()
+
+
 # # define the training function
 # def train(train_loader, model, criterion, epoch, num_epochs):
 #     model.train()

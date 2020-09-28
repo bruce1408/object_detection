@@ -13,12 +13,11 @@ import argparse
 
 
 CUDA = torch.cuda.is_available()
+best_loss = np.inf
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="FCNs")
-
-    parser.add_argument("--start_epoch", dest='start_epoch', default=1, type=int)
 
     parser.add_argument("--num_works", dest="num_works", help="num of data loading workers ", default=4, type=int)
 
@@ -63,9 +62,8 @@ def main():
         # resume the model
         checkpoint = torch.load(ckpt)
         net.load_state_dict(checkpoint['model'])
-        args.start_epoch = checkpoint['epoch']
-        start_epoch = args.start_epoch
-        print('load the model from {} and start epoch is: {}'.format(args.ckpt, args.start_epoch))
+        start_epoch = checkpoint['epoch']
+        print('load the model from {} and start epoch is: {}'.format(args.ckpt, start_epoch))
 
     if not os.path.exists(args.save_dir):
         os.makedirs(args.save_dir)
@@ -101,16 +99,14 @@ def main():
 
     print('Start training: Total epochs: {}, Batch size: {}, Training size: {}, Validation size: {}'.
                  format(args.epochs, args.batch_size, len(train_set), len(val_set)))
-
     for epoch in range(start_epoch, args.epochs+1):
-        train(net, train_dataloader, epoch, criterion, optimizer)
-        validate(net, val_dataloader, criterion)
+        train(net, train_dataloader, epoch, criterion, optimizer, args)
+        validate(net, val_dataloader, criterion, epoch, args)
 
 
-def train(net, train_dataloader, epoch, criterion, optimizer):
+def train(net, train_dataloader, epoch, criterion, optimizer, args):
     start_time = time.time()
     net.train()
-    args = parse_args()
     epoch_loss = 0.
     batches = 0
     for i, samples in enumerate(train_dataloader):
@@ -134,11 +130,11 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
             print("Epoch %03d, Learning Rate %g , Training Loss: %.6f" % (
             epoch + 1, optimizer.param_groups[0]["lr"], epoch_loss / batches))
 
-    if epoch % args.num_save == 0:
+    # if epoch % args.num_save == 0:
         """
         第一种保存模型的方式
         """
-        save_name = os.path.join(args.save_dir, "fcn_epoch_%03d.pth" % (epoch))
+        # save_name = os.path.join(args.save_dir, "fcn_epoch_%03d.pth" % (epoch))
         # torch.save({
         #     "model": net.module.state_dict() if args.mGPUs else net.state_dict(),
         #     "epoch": epoch+1,
@@ -148,21 +144,22 @@ def train(net, train_dataloader, epoch, criterion, optimizer):
         """
         第二种模型保存的方法
         """
-        state_dict = net.module.state_dict()
-        for key in state_dict.keys():
-            state_dict[key] = state_dict[key].cpu()
-
-        torch.save({
-            "epoch": epoch+1,
-            "model": state_dict,
-            "lr": optimizer.param_groups[0]['lr']
-        }, save_name)
+        # state_dict = net.module.state_dict()
+        # for key in state_dict.keys():
+        #     state_dict[key] = state_dict[key].cpu()
+        #
+        # torch.save({
+        #     "epoch": epoch+1,
+        #     "model": state_dict,
+        #     "lr": optimizer.param_groups[0]['lr']
+        # }, save_name)
 
     end_time = time.time()
     print('Train Loss: %.6f Time: %d' % (epoch_loss/batches, end_time - start_time))
 
 
-def validate(net, val_dataloader, criterion):
+def validate(net, val_dataloader, criterion, epoch, args):
+    global best_loss
     start_time = time.time()
     epoch_loss = 0.0
     net.eval()
@@ -174,11 +171,25 @@ def validate(net, val_dataloader, criterion):
         with torch.no_grad():
             output = net(image)
             loss = criterion(output, target)
-        pred = output.data.cpu().numpy()
-        pred = np.argmin(pred, axis=1)
-        t = np.argmin(target.cpu().numpy(), axis=1)
+        # pred = output.data.cpu().numpy()
+        # pred = np.argmin(pred, axis=1)
+        # t = np.argmin(target.cpu().numpy(), axis=1)
 
         epoch_loss += loss.item()
+    if best_loss > epoch_loss:
+        best_loss = epoch_loss
+        state_dict = net.module.state_dict()
+        for key in state_dict.keys():
+            state_dict[key] = state_dict[key].cpu()
+        save_name = os.path.join(args.save_dir, "best_model_%.6f.pth" % epoch_loss)
+        print("save model in %s" % save_name)
+
+        torch.save({
+            "model": state_dict,
+            "epoch": epoch+1
+        },
+        save_name)
+
     end_time = time.time()
     print("Val Loss: %.6f Time: %d" % (epoch_loss, end_time - start_time))
 

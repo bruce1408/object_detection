@@ -46,6 +46,7 @@ class VGG(nn.Module):
         self.relu5_3 = nn.ReLU(inplace=True)
         self.pool5 = nn.MaxPool2d(kernel_size=2, stride=2)
 
+        # 正确的加载方式
         if pretrained:
             pretrained_model = vgg16(pretrained=pretrained)
             pretrained_params = pretrained_model.state_dict()
@@ -55,6 +56,7 @@ class VGG(nn.Module):
                 new_dict[key] = pretrained_params[keys[index]]
             self.load_state_dict(new_dict)
 
+            # 错误的加载方式,虽然也没有报错,但是精度一直上不去
             # pretrained_model = vgg16(pretrained=True)
             # pretrained_state_dict = pretrained_model.state_dict()
             # net = self.state_dict()

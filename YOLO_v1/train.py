@@ -161,7 +161,7 @@ for epoch in range(num_epochs):
     if best_test_loss > validation_loss:
         best_test_loss = validation_loss
         print('get best test loss %.5f' % best_test_loss)
-        torch.save(net.state_dict(), 'checkpoints/best.pth')
+        torch.save(net.state_dict(), 'checkpoints/best.pth')  # 只保留参数,速度更快
     logfile.writelines(str(epoch) + '\t' + str(validation_loss) + '\n')
     logfile.flush()
 

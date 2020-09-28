@@ -33,7 +33,7 @@ class CustomData(data.Dataset):
 
         self.transform = transforms.Compose([
             transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),  # 尺寸变化
-            # transforms.CenterCrop((IMAGE_SIZE, IMAGE_SIZE)),  # 中心裁剪
+            # transforms.CenterCrop((IMAGE_SIZE, IMAGE_SIZE)),  # 中心裁剪会影响分割效果
             transforms.ToTensor(),  # 归一化
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
@@ -74,3 +74,9 @@ if __name__ == "__main__":
     data = CustomData("/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/BagImages", mode="train")
     print(data[0][0].shape)
     print(data[0][1].shape)
+    mask = np.array(data[0][1])
+    print(mask[0].shape)
+    masknum = set(mask[0].flatten().tolist())
+    print(masknum)
+
+

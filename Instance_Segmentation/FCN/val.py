@@ -12,7 +12,9 @@ import torch.optim as optim
 import argparse
 
 imagePath = "/home/bruce/PycharmProjects/CV-Papers-Codes/FCN/data/testImages"
-modelPath = "./checkpoints/fcn_epoch_180.pth"
+# modelPath = "./checkpoints/fcn_epoch_180.pth"
+modelPath = "./checkpoints/best_model_0.347358.pth"  # best performance
+# modelPath = "./checkpoints/best_model_0.344030.pth"
 
 
 def modelTest():
