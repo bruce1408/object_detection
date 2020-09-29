@@ -39,7 +39,7 @@ def parse_args():
 
     parser.add_argument("--back_bone", dest="back_bone", help="backbone network to extract feature", default='vgg')
 
-    parser.add_argument("--lr", dest="lr", help="learning rate", default=1e-2, type=float)
+    parser.add_argument("--lr", dest="lr", help="learning rate", default=1e-4, type=float)
 
     parser.add_argument("--verbose", dest='verbose', help="per verbose display the result", default=10, type=int)
 
