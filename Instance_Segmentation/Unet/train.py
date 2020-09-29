@@ -10,8 +10,10 @@ from model.loss import calc_loss
 from torch.utils.data import DataLoader, random_split
 from dataset.Customdata import CustomData
 import torch.optim as optim
-# 参考链接 https://github.com/leijue222/portrait-matting-unet-flask
+# 参考链接
+# https://github.com/leijue222/portrait-matting-unet-flask
 # https://github.com/bigmb/Unet-Segmentation-Pytorch-Nest-of-Unets/blob/master/losses.py
+
 
 
 CUDA = torch.cuda.is_available()
@@ -31,7 +33,7 @@ def parse_args():
 
     parser.add_argument("--resume", dest="resume", help="resume training(default: False)", default=True, type=bool)
 
-    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/best_model_0.830621.pth")
+    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/best_model_0.355226.pth")
 
     parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=1, type=int)
 

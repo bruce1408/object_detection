@@ -9,7 +9,7 @@ from torchvision.transforms import transforms
 from os.path import splitext
 from torch.utils.data import Dataset
 
-IMAGE_SIZE = 256
+IMAGE_SIZE = 300
 
 
 class BasicDataset(Dataset):
