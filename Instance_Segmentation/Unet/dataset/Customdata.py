@@ -5,8 +5,11 @@ import numpy as np
 from glob import glob
 from PIL import Image
 from os import listdir
+from torchvision.transforms import transforms
 from os.path import splitext
 from torch.utils.data import Dataset
+
+IMAGE_SIZE = 256
 
 
 class BasicDataset(Dataset):
@@ -77,18 +80,49 @@ class BasicDataset(Dataset):
             return torch.from_numpy(img).type(torch.FloatTensor)
 
 
+class CustomData(Dataset):
+    def __init__(self, imgdir, mode='train'):
+        self.imgdir = imgdir
+        self.mode = mode
+        if mode in ["train", "val"]:
+            self.imgList = os.listdir(os.path.join(imgdir, "trainImg"))
+            self.imgpath = [os.path.join(imgdir, "trainImg", i) for i in self.imgList]
+        else:
+            self.imgList = os.listdir(os.path.join(imgdir, "testImg"))
+            self.imgpath = [os.path.join(imgdir, "testImg", i) for i in self.imgList]
+
+        self.transform_img = transforms.Compose([
+            transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        ])
+
+        self.transform_label = transforms.Compose([
+            transforms.ToTensor()
+        ])
+
+    def __len__(self):
+        return len(self.imgpath)
+
+    def __getitem__(self, index):
+        img = Image.open(self.imgpath[index])
+        img = self.transform_img(img)
+        if self.mode in ["train", "val"]:
+            self.labelpath = [os.path.join(self.imgdir, "trainMask", i.split(".")[0]+"_matte.png") for i in self.imgList]
+            mask = Image.open(self.labelpath[index])
+            mask = np.array(mask.convert('1').resize((IMAGE_SIZE, IMAGE_SIZE)), dtype=np.uint8)
+            mask = self.transform_label(mask)*255
+            return img, mask
+        else:
+            return img, self.imgpath[index]
+
+
 if __name__ == "__main__":
-    data = BasicDataset("/home/bruce/bigVolumn/Datasets/human_instance_segment/trainImg",
-                        "/home/bruce/bigVolumn/Datasets/human_instance_segment/trainMask")
+    data = CustomData("/home/bruce/bigVolumn/Datasets/human_instance_segment/", mode='train')
 
     print(data[0][0])
     print(set(data[0][1].data.numpy().flatten().tolist()))
     print(data[0][1].shape)
-
-
-# class BasicDataset(Dataset):
-#     def __init__(self, datadir, mode="train"):
-#         self.mode = mode
 
 
 
