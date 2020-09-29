@@ -15,7 +15,7 @@ def dice_loss(prediction, target):
     return 1 - (2. * interArea) / unionArea
 
 
-def calc_loss(prediction, target, bce_weight=0.5):
+def calc_loss(prediction, target, bce_weight=0.7):
     bce = nn.BCEWithLogitsLoss()(prediction, target)
     prediction = F.sigmoid(prediction)
     dice = dice_loss(prediction, target)

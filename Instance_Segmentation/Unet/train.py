@@ -15,7 +15,6 @@ import torch.optim as optim
 # https://github.com/bigmb/Unet-Segmentation-Pytorch-Nest-of-Unets/blob/master/losses.py
 
 
-
 CUDA = torch.cuda.is_available()
 best_loss = np.inf
 
@@ -37,9 +36,7 @@ def parse_args():
 
     parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=1, type=int)
 
-    parser.add_argument("--back_bone", dest="back_bone", help="backbone network to extract feature", default='vgg')
-
-    parser.add_argument("--lr", dest="lr", help="learning rate", default=1e-4, type=float)
+    parser.add_argument("--lr", dest="lr", help="learning rate", default=1e-5, type=float)
 
     parser.add_argument("--verbose", dest='verbose', help="per verbose display the result", default=10, type=int)
 
