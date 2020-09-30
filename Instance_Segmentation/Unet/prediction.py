@@ -15,8 +15,8 @@ from PIL import Image
 from eval import pixel_accuracy
 
 imagePath = "/home/bruce/bigVolumn/Datasets/human_instance_segment"
-modelPath = "./checkpoints/best_model_0.355226.pth"
-# modelPath = "./checkpoints/best_model_2.743963.pth"
+# modelPath = "./checkpoints/best_model_0.355226.pth"
+modelPath = "./checkpoints/best_model_2.743963.pth"
 # modelPath = "./checkpoints/best_model_0.440269.pth"
 
 
