@@ -33,7 +33,7 @@ def parse_args():
 
     parser.add_argument("--resume", dest="resume", help="resume training(default: False)", default=True, type=bool)
 
-    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/best_model_2.743963.pth")
+    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/best_model_2.075422.pth")
 
     parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=1, type=int)
 

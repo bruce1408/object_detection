@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from train import parse_args
 import torch.optim as optim
 from PIL import Image
-
+from eval import pixel_accuracy
 
 imagePath = "/home/bruce/bigVolumn/Datasets/human_instance_segment"
 modelPath = "./checkpoints/best_model_0.355226.pth"
@@ -38,7 +38,10 @@ def modelTest():
     test_set = CustomData(imagePath, mode="test")
     test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False)
     indexImg = 0
-    for i, sample in tqdm(enumerate(test_loader)):
+    count = 0
+    countSum = 0
+    for i, sample in enumerate(test_loader):
+        sumPix = 0
         image, path = sample
         if CUDA:
             image = image.cuda()
@@ -48,7 +51,8 @@ def modelTest():
             output = output.squeeze(1)
         output = F.sigmoid(output)
         pred = output.data.cpu().numpy()
-        # print(pred.shape)
+        num = pred.shape[0]
+        count += num
         pred[np.where(pred < 0.04)] = 0
         pred[np.where(pred >= 0.04)] = 1
         for j, p in enumerate(path):
@@ -63,8 +67,14 @@ def modelTest():
             savename = os.path.join("./outputCompare", str(indexImg) + ".png")
             plot_img(imlist, savename)
             indexImg += 1
+            acc = pixel_accuracy(np.array(imlist[1]), np.array(imlist[0]))
+            sumPix += acc
+            countSum += acc
 
-    print("pred result is over!")
+        batchAcc = sumPix/num
+        print("Batch %d has %d imgs, mean acc is %.5f" % (i+1, num, batchAcc))
+
+    print("the %d imgs mean acc is %.5f, pred result is over!" % (count, countSum/count))
 
 
 def plot_img(im, savename):
