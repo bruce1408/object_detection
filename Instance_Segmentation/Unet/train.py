@@ -13,6 +13,7 @@ import torch.optim as optim
 # 参考链接
 # https://github.com/leijue222/portrait-matting-unet-flask
 # https://github.com/bigmb/Unet-Segmentation-Pytorch-Nest-of-Unets/blob/master/losses.py
+# https://zhuanlan.zhihu.com/p/44958351
 
 
 CUDA = torch.cuda.is_available()
