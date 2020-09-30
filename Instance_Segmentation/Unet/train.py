@@ -15,10 +15,12 @@ import torch.optim as optim
 # https://github.com/bigmb/Unet-Segmentation-Pytorch-Nest-of-Unets/blob/master/losses.py
 # https://zhuanlan.zhihu.com/p/44958351
 # Deep Layer Aggregation
+# https://zhuanlan.zhihu.com/p/103426335
 
 
 CUDA = torch.cuda.is_available()
 best_loss = np.inf
+
 
 def parse_args():
 
