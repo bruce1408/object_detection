@@ -14,7 +14,7 @@ import torch.optim as optim
 # https://github.com/leijue222/portrait-matting-unet-flask
 # https://github.com/bigmb/Unet-Segmentation-Pytorch-Nest-of-Unets/blob/master/losses.py
 # https://zhuanlan.zhihu.com/p/44958351
-# Deep Layer Aggregation
+# Deep Layer Aggregation: https://arxiv.org/abs/1707.06484
 # https://zhuanlan.zhihu.com/p/103426335
 
 
