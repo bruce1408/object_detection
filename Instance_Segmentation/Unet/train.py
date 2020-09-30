@@ -33,11 +33,11 @@ def parse_args():
 
     parser.add_argument("--resume", dest="resume", help="resume training(default: False)", default=True, type=bool)
 
-    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/best_model_0.355226.pth")
+    parser.add_argument("--ckpt", dest="ckpt", help="load checkpoint model ", default="./checkpoints/best_model_2.743963.pth")
 
     parser.add_argument("--num_classes", dest="num_classes", help="number of classes", default=1, type=int)
 
-    parser.add_argument("--lr", dest="lr", help="learning rate", default=1e-5, type=float)
+    parser.add_argument("--lr", dest="lr", help="learning rate", default=1e-4, type=float)
 
     parser.add_argument("--verbose", dest='verbose', help="per verbose display the result", default=10, type=int)
 

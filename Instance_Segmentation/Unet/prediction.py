@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from PIL import Image
+from tqdm import tqdm
 import torch.nn.functional as F
 from torch.utils.data import random_split, DataLoader
 from dataset.Customdata import CustomData
@@ -14,8 +15,8 @@ from PIL import Image
 
 
 imagePath = "/home/bruce/bigVolumn/Datasets/human_instance_segment"
-# modelPath = "./checkpoints/fcn_epoch_180.pth"
 modelPath = "./checkpoints/best_model_0.355226.pth"
+# modelPath = "./checkpoints/best_model_2.743963.pth"
 # modelPath = "./checkpoints/best_model_0.440269.pth"
 
 
@@ -37,7 +38,7 @@ def modelTest():
     test_set = CustomData(imagePath, mode="test")
     test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False)
     indexImg = 0
-    for i, sample in enumerate(test_loader):
+    for i, sample in tqdm(enumerate(test_loader)):
         image, path = sample
         if CUDA:
             image = image.cuda()
