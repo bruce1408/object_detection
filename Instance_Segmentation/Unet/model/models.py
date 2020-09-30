@@ -59,6 +59,7 @@ class Up(nn.Module):
         diffY = torch.tensor([x2.size()[2] - x1.size()[2]])
         diffX = torch.tensor([x2.size()[3] - x1.size()[3]])
 
+        # 保证x1填充之后和x2尺寸是相同的, 左右上下都进行补全
         x1 = F.pad(x1, [diffX // 2, diffX - diffX // 2, diffY // 2, diffY - diffY // 2])
         x = torch.cat([x2, x1], dim=1)
         return self.conv(x)

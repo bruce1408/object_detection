@@ -15,7 +15,8 @@ from PIL import Image
 
 imagePath = "/home/bruce/bigVolumn/Datasets/human_instance_segment"
 # modelPath = "./checkpoints/fcn_epoch_180.pth"
-modelPath = "./checkpoints/best_model_0.367255.pth"
+modelPath = "./checkpoints/best_model_0.355226.pth"
+# modelPath = "./checkpoints/best_model_0.440269.pth"
 
 
 def modelTest():
@@ -47,8 +48,8 @@ def modelTest():
         output = F.sigmoid(output)
         pred = output.data.cpu().numpy()
         # print(pred.shape)
-        pred[np.where(pred < 0.3)] = 0
-        pred[np.where(pred >= 0.3)] = 1
+        pred[np.where(pred < 0.04)] = 0
+        pred[np.where(pred >= 0.04)] = 1
         for j, p in enumerate(path):
             imlist = list()
             realMask = p.split("/")[-1].split(".")[0]+"_matte.png"
@@ -58,7 +59,7 @@ def modelTest():
             im = Image.fromarray(pred.astype('uint8')[j]*255, "L")
             imlist.append(im)
             im.save(os.path.join('./output', p.split("/")[-1]))
-            savename = os.path.join("./compareResult", str(indexImg) + ".png")
+            savename = os.path.join("./outputCompare", str(indexImg) + ".png")
             plot_img(imlist, savename)
             indexImg += 1
 
