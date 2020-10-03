@@ -61,6 +61,7 @@ def main():
     args = parse_args()
     net = UNet(n_channels=3, n_classes=args.num_classes)
     start_epoch = 0
+
     # 加载之前的模型继续训练
     if args.resume:
         ckpt = args.ckpt
