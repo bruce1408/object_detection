@@ -52,7 +52,8 @@ def parse_data_config(path):
 
 
 if __name__ == "__main__":
-    config = parse_model_config("/home/chenxi/tmp/YOLO_v3/config/yolov3.cfg")
+    # config = parse_model_config("/home/chenxi/tmp/YOLO_v3/config/yolov3.cfg")
+    config = parse_model_config("../config/yolov3.cfg")
     print(config.__len__())
     print(config)
 
