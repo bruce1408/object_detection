@@ -1,9 +1,3 @@
-# --------------------------------------------------------
-# Pytorch Yolov2
-# Licensed under The MIT License [see LICENSE for details]
-# Written by Jingru Tan
-# --------------------------------------------------------
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -108,7 +102,7 @@ class Yolo_loss(nn.Module):
 
     def build_target(self, output, gt_data, H, W):
         """
-        真实值gt_data 中的 Box是x1, y1,  x2, y2坐标
+        真实值 gt_data 中的 Box是x1, y1, x2, y2坐标
         Build the training target for output tensor
 
         Arguments:
@@ -187,17 +181,13 @@ class Yolo_loss(nn.Module):
         this is very crucial because  the predict output is normalized to 0~1, which is also
         normalized by the grid width and height
         """
-        # all_grid_xywh shape是[845, 4], [[0,0,1,1],[1,0,2,2]...]给只有w, h的anchor加上x, y中心坐标
+        # all_grid_xywh shape是[845, 4], [[0,0,1,1],[1,0,2,2]...], 给只有w, h的[n, 2]维度的anchor加上x, y格子的中心坐标
         all_grid_xywh = generate_all_anchors(anchors, H, W)  # shape: (H * W * num_anchors, 4), format: (x, y, w, h)
         all_grid_xywh = coord_pred_batch.new(*all_grid_xywh.size()).copy_(all_grid_xywh)
         all_anchors_xywh = all_grid_xywh.clone()
 
         # 变成中心点的坐标
         all_anchors_xywh[:, 0:2] += 0.5
-
-        if cfg.debug:
-            print('all grid: ', all_grid_xywh[:12, :])
-            print('all anchor: ', all_anchors_xywh[:12, :])
 
         # 把中心坐标改成正常二位平面坐标 [845, 4]
         all_anchors_xxyy = xywh2xxyy(all_anchors_xywh)

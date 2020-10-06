@@ -100,8 +100,8 @@ class Yolov2(nn.Module):
         `sigmoid` for t_x, t_y, t_c; `exp` for t_h, t_w;
         `softmax` for (class1_score, class2_score, ...)
         """
-        xy_pred = torch.sigmoid(out[:, :, 0:2])  # 对x,y坐标进行sigmoid函数变换
-        hw_pred = torch.exp(out[:, :, 2:4])  # 对 h,w坐标进行exp函数变换
+        xy_pred = torch.sigmoid(out[:, :, 0:2])  # 对x, y坐标进行sigmoid函数变换
+        hw_pred = torch.exp(out[:, :, 2:4])  # 对 w, h坐标进行exp函数变换
         conf_pred = torch.sigmoid(out[:, :, 4:5])  # 置信度进行sigmoid函数
 
         class_pred = out[:, :, 5:]

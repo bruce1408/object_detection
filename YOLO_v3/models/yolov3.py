@@ -11,6 +11,14 @@ from utils.utils import build_targets
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+"""
+Emptylayer
+Yololayer
+Upsample
+Darknet
+create modules
+"""
+
 
 def create_modules(module_defs):
     """
@@ -35,7 +43,7 @@ def create_modules(module_defs):
             # 添加卷积层
             modules.add_module(f"conv_{module_i}",
                                nn.Conv2d(in_channels=output_filters[-1], out_channels=filters, kernel_size=kernel_size,
-                                         stride=int(module_def["stride"]), padding=pad, bias=not bn,),)
+                                         stride=int(module_def["stride"]), padding=pad, bias=not bn, ), )
             if bn:
                 # 添加batchNorma层
                 modules.add_module(f"batch_norm_{module_i}", nn.BatchNorm2d(filters, momentum=0.9, eps=1e-5))
@@ -71,13 +79,14 @@ def create_modules(module_defs):
         # yolo 层判断
         elif module_def["type"] == "yolo":
             anchor_idxs = [int(x) for x in module_def["mask"].split(",")]
-            # Extract anchors
+
+            # 提取 anchors
             anchors = [int(x) for x in module_def["anchors"].split(",")]
             anchors = [(anchors[i], anchors[i + 1]) for i in range(0, len(anchors), 2)]
             anchors = [anchors[i] for i in anchor_idxs]
             num_classes = int(module_def["classes"])
             img_size = int(hyperparams["height"])
-            # Define detection layer
+            # 定义 detection layer
             yolo_layer = YOLOLayer(anchors, num_classes, img_size)
             modules.add_module(f"yolo_{module_i}", yolo_layer)
         # Register module list and number of output filters
@@ -94,14 +103,20 @@ class Upsample(nn.Module):
         super(Upsample, self).__init__()
         self.scale_factor = scale_factor
         self.mode = mode
+        self.upsample = nn.Upsample(scale_factor=self.scale_factor, mode="bilinear", align_corners=True)
 
     def forward(self, x):
-        x = F.interpolate(x, scale_factor=self.scale_factor, mode=self.mode)
+        # x = F.interpolate(x, scale_factor=self.scale_factor, mode=self.mode)
+        x = self.upsample(x)
         return x
 
 
 class EmptyLayer(nn.Module):
-    """Placeholder for 'route' and 'shortcut' layers"""
+    """
+    对于 route 和 shortcut 使用了自定义的 class EmptyLayer(nn.Module),
+    该类主要起到一个占位符(placeholder)的作用, 其内部实现会根据模块的类型不同而有所区别
+    Placeholder for 'route' and 'shortcut' layers
+    """
 
     def __init__(self):
         super(EmptyLayer, self).__init__()
@@ -113,15 +128,15 @@ class YOLOLayer(nn.Module):
     def __init__(self, anchors, num_classes, img_dim=416):
         super(YOLOLayer, self).__init__()
         self.anchors = anchors
-        self.num_anchors = len(anchors)
-        self.num_classes = num_classes
+        self.num_anchors = len(anchors)  # 3
+        self.num_classes = num_classes  # 80
         self.ignore_thres = 0.5
         self.mse_loss = nn.MSELoss()
         self.bce_loss = nn.BCELoss()
         self.obj_scale = 1
         self.noobj_scale = 100
         self.metrics = {}
-        self.img_dim = img_dim
+        self.img_dim = img_dim  # 416
         self.grid_size = 0  # grid size
 
     def compute_grid_offsets(self, grid_size, cuda=True):
@@ -148,19 +163,19 @@ class YOLOLayer(nn.Module):
         num_samples = x.size(0)
         grid_size = x.size(2)
 
+        # [batch, num_anchor, 13, 13, 80 + 5] = [batcn, 3, 13, 13, 85]
         prediction = (
             x.view(num_samples, self.num_anchors, self.num_classes + 5, grid_size, grid_size)
-            .permute(0, 1, 3, 4, 2)
-            .contiguous()
+                .permute(0, 1, 3, 4, 2).contiguous()
         )
 
         # Get outputs
         x = torch.sigmoid(prediction[..., 0])  # Center x
         y = torch.sigmoid(prediction[..., 1])  # Center y
-        w = prediction[..., 2]  # Width
-        h = prediction[..., 3]  # Height
         pred_conf = torch.sigmoid(prediction[..., 4])  # Conf
         pred_cls = torch.sigmoid(prediction[..., 5:])  # Cls pred.
+        w = prediction[..., 2]  # Width
+        h = prediction[..., 3]  # Height
 
         # If grid size does not match current we compute new offsets
         if grid_size != self.grid_size:
@@ -178,18 +193,14 @@ class YOLOLayer(nn.Module):
                 pred_boxes.view(num_samples, -1, 4) * self.stride,
                 pred_conf.view(num_samples, -1, 1),
                 pred_cls.view(num_samples, -1, self.num_classes),
-            ), -1,)
+            ), -1, )
 
         if targets is None:
             return output, 0
         else:
             iou_scores, class_mask, obj_mask, noobj_mask, tx, ty, tw, th, tcls, tconf = build_targets(
-                pred_boxes=pred_boxes,
-                pred_cls=pred_cls,
-                target=targets,
-                anchors=self.scaled_anchors,
-                ignore_thres=self.ignore_thres,
-            )
+                pred_boxes=pred_boxes, pred_cls=pred_cls, target=targets,
+                anchors=self.scaled_anchors, ignore_thres=self.ignore_thres,)
 
             # Loss : Mask outputs to ignore non-existing objects (except with conf. loss)
             loss_x = self.mse_loss(x[obj_mask], tx[obj_mask])
@@ -262,6 +273,7 @@ class Darknet(nn.Module):
                 x = layer_outputs[-1] + layer_outputs[layer_i]
 
             elif module_def["type"] == "yolo":
+                print('%d the x shape is' % i, x.shape)
                 x, layer_loss = module[0](x, targets, img_dim)
                 loss += layer_loss
                 yolo_outputs.append(x)
@@ -296,33 +308,33 @@ class Darknet(nn.Module):
                     num_b = bn_layer.bias.numel()  # Number of biases
 
                     # Bias
-                    bn_b = torch.from_numpy(weights[ptr : ptr + num_b]).view_as(bn_layer.bias)
+                    bn_b = torch.from_numpy(weights[ptr: ptr + num_b]).view_as(bn_layer.bias)
                     bn_layer.bias.data.copy_(bn_b)
                     ptr += num_b
 
                     # Weight
-                    bn_w = torch.from_numpy(weights[ptr : ptr + num_b]).view_as(bn_layer.weight)
+                    bn_w = torch.from_numpy(weights[ptr: ptr + num_b]).view_as(bn_layer.weight)
                     bn_layer.weight.data.copy_(bn_w)
                     ptr += num_b
 
                     # Running Mean
-                    bn_rm = torch.from_numpy(weights[ptr : ptr + num_b]).view_as(bn_layer.running_mean)
+                    bn_rm = torch.from_numpy(weights[ptr: ptr + num_b]).view_as(bn_layer.running_mean)
                     bn_layer.running_mean.data.copy_(bn_rm)
                     ptr += num_b
 
                     # Running Var
-                    bn_rv = torch.from_numpy(weights[ptr : ptr + num_b]).view_as(bn_layer.running_var)
+                    bn_rv = torch.from_numpy(weights[ptr: ptr + num_b]).view_as(bn_layer.running_var)
                     bn_layer.running_var.data.copy_(bn_rv)
                     ptr += num_b
                 else:
                     # Load conv. bias
                     num_b = conv_layer.bias.numel()
-                    conv_b = torch.from_numpy(weights[ptr : ptr + num_b]).view_as(conv_layer.bias)
+                    conv_b = torch.from_numpy(weights[ptr: ptr + num_b]).view_as(conv_layer.bias)
                     conv_layer.bias.data.copy_(conv_b)
                     ptr += num_b
                 # Load conv. weights
                 num_w = conv_layer.weight.numel()
-                conv_w = torch.from_numpy(weights[ptr : ptr + num_w]).view_as(conv_layer.weight)
+                conv_w = torch.from_numpy(weights[ptr: ptr + num_w]).view_as(conv_layer.weight)
                 conv_layer.weight.data.copy_(conv_w)
                 ptr += num_w
 
@@ -361,5 +373,3 @@ if __name__ == "__main__":
     x = torch.rand((1, 3, 416, 416)).to(device)
     output = model(x)
     print(output.shape)
-
-
