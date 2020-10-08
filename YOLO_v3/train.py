@@ -3,13 +3,16 @@ import numpy as np
 import argparse
 import time
 import torch
+from tqdm import tqdm
 import torch.nn as nn
 from torch import optim
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
+from terminaltables import AsciiTable
 from models.yolov3 import Darknet
 from tensorboardX import SummaryWriter
 from utils.parse_config import parse_model_config
+from utils.utils import xywh2xyxy, non_max_suppression, get_batch_statistics, ap_per_class
 from datasets.Customdata import ImageFolder
 
 
@@ -22,7 +25,8 @@ def parse_args():
 
     parser.add_argument('--names', dest='names', default='./data/coco.names', type=str)
 
-    parser.add_argument('--ckpt', dest='ckpt', default="", help="resume model to load", type=str)
+    parser.add_argument('--ckpt', dest='ckpt', default="./checkpoints/best_model_0.000898.pth",
+                        help="resume model to load", type=str)
 
     parser.add_argument('--traindata', dest='traindata', default='./data/coco/trainvalno5k.txt', type=str)
 
@@ -44,11 +48,7 @@ def parse_args():
 
     parser.add_argument("--img_size", dest="img_size", default=416, help="size of each image dimension", type=int)
 
-    parser.add_argument('--save_interval', dest='save_interval', default=20, type=int)
-
-    parser.add_argument('--resume', dest='resume', default=False, type=bool)
-
-    parser.add_argument('--checkpoint_epoch', dest='checkpoint_epoch', default=180, type=int)
+    parser.add_argument('--resume', dest='resume', default=True, type=bool)
 
     parser.add_argument("--multiscale_training", default=True, help="allow for multi-scale training")
 
@@ -60,7 +60,8 @@ def parse_args():
 
 
 CUDA = torch.cuda.is_available()
-
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+best_mAP = -np.inf
 
 def main():
 
@@ -89,7 +90,7 @@ def main():
             net.load_state_dict(torch.load(args.pretrained_weights))
         else:
             net.load_darknet_weights(args.pretrained_weights)
-        net = nn.DataParallel(net)
+        # net = nn.DataParallel(net)
 
     # 断点加载
     if args.resume:
@@ -130,8 +131,16 @@ def main():
     print('training data number: {}'.format(len(train_dataset)), "val data number: {}".format(len(val_dataset)))
 
     # 优化器初始化
-    optimizer = optim.SGD(net.parameters(), lr=lr, momentum=mom, weight_decay=decay)
+    # optimizer = optim.SGD(net.parameters(), lr=lr, momentum=mom, weight_decay=decay)
+    optimizer = torch.optim.Adam(net.parameters())
 
+    for epoch in range(args.max_epochs):
+        train(epoch, net, train_dataloader, optimizer, args, val_dataloader)
+        val(epoch, args, net, val_dataloader, 0.5, conf_thresh=0.5, nms_thresh=0.5, img_size=args.img_size)
+        torch.cuda.empty_cache()
+
+
+def train(epoch, model, train_dataloader, optimizer, args, val_dataloader):
     metrics = [
         "grid_size",
         "loss",
@@ -148,112 +157,80 @@ def main():
         "conf_obj",
         "conf_noobj",
     ]
+    model.train()
+    start_time = time.time()
+    for batch_i, (_, imgs, targets) in enumerate(train_dataloader):
+        if CUDA:
+            imgs = imgs.cuda()
+            targets = targets.cuda()
 
-    for epoch in range(args.max_epoch):
-        train()
-        val()
-    # set the model mode to train because we have some layer whose behaviors are different when in training and testing.
-    # such as Batch Normalization Layer.
-    # net.train()
+        loss, outputs = model(imgs, targets)
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
 
-    # iters_per_epoch = int(len(train_dataset) / args.batch_size)  # 1383
+        if batch_i % args.display_interval == 0:
+            log_str = "\n---- [Epoch %d/%d, Batch %d/%d] ----\n" % (epoch, args.max_epochs, batch_i, len(train_dataloader))
+            metric_table = [["Metrics", *[f"YOLO Layer {i}" for i in range(len(model.yolo_layers))]]]
+            for i, metric in enumerate(metrics):
+                formats = {m: "%.6f" for m in metrics}
+                formats['grid_size'] = "%2d"
+                formats['cls_acc'] = "%.2f%%"
+                row_metrics = [formats[metric] % yolo.metrics.get(metric, 0) for yolo in model.yolo_layers]
+                metric_table += [[metric, *row_metrics]]
 
-    # start training
-    # for epoch in range(args.start_epoch, args.max_epochs+1):
-    #     loss_temp = 0
-    #     train_data_iter = iter(train_dataloader)
-    #
-    #     if epoch in args.decay_lrs:
-    #         lr = args.decay_lrs[epoch]
-    #         adjust_learning_rate(optimizer, lr)
-    #         print('adjust learning rate to {}'.format(lr))
-    #
-    #     if cfg.multi_scale and epoch in cfg.epoch_scale:
-    #         cfg.scale_range = cfg.epoch_scale[epoch]
-    #         print('change scale range to {}'.format(cfg.scale_range))
-    #
-    #     print('change input size {}'.format(cfg.input_size))
-    #
-    #     for step in range(iters_per_epoch):
-    #         if cfg.multi_scale and (step + 1) % cfg.scale_step == 0:
-    #             scale_index = np.random.randint(*cfg.scale_range)
-    #             cfg.input_size = cfg.input_sizes[scale_index]
-    #             # print('change input size {}'.format(cfg.input_size))
-    #         if step+1 == iters_per_epoch:
-    #             print("inner loop change input size is: ", cfg.input_size)
-    #
-    #         im_data, boxes, gt_classes, num_obj = next(train_data_iter)
-    #         if args.use_cuda:
-    #             im_data = im_data.cuda()
-    #             boxes = boxes.cuda()
-    #             gt_classes = gt_classes.cuda()
-    #             num_obj = num_obj.cuda()
-    #
-    #         im_data_variable = Variable(im_data)
-    #         # todo
-    #         # outPut是预测结果, 为list, 分别有 box_loss, iou_loss, class_loss, h, w 如果是 false 只有三项
-    #         # box_loss, iou_loss, class_loss = model(im_data_variable, boxes, gt_classes, num_obj, training=True)
-    #         output = model(im_data_variable, training=True)
-    #         output_data = output[0:3]
-    #         h, w = output[-2:]
-    #         """
-    #         # 真实标签
-    #         # print('boxes is:', boxes.shape)  # [16, 20, 4]
-    #         # print("gt_class is:", gt_classes.shape)  # [16, 20]
-    #         # print(num_obj.shape)  # [16, 1]
-    #         # print("pred boxes is:", output_data[0].shape)  # [16, 845, 4]
-    #         # print("pred conf is:", output_data[1].shape)  # [16, 845, 1]
-    #         # print("pred labels is:", output_data[2].shape)  # [16, 845, 20]
-    #         """
-    #         target_data = [boxes, gt_classes, num_obj]
-    #
-    #         box_loss, iou_loss, class_loss = loss_(output_data, target_data, h, w)
-    #
-    #         loss = box_loss.mean() + iou_loss.mean() + class_loss.mean()
-    #
-    #         optimizer.zero_grad()
-    #
-    #         loss.backward()
-    #         optimizer.step()
-    #
-    #         loss_temp += loss.item()
-    #
-    #         if (step + 1) % args.display_interval == 0:
-    #             toc = time.time()
-    #             loss_temp /= args.display_interval
-    #
-    #             iou_loss_v = iou_loss.mean().item()
-    #             box_loss_v = box_loss.mean().item()
-    #             class_loss_v = class_loss.mean().item()
-    #
-    #             print("[epoch: %d][step: %2d/%4d] loss: %.4f, lr: %.2e, "
-    #                   % (epoch, step+1, iters_per_epoch, loss_temp, lr), end='')
-    #             print(" iou_loss: %.4f, box_loss: %.4f, cls_loss: %.4f"
-    #                   % (iou_loss_v, box_loss_v, class_loss_v))
-    #
-    #             if args.use_tfboard:
-    #
-    #                 n_iter = (epoch - 1) * iters_per_epoch + step + 1
-    #                 writer.add_scalar('losses/loss', loss_temp, n_iter)
-    #                 writer.add_scalar('losses/iou_loss', iou_loss_v, n_iter)
-    #                 writer.add_scalar('losses/box_loss', box_loss_v, n_iter)
-    #                 writer.add_scalar('losses/cls_loss', class_loss_v, n_iter)
-    #
-    #             loss_temp = 0
-    #             tic = time.time()
-    #
-    #     if epoch % args.save_interval == 0:
-    #         save_name = os.path.join(output_dir, 'yolov2_epoch_{}.pth'.format(epoch))
-    #
-    #         torch.save({
-    #             'model': model.module.state_dict() if args.mGPUs else model.state_dict(),
-    #             'epoch': epoch,
-    #             'lr': lr},
-    #             save_name)
-def train():
-    pass
-def val():
-    pass
+            log_str += AsciiTable(metric_table).table
+            log_str += f"\n Total loss {loss.item()}"
+            print(log_str)
+            model.seen += imgs.size(0)
+        torch.cuda.empty_cache()
+
+        # val(epoch, args, model, val_dataloader, 0.5, conf_thresh=0.5, nms_thresh=0.5, img_size=args.img_size)
+
+
+def val(epoch, args, model, val_dataloader, iou_thresh, conf_thresh, nms_thresh, img_size, batch_size=8):
+    global best_mAP
+    print("begin to val the datasets...")
+    model.eval()
+    Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
+    labels = []
+    sample_metrics = []
+
+    for batch_i, (_, imgs, targets) in enumerate(tqdm(val_dataloader, desc="detection the objections:")):
+        labels += targets[:, 1].tolist()
+        targets[:, 2:] = xywh2xyxy(targets[:, 2:])
+        targets[:, 2:] *= img_size
+
+        imgs = Variable(imgs.type(Tensor), requires_grad=False)
+        with torch.no_grad():
+            outputs = model(imgs)
+            outputs = non_max_suppression(outputs, conf_thres=conf_thresh, nms_thres=nms_thresh)
+
+        sample_metrics += get_batch_statistics(outputs, targets, iou_threshold=iou_thresh)
+
+    tp, pred_scores, pred_labels = [np.concatenate(x, 0) for x in list(zip(*sample_metrics))]
+    precision, recall, AP, f1, ap_class = ap_per_class(tp, pred_scores, pred_labels, labels)
+    val_precision = precision.mean()
+    val_recall = recall.mean()
+    val_f1 = f1.mean()
+    val_mAP = AP.mean()
+    print("precision: %.3f, recall: %.3f, f1: %.3f, mAP: %.3f" % (val_precision, val_recall, val_f1, val_mAP))
+    if val_mAP > best_mAP:
+        best_mAP = val_mAP
+        save_name = os.path.join(args.save_dir, "best_model_%.6f.pth" % best_mAP)
+
+        state_dict = model.state_dict()
+        for key in state_dict.keys():
+            state_dict[key] = state_dict[key].cpu()
+
+        torch.save({
+            "model": state_dict,
+            "epoch": epoch + 1
+        }, save_name)
+        print("model has been saved in %s" % save_name, end="")
+
+    return precision, recall, AP, f1, ap_class
+
 
 if __name__ == '__main__':
     main()
