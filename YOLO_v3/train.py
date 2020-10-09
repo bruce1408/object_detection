@@ -140,7 +140,7 @@ def main():
         torch.cuda.empty_cache()
 
 
-def train(epoch, model, train_dataloader, optimizer, args, val_dataloader):
+def train(epoch, model, train_dataloader, optimizer, args):
     metrics = [
         "grid_size",
         "loss",
@@ -184,8 +184,6 @@ def train(epoch, model, train_dataloader, optimizer, args, val_dataloader):
             print(log_str)
             model.seen += imgs.size(0)
         torch.cuda.empty_cache()
-
-        # val(epoch, args, model, val_dataloader, 0.5, conf_thresh=0.5, nms_thresh=0.5, img_size=args.img_size)
 
 
 def val(epoch, args, model, val_dataloader, iou_thresh, conf_thresh, nms_thresh, img_size, batch_size=8):
