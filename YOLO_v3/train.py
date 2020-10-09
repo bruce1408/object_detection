@@ -25,7 +25,7 @@ def parse_args():
 
     parser.add_argument('--names', dest='names', default='./data/coco.names', type=str)
 
-    parser.add_argument('--ckpt', dest='ckpt', default="./checkpoints/best_model_0.000898.pth",
+    parser.add_argument('--ckpt', dest='ckpt', default="./checkpoints/best_model_0.081796.pth",
                         help="resume model to load", type=str)
 
     parser.add_argument('--traindata', dest='traindata', default='./data/coco/trainvalno5k.txt', type=str)
@@ -135,7 +135,7 @@ def main():
     optimizer = torch.optim.Adam(net.parameters())
 
     for epoch in range(start_epoch, args.max_epochs):
-        train(epoch, net, train_dataloader, optimizer, args, val_dataloader)
+        train(epoch, net, train_dataloader, optimizer, args)
         val(epoch, args, net, val_dataloader, 0.5, conf_thresh=0.5, nms_thresh=0.5, img_size=args.img_size)
         torch.cuda.empty_cache()
 
