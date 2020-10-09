@@ -134,7 +134,7 @@ def main():
     # optimizer = optim.SGD(net.parameters(), lr=lr, momentum=mom, weight_decay=decay)
     optimizer = torch.optim.Adam(net.parameters())
 
-    for epoch in range(args.max_epochs):
+    for epoch in range(start_epoch, args.max_epochs):
         train(epoch, net, train_dataloader, optimizer, args, val_dataloader)
         val(epoch, args, net, val_dataloader, 0.5, conf_thresh=0.5, nms_thresh=0.5, img_size=args.img_size)
         torch.cuda.empty_cache()
