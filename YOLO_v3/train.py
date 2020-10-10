@@ -158,7 +158,7 @@ def train(epoch, model, train_dataloader, optimizer, args):
         "conf_noobj",
     ]
     model.train()
-    start_time = time.time()
+    # start_time = time.time()
     for batch_i, (_, imgs, targets) in enumerate(train_dataloader):
         if CUDA:
             imgs = imgs.cuda()
