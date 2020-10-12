@@ -25,7 +25,7 @@ def parse_args():
 
     parser.add_argument('--names', dest='names', default='./data/coco.names', type=str)
 
-    parser.add_argument('--ckpt', dest='ckpt', default="./checkpoints/best_model_0.081796.pth",
+    parser.add_argument('--ckpt', dest='ckpt', default="./checkpoints/best_model_0.128224.pth",
                         help="resume model to load", type=str)
 
     parser.add_argument('--traindata', dest='traindata', default='./data/coco/trainvalno5k.txt', type=str)
@@ -42,7 +42,7 @@ def parse_args():
 
     parser.add_argument('--use_tfboard', dest='use_tfboard', default=False, type=bool)
 
-    parser.add_argument('--display_interval', dest='display_interval', default=10, type=int)
+    parser.add_argument('--display_interval', dest='display_interval', default=50, type=int)
 
     parser.add_argument('--mGPUs', dest='mGPUs', default=False, type=bool)
 
