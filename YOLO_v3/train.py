@@ -80,7 +80,7 @@ def main():
     with open(namespath, 'r') as f:
         names = f.read().split("\n")[:-1]
 
-    # 是否使用GPU多卡训练
+    # 是否使用GPU多卡训练,加载darknet部分模型,多卡部分有点问题
     if CUDA:
         net.to(torch.device("cuda"))
         # net = nn.DataParallel(net)
