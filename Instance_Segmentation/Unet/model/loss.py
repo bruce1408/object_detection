@@ -13,10 +13,10 @@ import torch.nn.functional as F
 A survey of loss functions for semanticsegmentation
 Boundary loss for highly unbalanced segmentation
 Dice Loss for Data-imbalanced NLP Tasks
-https://medium.com/ai-salon/understanding-dice-loss-for-crisp-boundary-detection-bb30c2e5f62b
 https://zhuanlan.zhihu.com/p/101773544
 https://zhuanlan.zhihu.com/p/269592183
-
+https://github.com/zhixuhao/unet/issues/101
+https://medium.com/ai-salon/understanding-dice-loss-for-crisp-boundary-detection-bb30c2e5f62b
 """
 
 
