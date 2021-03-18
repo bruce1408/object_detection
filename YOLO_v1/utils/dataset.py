@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 @Time          : 2020/08/12 18:30
-@Author        : Bryce
+@Author        : Bruce
 @File          : dataset.py
 @Noice         :
 @Modificattion : txt描述文件 image_name.jpg x y w h c x y w h c 这样就是说一张图片中有两个目标
@@ -53,7 +53,8 @@ class yoloDataset(data.Dataset):
             # Cat multiple list files together.
             # This is especially useful for voc07/voc12 combination.
             tmp_file = os.path.join(root, 'images.txt')
-            list_file = [os.path.join(root, list_file[0]), os.path.join(root, list_file[1])]
+            list_file = [os.path.join(
+                root, list_file[0]), os.path.join(root, list_file[1])]
             os.system('cat %s > %s' % (' '.join(list_file), tmp_file))
             list_file = tmp_file
         else:
@@ -63,7 +64,8 @@ class yoloDataset(data.Dataset):
         with open(list_file) as f:
             lines = f.readlines()
         for line in lines:
-            splited = line.strip().split()  # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
+            # ['005246.jpg', '84', '48', '493', '387', '2'] img_name + 坐标 + 类型(labels)
+            splited = line.strip().split()
             self.fnames.append(splited[0])
             num_boxes = (len(splited) - 1) // 5
             box = []
@@ -82,7 +84,8 @@ class yoloDataset(data.Dataset):
 
     def __getitem__(self, idx):
         fname = self.fnames[idx]
-        img = cv2.imread(os.path.join(self.root, "images", fname))  # [height, width, channel]
+        # [height, width, channel]
+        img = cv2.imread(os.path.join(self.root, "images", fname))
         boxes = self.boxes[idx].clone()
         labels = self.labels[idx].clone()
 
@@ -113,7 +116,8 @@ class yoloDataset(data.Dataset):
         # #debug
         # print(fname)
         h, w, _ = img.shape  # 不管通道数 _
-        boxes /= torch.Tensor([w, h, w, h]).expand_as(boxes)  # 一张图片中框的坐标归一化，即转换为对于0,0点的(0,1)范围内的表述
+        # 一张图片中框的坐标归一化，即转换为对于0,0点的(0,1)范围内的表述
+        boxes /= torch.Tensor([w, h, w, h]).expand_as(boxes)
 
         # 图片数据进行操作
         img = self.BGR2RGB(img)  # because pytorch pretrained model use RGB
@@ -146,7 +150,8 @@ class yoloDataset(data.Dataset):
         cell_size = 1. / grid_num  # 之前已经把目标框归一化，故这里用1. 作为除数
         wh = boxes[:, 2:] - boxes[:, :2]  # 宽高
         cxcy = (boxes[:, 2:] + boxes[:, :2]) / 2  # 中心点
-        for i in range(cxcy.size()[0]):  # 对于数据集中的每个框 这里cxcy.size() == num_samples
+        # 对于数据集中的每个框 这里cxcy.size() == num_samples
+        for i in range(cxcy.size()[0]):
 
             cxcy_sample = cxcy[i]
 
@@ -241,7 +246,8 @@ class yoloDataset(data.Dataset):
                 after_shfit_image[:height + int(shift_y), :width + int(shift_x), :] = \
                     bgr[-int(shift_y):, -int(shift_x):, :]
 
-            shift_xy = torch.FloatTensor([[int(shift_x), int(shift_y)]]).expand_as(center)
+            shift_xy = torch.FloatTensor(
+                [[int(shift_x), int(shift_y)]]).expand_as(center)
             center = center + shift_xy
             mask1 = (center[:, 0] > 0) & (center[:, 0] < width)
             mask2 = (center[:, 1] > 0) & (center[:, 1] < height)
@@ -262,7 +268,8 @@ class yoloDataset(data.Dataset):
             scale = random.uniform(0.8, 1.2)
             height, width, c = bgr.shape
             bgr = cv2.resize(bgr, (int(width * scale), height))
-            scale_tensor = torch.FloatTensor([[scale, 1, scale, 1]]).expand_as(boxes)
+            scale_tensor = torch.FloatTensor(
+                [[scale, 1, scale, 1]]).expand_as(boxes)
             boxes = boxes * scale_tensor
             return bgr, boxes
         return bgr, boxes
@@ -325,15 +332,30 @@ class yoloDataset(data.Dataset):
 if __name__ == '__main__':
 
     # file_root = "/home/bruce/PycharmProjects/yolov1_pytorch/datasets"
-    file_root = "/home/chenxi/tempfile/YOLO_v1/Tools"
-    train_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=True, transform=[transforms.ToTensor()])
-    train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True, num_workers=4)
-    train_iter = iter(train_loader)
-    for i in range(len(train_iter)):
-        try:
-            img, target = next(train_iter)
-            print(img.shape, target.shape)
-        except:
-            print('the %d file has failed to load ' % i)
-            pass
-    print(train_dataset.num_samples)
+    file_root = "/home/chenxi/object_detection/data/yolo_v1_datasets"
+    # train_dataset = yoloDataset(
+    #     root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
+    # train_loader = DataLoader(
+    #     train_dataset, batch_size=1, shuffle=True, num_workers=4)
+    # train_iter = iter(train_loader)
+    # for i in range(len(train_iter)):
+    #     try:
+    #         img, target = next(train_iter)
+    #         print(img.shape, target.shape)
+    #     except:
+    #         print('the %d file has failed to load ' % i)
+    #         pass
+    # print(train_dataset.num_samples)
+    imageList = os.listdir(os.path.join(file_root, "images"))
+    print(imageList.__len__())
+    # print(imageList)
+    cnt = 0
+    with open(os.path.join(file_root, "images.txt")) as f:
+        for line in f:
+            imgName = line.split(" ")[0].strip()
+            if(imgName in imageList):
+                pass
+            else:
+                print(imgName)
+                cnt += 1
+    print(cnt)

@@ -4,6 +4,7 @@ from __future__ import print_function
 
 
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '0, 1, 2, 3'
 import numpy as np
 import argparse
 import time
@@ -42,7 +43,7 @@ def parse_args():
                         default=8, type=int)
 
     parser.add_argument('--output_dir', dest='output_dir',
-                        default='/home/bruce/PycharmProjects/yolov2.pytorch/output/', type=str)
+                        default='/home/chenxi/object_detection/YOLO_v2/output/', type=str)
 
     parser.add_argument('--use_tfboard', dest='use_tfboard',
                         default=False, type=bool)
@@ -51,7 +52,7 @@ def parse_args():
                         default=10, type=int)
 
     parser.add_argument('--mGPUs', dest='mGPUs',
-                        default=False, type=bool)
+                        default=True, type=bool)
 
     parser.add_argument('--save_interval', dest='save_interval',
                         default=20, type=int)
@@ -60,7 +61,7 @@ def parse_args():
                         default=True, type=bool)
 
     parser.add_argument('--resume', dest='resume',
-                        default=True, type=bool)
+                        default=False, type=bool)
 
     parser.add_argument('--checkpoint_epoch', dest='checkpoint_epoch',
                         default=180, type=int)
@@ -81,11 +82,13 @@ def train():
     args.weight_decay = cfg.weight_decay
     args.momentum = cfg.momentum
     args.batch_size = cfg.batch_size
-    args.pretrained_model = os.path.join('/home/bruce/PycharmProjects/yolov2.pytorch/data/', 'pretrained', 'darknet19_448.weights')  # 官方训练的模型
+    args.pretrained_model = os.path.join(
+        '/home/chenxi/object_detection/data/', 'pretrained', 'darknet19_448.weights')  # 官方训练的模型
 
     print('Called with args:')
 
     lr = args.lr
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # initial tensorboardX writer
     if args.use_tfboard:
@@ -100,11 +103,9 @@ def train():
 
     # load datasets
     print('loading datasets....')
-    # imdb_name = "voc_2007_trainval+voc_2012_trainval"
-    # train_dataset = get_dataset(args.imdb_name)
-    train_dataset = RoiDataset("/home/bruce/PycharmProjects/yolov1_pytorch/datasets",
-                               "/home/bruce/PycharmProjects/yolov1_pytorch/datasets/images.txt",
-                               "/home/bruce/PycharmProjects/yolov1_pytorch/datasets/images")
+    train_dataset = RoiDataset("/home/chenxi/object_detection/data/yolo_v1_datasets/",
+                               "/home/chenxi/object_detection/data/yolo_v1_datasets/images.txt",
+                               "/home/chenxi/object_detection/data/yolo_v1_datasets/images")
 
     train_dataloader = DataLoader(train_dataset, batch_size=args.batch_size,
                                   shuffle=True, num_workers=args.num_workers,
@@ -114,17 +115,20 @@ def train():
 
     # initialize the model
     tic = time.time()
-    model = Yolov2(weights_file=args.pretrained_model)
+    model = Yolov2(device, args.mGPUs, weights_file=args.pretrained_model)
     toc = time.time()
-    print('model loaded! : cost time {:.2f}s'.format(toc-tic))
+    print('model loaded! : cost time {:.2f}s'.format(toc - tic))
 
     # initialize the optimizer
-    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    optimizer = optim.SGD(model.parameters(), lr=args.lr,
+                          momentum=args.momentum, weight_decay=args.weight_decay)
 
     if args.resume:
         print('resume training enable')
-        resume_checkpoint_name = 'yolov2_epoch_{}.pth'.format(args.checkpoint_epoch)
-        resume_checkpoint_path = os.path.join(output_dir, resume_checkpoint_name)
+        resume_checkpoint_name = 'yolov2_epoch_{}.pth'.format(
+            args.checkpoint_epoch)
+        resume_checkpoint_path = os.path.join(
+            output_dir, resume_checkpoint_name)
         print('resume from {}'.format(resume_checkpoint_path))
 
         # 模型加载
@@ -140,8 +144,9 @@ def train():
 
     if args.mGPUs:
         model = nn.DataParallel(model)
+        model = model.to(device)
 
-    loss_ = Yolo_loss()
+    loss_ = Yolo_loss(args.mGPUs)
     # set the model mode to train because we have some layer whose behaviors are different when in training and testing.
     # such as Batch Normalization Layer.
     model.train()
@@ -149,7 +154,7 @@ def train():
     iters_per_epoch = int(len(train_dataset) / args.batch_size)  # 1383
 
     # start training
-    for epoch in range(args.start_epoch, args.max_epochs+1):
+    for epoch in range(args.start_epoch, args.max_epochs + 1):
         loss_temp = 0
         train_data_iter = iter(train_dataloader)
 
@@ -169,23 +174,31 @@ def train():
                 scale_index = np.random.randint(*cfg.scale_range)
                 cfg.input_size = cfg.input_sizes[scale_index]
                 # print('change input size {}'.format(cfg.input_size))
-            if step+1 == iters_per_epoch:
+            if step + 1 == iters_per_epoch:
                 print("inner loop change input size is: ", cfg.input_size)
 
             im_data, boxes, gt_classes, num_obj = next(train_data_iter)
             if args.use_cuda:
-                im_data = im_data.cuda()
-                boxes = boxes.cuda()
-                gt_classes = gt_classes.cuda()
-                num_obj = num_obj.cuda()
+                im_data = im_data.to(device)
+                boxes = boxes.to(device)
+                gt_classes = gt_classes.to(device)
+                num_obj = num_obj.to(device)
+                # print("im_data is: ", type(im_data))
 
             im_data_variable = Variable(im_data)
+            # im_data_variable = im_data
+            # print("im_data_variable", type(im_data_variable))
             # todo
             # outPut是预测结果, 为list, 分别有 box_loss, iou_loss, class_loss, h, w 如果是 false 只有三项
             # box_loss, iou_loss, class_loss = model(im_data_variable, boxes, gt_classes, num_obj, training=True)
             output = model(im_data_variable, training=True)
+            # output = torch.Tensor(output)
+            # print("output done")
             output_data = output[0:3]
+            # print("output_data", type(output_data[0]))
             h, w = output[-2:]
+            # print("h, w", type(h))
+            # print(type(w))
             """
             # 真实标签
             # print('boxes is:', boxes.shape)  # [16, 20, 4]
@@ -196,8 +209,14 @@ def train():
             # print("pred labels is:", output_data[2].shape)  # [16, 845, 20]
             """
             target_data = [boxes, gt_classes, num_obj]
+            # print("target_data done")
+            # print('output_data: ',type(output_data))
+            # print("target_data", type(target_data))
+            # print('h: ', type(h))
+            # print('w: ', type(w))
 
-            box_loss, iou_loss, class_loss = loss_(output_data, target_data, h, w)
+            box_loss, iou_loss, class_loss = loss_(
+                output_data, target_data, h, w)
 
             loss = box_loss.mean() + iou_loss.mean() + class_loss.mean()
 
@@ -217,7 +236,7 @@ def train():
                 class_loss_v = class_loss.mean().item()
 
                 print("[epoch: %d][step: %2d/%4d] loss: %.4f, lr: %.2e, "
-                      % (epoch, step+1, iters_per_epoch, loss_temp, lr), end='')
+                      % (epoch, step + 1, iters_per_epoch, loss_temp, lr), end='')
                 print(" iou_loss: %.4f, box_loss: %.4f, cls_loss: %.4f"
                       % (iou_loss_v, box_loss_v, class_loss_v))
 
@@ -233,7 +252,8 @@ def train():
                 tic = time.time()
 
         if epoch % args.save_interval == 0:
-            save_name = os.path.join(output_dir, 'yolov2_epoch_{}.pth'.format(epoch))
+            save_name = os.path.join(
+                output_dir, 'yolov2_epoch_{}.pth'.format(epoch))
 
             torch.save({
                 'model': model.module.state_dict() if args.mGPUs else model.state_dict(),
@@ -245,11 +265,6 @@ def train():
 if __name__ == '__main__':
     train()
 
-
-
-
-
-
-
-
-
+    price = str(u'12.3456')
+    bids = ['1.0', '2.0']
+    zip(float(price), bids)

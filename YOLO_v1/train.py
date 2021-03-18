@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 @Time          : 2020/08/12 18:30
-@Author        : Bryce
+@Author        : Bruce
 @File          : train.py
 @Noice         :
 @Modificattion :
@@ -30,25 +30,28 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 use_gpu = torch.cuda.is_available()
 
 # 数据文件
-file_root = '/home/bruce/PycharmProjects/yolov1_pytorch/datasets'
+# file_root = '/home/bruce/PycharmProjects/yolov1_pytorch/datasets'
+file_root = "/home/chenxi/object_detection/data/yolo_v1_datasets/"
 
 # 超参数
 learning_rate = 0.001
 num_epochs = 100
-batch_size = 8
+batch_size = 32
 resume = False
 
 # ---------------------数据读取---------------------
-train_dataset = yoloDataset(root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
+train_dataset = yoloDataset(
+    root=file_root, list_file='images.txt', train=True, transform=[transforms.ToTensor()])
 
-val_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False, transform=[transforms.ToTensor()])
+# val_dataset = yoloDataset(root=file_root, list_file='voc2007test.txt', train=False, transform=[transforms.ToTensor()])
 
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+train_loader = DataLoader(
+    train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
-val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
+# val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 
 print('the train dataset has %d images' % (len(train_dataset)))
-print('the test dataset has %d images' % (len(val_dataset)))
+# print('the test dataset has %d images' % (len(val_dataset)))
 print('the batch_size is %d' % batch_size)
 
 
@@ -88,7 +91,8 @@ else:
         net.load_state_dict(dd)
 
 if use_gpu:
-    print('this computer has gpu %d and current is %s' % (torch.cuda.device_count(), torch.cuda.current_device()))
+    print('this computer has gpu %d and current is %s' %
+          (torch.cuda.device_count(), torch.cuda.current_device()))
     net.cuda()
 
 
@@ -103,12 +107,14 @@ for key, value in params_dict.items():
         params += [{'params': [value], 'lr':learning_rate*0.5}]
     else:
         params += [{'params': [value], 'lr':learning_rate}]
-optimizer = torch.optim.SGD(params, lr=learning_rate, momentum=0.9, weight_decay=5e-4)
+optimizer = torch.optim.SGD(
+    params, lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 # optimizer = torch.optim.Adam(net.parameters(),lr=learning_rate,weight_decay=1e-4)
 
 
 # ---------------------训练---------------------
-logfile = open('checkpoints/log.txt', 'w')
+logfile = open(
+    '/home/chenxi/object_detection/YOLO_v1/checkpoints/log.txt', 'w')
 num_iter = 0
 best_test_loss = np.inf
 
@@ -164,5 +170,3 @@ for epoch in range(num_epochs):
         torch.save(net.state_dict(), 'checkpoints/best.pth')  # 只保留参数,速度更快
     logfile.writelines(str(epoch) + '\t' + str(validation_loss) + '\n')
     logfile.flush()
-
-

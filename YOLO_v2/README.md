@@ -156,18 +156,3 @@ in terminate console:
 
 ![avatar](./localhost.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
