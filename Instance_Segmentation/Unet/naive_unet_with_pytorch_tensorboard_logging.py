@@ -359,7 +359,7 @@ train_dataset = CARVANA(root='../inputs',
                         )
 
 # define the dataloader with the previous dataset
-train_loader = torch.tools.data.DataLoader(dataset=train_dataset,
+train_loader = torch.Tools.data.DataLoader(dataset=train_dataset,
                                            batch_size=8,
                                            shuffle=True,
                                            pin_memory=True,

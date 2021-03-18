@@ -229,7 +229,7 @@ class pascal_voc(imdb):
         print('--------------------------------------------------------------')
         print('Results computed with the **unofficial** Python eval code.')
         print('Results should be very close to the official MATLAB eval code.')
-        print('Recompute with `./tools/reval.py --matlab ...` for your paper.')
+        print('Recompute with `./Tools/reval.py --matlab ...` for your paper.')
         print('-- Thanks, The Management')
         print('--------------------------------------------------------------')
 
