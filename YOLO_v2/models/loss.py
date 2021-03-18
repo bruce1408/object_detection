@@ -10,11 +10,12 @@ import torch.nn.functional as F
 
 
 class Yolo_loss(nn.Module):
-    def __init__(self):
+    def __init__(self, mGPU):
         """
         Yolo_Loss 专门定义成一个类, 输入output为预测结果, gt表示真实数据结果, h, w,当前图片的尺寸
         """
         super(Yolo_loss, self).__init__()
+        self.mGPU = mGPU
 
     def forward(self, output_variable, gt_data, h, w):
         output_data = [v.data for v in output_variable]
@@ -30,12 +31,12 @@ class Yolo_loss(nn.Module):
         target_data = self.build_target(output_data, gt_data, h, w)
 
         target_variable = [v for v in target_data]
-        box_loss, iou_loss, class_loss = self.yolo_loss(output_variable, target_variable)
+        box_loss, iou_loss, class_loss = self.yolo_loss(
+            output_variable, target_variable)
 
         return box_loss, iou_loss, class_loss
 
     def yolo_loss(self, output, target):
-
         """
         Build yolo loss
 
@@ -94,9 +95,13 @@ class Yolo_loss(nn.Module):
         box_loss = 1 / b * cfg.coord_scale * F.mse_loss(coord_pred_batch * box_mask, box_target * box_mask,
                                                         reduction='sum') / 2.0
 
-        iou_loss = 1 / b * F.mse_loss(conf_pred_batch * iou_mask, iou_target * iou_mask, reduction='sum') / 2.0
+        iou_loss = 1 / b * \
+            F.mse_loss(conf_pred_batch * iou_mask, iou_target *
+                       iou_mask, reduction='sum') / 2.0
 
-        class_loss = 1 / b * cfg.class_scale * F.cross_entropy(class_pred_batch_keep, class_target_keep, reduction='sum')
+        class_loss = 1 / b * cfg.class_scale * \
+            F.cross_entropy(class_pred_batch_keep,
+                            class_target_keep, reduction='sum')
 
         return box_loss, iou_loss, class_loss
 
@@ -156,8 +161,16 @@ class Yolo_loss(nn.Module):
         what tensor is used doesn't matter
         """
         # [16, 169, 5, 4] -> [16, 845, 4]
+        # print('type h is: ', type(H))
+        # print('bsize: ', type(bsize), bsize)
+        # print("target_data", type(target_data))
+        # print('W: ', type(W))
+        # print('h: ', H, W)
+        if self.mGPU:
+            H = H[0].item()
+            W = W[0].item()
         box_target = coord_pred_batch.new_zeros((bsize, H * W, num_anchors, 4))
-
+        # print(type(box_target))
         # [16, 169, 5, 1]
         box_mask = coord_pred_batch.new_zeros((bsize, H * W, num_anchors, 1))
 
@@ -165,10 +178,12 @@ class Yolo_loss(nn.Module):
         iou_target = coord_pred_batch.new_zeros((bsize, H * W, num_anchors, 1))
 
         # [16, 169, 5, 1]全是1的矩阵，表示的就是没有目标的损失 1
-        iou_mask = coord_pred_batch.new_ones((bsize, H * W, num_anchors, 1)) * cfg.noobject_scale
+        iou_mask = coord_pred_batch.new_ones(
+            (bsize, H * W, num_anchors, 1)) * cfg.noobject_scale
 
         # [16, 169, 5, 1]
-        class_target = conf_pred_batch.new_zeros((bsize, H * W, num_anchors, 1))
+        class_target = conf_pred_batch.new_zeros(
+            (bsize, H * W, num_anchors, 1))
 
         # [16, 169, 5, 1]
         class_mask = conf_pred_batch.new_zeros((bsize, H * W, num_anchors, 1))
@@ -182,8 +197,10 @@ class Yolo_loss(nn.Module):
         normalized by the grid width and height
         """
         # all_grid_xywh shape是[845, 4], [[0,0,1,1],[1,0,2,2]...], 给只有w, h的[n, 2]维度的anchor加上x, y格子的中心坐标
-        all_grid_xywh = generate_all_anchors(anchors, H, W)  # shape: (H * W * num_anchors, 4), format: (x, y, w, h)
-        all_grid_xywh = coord_pred_batch.new(*all_grid_xywh.size()).copy_(all_grid_xywh)
+        # shape: (H * W * num_anchors, 4), format: (x, y, w, h)
+        all_grid_xywh = generate_all_anchors(anchors, H, W)
+        all_grid_xywh = coord_pred_batch.new(
+            *all_grid_xywh.size()).copy_(all_grid_xywh)
         all_anchors_xywh = all_grid_xywh.clone()
 
         # 变成中心点的坐标
@@ -227,7 +244,8 @@ class Yolo_loss(nn.Module):
             # shape: (H * W, num_anchors, num_obj) = [169, 5, num]
             ious = ious.view(-1, num_anchors, num_obj)
             # 求最大的iou数值,然后开始进行处理
-            max_iou, _ = torch.max(ious, dim=-1, keepdim=True)  # shape: (H * W, num_anchors, 1)
+            # shape: (H * W, num_anchors, 1)
+            max_iou, _ = torch.max(ious, dim=-1, keepdim=True)
             if cfg.debug:
                 print('ious', ious)
 
@@ -241,11 +259,13 @@ class Yolo_loss(nn.Module):
             n_pos = torch.nonzero(iou_thresh_filter).numel()
 
             if n_pos > 0:
-                iou_mask[b][max_iou >= cfg.thresh] = 0  # 大于阈值则设置为0, 否则设置为1; 有目标就是0,没有目标就是1
+                # 大于阈值则设置为0, 否则设置为1; 有目标就是0,没有目标就是1
+                iou_mask[b][max_iou >= cfg.thresh] = 0
 
             # todo 2: process box target and class target
             # 计算先验锚框和当前batch的真实框的iou [169, 5, 1]
-            overlaps = box_ious(all_anchors_xxyy, gt_boxes).view(-1, num_anchors, num_obj)
+            overlaps = box_ious(
+                all_anchors_xxyy, gt_boxes).view(-1, num_anchors, num_obj)
 
             # 真实框从平面坐标变换成中心坐标,不是相对位置,而是绝对位置
             gt_boxes_xywh = xxyy2xywh(gt_boxes)
@@ -271,7 +291,8 @@ class Yolo_loss(nn.Module):
                 argmax_anchor_idx = torch.argmax(overlaps_in_cell)
 
                 # 真实标签和对应anchor计算iou最大的那个anchor框
-                assigned_grid = all_grid_xywh.view(-1, num_anchors, 4)[cell_idx, argmax_anchor_idx, :].unsqueeze(0)
+                assigned_grid = all_grid_xywh.view(-1, num_anchors, 4)[
+                    cell_idx, argmax_anchor_idx, :].unsqueeze(0)
                 gt_box = gt_box_xywh.unsqueeze(0)
 
                 # 真实框和最大iou的anchor框来构成 target_t, 变成中心相对坐标
@@ -281,7 +302,8 @@ class Yolo_loss(nn.Module):
                     print('gt: ', gt_box)
                     print('target_t, ', target_t)
                 # assign the box_target and box_mask with max iou num
-                box_target[b, cell_idx, argmax_anchor_idx, :] = target_t.unsqueeze(0)
+                box_target[b, cell_idx, argmax_anchor_idx,
+                           :] = target_t.unsqueeze(0)
                 box_mask[b, cell_idx, argmax_anchor_idx, :] = 1
 
                 # update cls_target, cls_mask
@@ -289,7 +311,8 @@ class Yolo_loss(nn.Module):
                 class_mask[b, cell_idx, argmax_anchor_idx, :] = 1
 
                 # iou_target对应下面的iou_mask, 如果有目标存在,对应的mask的value是5, 如果没有目标, mask是1; 如果有目标那么就是0
-                iou_target[b, cell_idx, argmax_anchor_idx, :] = max_iou[cell_idx, argmax_anchor_idx, :]
+                iou_target[b, cell_idx, argmax_anchor_idx,
+                           :] = max_iou[cell_idx, argmax_anchor_idx, :]
 
                 if cfg.debug:
                     print(max_iou[cell_idx, argmax_anchor_idx, :])
@@ -297,38 +320,6 @@ class Yolo_loss(nn.Module):
                 iou_mask[b, cell_idx, argmax_anchor_idx, :] = cfg.object_scale
 
         return iou_target.view(bsize, -1, 1), iou_mask.view(bsize, -1, 1), \
-               box_target.view(bsize, -1, 4), box_mask.view(bsize, -1, 1),\
-               class_target.view(bsize, -1, 1).long(), class_mask.view(bsize, -1, 1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            box_target.view(bsize, -1, 4), box_mask.view(bsize, -1, 1),\
+            class_target.view(
+                bsize, -1, 1).long(), class_mask.view(bsize, -1, 1)

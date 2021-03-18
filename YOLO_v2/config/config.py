@@ -23,7 +23,7 @@ jitter = 0.3
 
 thresh = .6
 
-batch_size = 16
+batch_size = 64
 
 lr = 0.0001
 

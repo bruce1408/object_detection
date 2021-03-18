@@ -1,17 +1,21 @@
+import sys
+import os
 import torch
+import warnings
 import torch.nn as nn
-import torch.nn.functional as F
-from torch.autograd import Variable
+sys.path.append("/home/chenxi/object_detection/YOLO_v2")
 
+from torch.autograd import Variable
+import torch.nn.functional as F
 from torchsummary import summary
 from config import config as cfg
 from models.darknet import Darknet19
 from models.darknet import conv_bn_leaky
-# from loss import build_target, yolo_loss
 from utils.network import ReorgLayer
 from tensorboardX import SummaryWriter
-import warnings
 
+# from loss import build_target, yolo_loss
+os.environ['CUDA_VISIBLE_DEVICES'] = '0, 1, 2, 3'
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
@@ -20,7 +24,7 @@ class Yolov2(nn.Module):
     num_classes = 20
     num_anchors = 5
 
-    def __init__(self, classes=None, weights_file=False):
+    def __init__(self, device, mGPU=False, classes=None, weights_file=False):
         """
         yolov2 模型，对输入是[batch, 3, 416, 416]的图片进行网络训练, 得到的是shape为[batch, 125, 13, 13]的结果,然后这个继续
         转化成[batch, 13*13*5, 25]的输出, 分别输出坐标:[batch, 13*13*5, 4], 置信度：[batch, 13*13*5, 1],
@@ -49,8 +53,11 @@ class Yolov2(nn.Module):
                                    darknet19.layer4)
 
         self.reorg = ReorgLayer()
+        self.device = device
+        self.mGPU = mGPU
 
-        self.downsampler = conv_bn_leaky(512, 64, kernel_size=1, return_module=True)  # 这种也就是route层
+        self.downsampler = conv_bn_leaky(
+            512, 64, kernel_size=1, return_module=True)  # 这种也就是route层
 
         # output = [b, 1024, 13, 13]
         self.conv2 = darknet19.layer5
@@ -85,7 +92,8 @@ class Yolov2(nn.Module):
         reorganize the output tensor to shape (B, H * W * num_anchors, 5 + num_classes)
         [batch, 13*13*5, 25]
         """
-        out = out.permute(0, 2, 3, 1).contiguous().view(bsize, h * w * self.num_anchors, 5 + self.num_classes)
+        out = out.permute(0, 2, 3, 1).contiguous().view(
+            bsize, h * w * self.num_anchors, 5 + self.num_classes)
 
         """
         activate the output tensor, 对xy中心坐标进行sigmoid函数, 对hw进行exp函数变换
@@ -97,7 +105,8 @@ class Yolov2(nn.Module):
         conf_pred = torch.sigmoid(out[:, :, 4:5])  # 置信度进行sigmoid函数
 
         class_pred = out[:, :, 5:]
-        coor_pred = torch.cat([xy_pred, hw_pred], dim=-1)  # [batch_size, h*w*5, 4]
+        # [batch_size, h*w*5, 4]
+        coor_pred = torch.cat([xy_pred, hw_pred], dim=-1)
         class_score = F.softmax(class_pred, dim=-1)  # 对label进行softmax进行转换
 
         # if training:
@@ -120,13 +129,17 @@ class Yolov2(nn.Module):
         #
         # return delta_pred, conf_pred, class_score
         if training:
-            return coor_pred, conf_pred, class_pred, h, w
+            if self.mGPU: 
+                return coor_pred, conf_pred, class_pred, torch.tensor(h).to(self.device), torch.tensor(w).to(self.device)
+            else: return coor_pred, conf_pred, class_pred, h, w
+
         else:
             return coor_pred, conf_pred, class_score
 
 
 if __name__ == '__main__':
-    model = Yolov2(weights_file="checkpoints/pretrained/darknet19_448.weights")
+    model = Yolov2(
+        weights_file="/home/chenxi/object_detection/data/pretrained/darknet19_448.weights")
     if torch.cuda.is_available():
         model.cuda()
         summary(model, (3, 416, 416))
@@ -136,11 +149,9 @@ if __name__ == '__main__':
         print('delta_pred size:', delta_pred.size())
         print('conf_pred size:', conf_pred.size())
         print('class_pred size:', class_pred.size())
+        print("w = ", type(torch.IntTensor(w)))
+        print("h= ", type(h))
         # with SummaryWriter(comment="yolov2") as w:
         #     w.add_graph(model, x)
     else:
         summary(model, (3, 224, 224))
-
-
-
-
