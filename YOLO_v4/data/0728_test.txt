@@ -1,0 +1,494 @@
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35061.jpg 319,269,409,339,0 848,383,1033,505,0 844,289,981,364,0 1080,328,1187,402,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001224.jpg 26,280,118,409,0 159,390,340,582,0 240,262,318,360,0 469,497,685,776,0 732,382,940,609,0 799,113,922,437,0 1167,213,1297,566,0 952,754,1232,1062,0 1201,582,1387,815,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43470.jpg 743,169,875,235,0 889,258,1011,353,0 1105,653,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001385.jpg 688,100,801,422,0 104,491,286,726,0 55,789,297,1041,0 607,485,815,707,0 779,444,948,577,0 880,748,1213,1069,0 1155,609,1386,880,0 1436,337,1650,777,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/157068.jpg 450,433,628,602,0 974,451,1211,665,0 30,1146,321,1440,0 2479,441,2560,609,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/165971.jpg 614,685,859,913,0 528,236,594,312,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/22626.jpg 350,411,501,503,0 800,318,917,399,0 1113,488,1259,570,0 1052,323,1173,399,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001200.jpg 566,257,712,353,0 569,151,658,246,0 788,162,866,261,0 967,166,1039,246,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000601.jpg 370,420,611,530,0 1120,522,1275,653,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/175981.jpg 604,160,687,217,0 784,175,863,229,0 568,281,707,346,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000136.jpg 373,416,605,546,0 1120,519,1278,657,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/152350.jpg 596,151,693,221,0 573,273,720,348,0 771,166,863,227,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/68184.jpg 369,52,400,95,0 413,46,441,73,0 759,165,846,232,0 605,102,671,142,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000216.jpg 977,727,1230,1041,0 1161,568,1352,813,0 559,588,781,748,0 42,899,281,1062,0 144,427,307,609,0 399,344,581,468,0 71,286,173,397,0 246,295,367,382,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40171.jpg 340,411,524,520,0 612,336,769,624,0 778,315,921,426,0 1078,477,1271,644,0 1050,315,1180,412,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/106473.jpg 551,226,718,351,0 573,167,711,220,0 776,182,875,229,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001666.jpg 799,343,1051,720,0 868,264,965,349,0 1043,298,1162,399,0 1188,258,1279,420,0 968,465,1209,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11547.jpg 1770,787,1962,916,0 248,1330,429,1433,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42846.jpg 327,416,496,565,0 557,132,676,377,0 813,158,895,296,0 799,299,910,430,0 1048,322,1187,416,0 1081,455,1272,642,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44749.jpg 584,101,651,141,0 758,188,865,237,0 893,261,1005,353,0 1097,649,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001677.jpg 1104,516,1273,645,0 397,410,594,593,0 615,92,712,134,0 809,33,862,62,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44386.jpg 754,185,857,242,0 893,260,1004,356,0 1098,654,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/22601.jpg 346,408,511,503,0 796,316,921,408,0 1104,485,1266,577,0 1063,319,1163,388,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/70008.jpg 611,101,673,141,0 800,179,893,250,0 924,234,1028,333,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44262.jpg 757,183,859,238,0 892,261,1005,357,0 1096,647,1280,716,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47633.jpg 815,168,888,249,0 828,299,974,358,0 975,172,1044,247,0 1089,623,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001199.jpg 22,765,275,1055,0 872,749,1216,1080,0 615,478,799,707,0 745,394,948,573,0 847,344,1013,456,0 138,410,349,744,0 237,274,360,379,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/39250.jpg 338,404,521,519,0 1068,479,1270,659,0 780,315,922,432,0 1051,320,1172,406,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/65108.jpg 543,254,693,349,0 596,164,681,234,0 760,171,877,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000725.jpg 367,420,621,546,0 1100,506,1280,649,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001565.jpg 393,403,588,566,0 615,95,721,133,0 1101,518,1275,642,0 809,41,870,66,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/97935.jpg 109,483,259,630,0 108,690,340,919,0 85,290,173,392,0 264,286,354,368,0 768,460,956,606,0 1159,595,1363,768,0 945,746,1164,967,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44573.jpg 755,184,854,237,0 892,258,1002,356,0 1100,649,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42831.jpg 563,153,682,422,0 305,423,505,550,0 808,155,898,293,0 803,300,909,415,0 1042,324,1185,414,0 1088,467,1275,639,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11583.jpg 221,1335,410,1430,0 1791,795,1972,941,0 2481,684,2559,814,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45905.jpg 759,185,852,235,0 894,266,1005,354,0 1100,645,1279,720,0 581,103,648,145,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/68140.jpg 763,167,858,235,0 402,45,427,77,0 615,103,674,139,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000017.jpg 370,420,613,526,0 1117,514,1280,654,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35311.jpg 304,271,423,345,0 844,380,1030,488,0 852,282,974,353,0 1084,323,1189,406,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/161851.jpg 584,102,651,139,0 754,187,861,234,0 875,258,993,349,0 1168,626,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000214.jpg 381,412,624,553,0 1113,514,1280,650,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46464.jpg 758,174,863,239,0 828,295,979,358,0 1077,634,1280,720,0 978,170,1046,243,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000365.jpg 36,652,295,948,0 1116,582,1356,888,0 518,544,781,760,0 712,468,936,607,0 110,492,285,639,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40191.jpg 339,407,524,522,0 547,528,730,720,0 770,308,928,424,0 1090,478,1275,646,0 1053,314,1179,416,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000609.jpg 938,731,1189,1023,0 1171,558,1342,854,0 559,588,787,750,0 26,897,263,1066,0 405,337,587,486,0 150,417,307,586,0 79,282,152,384,0 259,288,346,362,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45200.jpg 584,100,646,139,0 758,181,861,242,0 890,261,1007,356,0 1101,643,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44540.jpg 752,184,862,241,0 892,262,1004,357,0 1093,646,1278,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46837.jpg 763,162,857,242,0 829,295,978,353,0 963,170,1044,245,0 1088,633,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001784.jpg 836,197,1027,539,0 1117,511,1280,645,0 607,91,725,139,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/67830.jpg 596,169,690,228,0 573,274,718,351,0 777,182,883,236,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42277.jpg 276,409,476,522,0 812,165,901,296,0 807,301,910,420,0 1071,460,1274,649,0 1048,318,1167,405,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/6554.jpg 558,286,712,352,0 595,157,691,231,0 771,172,876,230,0 380,109,450,164,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/8049.jpg 563,286,708,349,0 588,157,692,227,0 778,167,869,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000356.jpg 371,416,602,529,0 1115,508,1274,664,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001588.jpg 50,790,295,978,0 101,497,281,631,0 599,505,787,692,0 665,392,850,562,0 881,735,1216,1052,0 1448,407,1601,784,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001664.jpg 620,95,716,133,0 925,222,1079,507,0 1117,511,1279,639,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/71874.jpg 556,247,709,352,0 772,163,839,222,0 955,165,1032,238,0 382,63,411,96,0 407,51,436,79,0 577,25,602,45,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45829.jpg 759,183,857,242,0 898,266,1008,358,0 582,100,646,138,0 1088,650,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000594.jpg 154,227,308,353,0 370,183,498,289,0 679,106,786,172,0 870,72,932,116,0 867,20,894,51,0 136,133,236,199,0 373,84,427,139,0 300,30,362,123,0 423,4,474,45,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001129.jpg 297,281,385,335,0 338,412,523,514,0 821,262,913,356,0 874,351,992,489,0 993,399,1119,561,0 1105,470,1234,645,0 1075,306,1170,385,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000678.jpg 373,419,612,537,0 1066,491,1266,662,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48105.jpg 790,160,859,237,0 973,172,1047,243,0 834,297,971,357,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001585.jpg 1202,232,1361,730,0 926,756,1208,1075,0 5,845,238,1080,0 94,462,266,798,0 523,428,706,699,0 679,416,852,613,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001578.jpg 54,786,307,982,0 107,495,281,621,0 589,499,779,674,0 673,395,850,562,0 879,741,1207,1050,0 1220,360,1379,729,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/58542.jpg 324,277,409,328,0 878,284,973,355,0 901,386,1032,468,0 1088,324,1174,396,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44336.jpg 758,185,866,239,0 890,261,1004,357,0 1098,642,1274,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47461.jpg 784,174,885,237,0 839,297,979,357,0 973,170,1044,249,0 1088,637,1279,718,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000936.jpg 36,286,122,399,0 167,386,336,568,0 244,266,318,348,0 471,497,681,778,0 740,378,952,597,0 771,99,889,386,0 936,739,1226,1035,0 1146,574,1393,815,0 1185,235,1328,570,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001361.jpg 404,411,584,547,0 621,89,707,135,0 1119,514,1269,638,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44588.jpg 582,101,651,138,0 761,188,859,238,0 892,261,1007,356,0 1105,647,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47635.jpg 812,172,881,243,0 974,172,1043,241,0 828,297,971,358,0 1111,627,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001399.jpg 757,183,868,242,0 853,253,1009,360,0 581,103,667,149,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/137130.jpg 383,103,472,199,0 590,99,657,139,0 760,171,865,231,0 824,297,986,357,0 1083,635,1268,718,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45251.jpg 757,183,858,235,0 892,260,1004,354,0 1105,643,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/153737.jpg 580,275,707,351,0 622,158,691,223,0 773,175,862,230,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/41511.jpg 578,210,714,429,0 340,410,525,524,0 775,313,920,433,0 1050,317,1167,414,0 1074,467,1244,632,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001156.jpg 6,838,233,1080,0 73,482,267,794,0 527,430,701,685,0 648,402,827,616,0 931,796,1216,1080,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40091.jpg 341,410,515,526,0 558,151,632,286,0 788,316,924,424,0 1074,477,1275,640,0 1049,323,1177,411,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/68005.jpg 589,162,686,229,0 775,180,871,241,0 572,277,707,350,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45213.jpg 757,184,857,237,0 890,262,1007,358,0 1094,649,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48033.jpg 773,161,855,237,0 977,173,1047,245,0 834,297,975,357,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001741.jpg 392,408,590,556,0 1119,508,1280,638,0 613,93,723,138,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/9269.jpg 1817,785,2081,1044,0 1705,467,1953,776,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/18140.jpg 804,341,916,412,0 1131,507,1244,620,0 1057,339,1151,380,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/22801.jpg 350,410,512,508,0 775,320,900,411,0 1109,484,1254,600,0 1050,323,1178,399,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001432.jpg 246,366,491,835,0 612,452,797,703,0 761,411,887,601,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001250.jpg 526,431,702,700,0 673,403,856,599,0 79,482,263,789,0 4,830,240,1080,0 933,766,1208,1080,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69792.jpg 609,98,674,140,0 810,119,870,196,0 846,187,893,226,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/53415.jpg 590,163,706,235,0 565,279,724,352,0 767,174,871,230,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001120.jpg 793,372,1101,715,0 1099,477,1257,661,0 857,266,970,357,0 1049,300,1161,398,0 1199,259,1278,418,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/142768.jpg 602,237,724,346,0 763,168,863,229,0 960,167,1034,239,0 768,124,792,144,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/19352.jpg 762,327,875,412,0 1131,503,1252,642,0 1058,342,1158,379,0 555,153,600,230,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000092.jpg 138,210,292,331,0 365,156,485,273,0 694,88,800,169,0 877,54,955,120,0 343,99,442,141,0 1144,268,1280,358,0 267,43,340,95,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001380.jpg 2,831,238,1080,0 947,770,1226,1080,0 640,398,836,621,0 522,430,702,678,0 91,462,276,805,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000119.jpg 938,729,1212,1048,0 1150,554,1359,831,0 7,892,267,1072,0 536,586,787,746,0 416,339,585,503,0 142,415,307,625,0 263,299,354,380,0 75,286,159,395,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001724.jpg 63,778,303,976,0 105,492,269,625,0 585,488,754,692,0 752,366,961,588,0 897,235,1079,513,0 875,741,1214,1064,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001112.jpg 54,780,297,978,0 105,497,269,625,0 593,492,773,678,0 669,397,852,576,0 693,115,801,395,0 879,746,1214,1064,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46181.jpg 763,179,861,237,0 963,173,1044,241,0 836,296,977,354,0 1097,637,1273,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/160542.jpg 581,104,656,139,0 752,185,846,228,0 872,248,999,346,0 1139,630,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/186488.jpg 752,171,851,226,0 840,296,975,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001623.jpg 340,412,524,520,0 781,318,918,432,0 1067,473,1273,640,0 1046,318,1162,394,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000545.jpg 369,420,602,518,0 1134,533,1280,627,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10503.jpg 1867,714,2035,930,0 1764,571,1967,703,0 5,1092,264,1335,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000370.jpg 124,208,284,366,0 369,156,485,276,0 696,93,805,185,0 878,79,959,137,0 1161,280,1275,369,0 350,99,440,141,0 257,39,343,104,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001230.jpg 95,457,284,803,0 722,50,829,313,0 4,832,240,1080,0 937,799,1205,1080,0 529,434,706,674,0 651,396,829,613,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001797.jpg 56,782,303,974,0 107,499,261,635,0 585,503,748,697,0 752,376,905,580,0 879,744,1207,1052,0 1150,311,1318,578,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/39273.jpg 335,407,522,522,0 1075,480,1272,635,0 1052,318,1171,400,0 776,315,923,423,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/135471.jpg 759,174,857,232,0 579,99,657,136,0 992,156,1057,231,0 838,290,971,361,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45918.jpg 755,181,865,241,0 898,262,1002,356,0 1098,643,1275,720,0 581,101,655,145,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000877.jpg 293,283,386,343,0 328,415,517,515,0 820,261,913,360,0 866,342,982,492,0 984,376,1104,549,0 1093,462,1228,642,0 1073,303,1167,391,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000984.jpg 394,379,582,547,0 623,96,712,135,0 1121,512,1267,627,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001408.jpg 382,413,620,583,0 1081,490,1280,645,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35545.jpg 312,266,414,343,0 850,381,1026,504,0 860,284,975,363,0 1084,326,1189,405,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45743.jpg 752,180,858,237,0 897,262,1007,354,0 1097,653,1280,720,0 585,101,646,139,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/57471.jpg 880,284,974,354,0 327,278,406,333,0 1092,330,1175,401,0 918,374,1029,460,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000473.jpg 507,512,711,707,0 1035,247,1111,335,0 832,222,947,296,0 388,226,474,265,0 83,282,178,367,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46077.jpg 754,179,857,242,0 832,299,982,353,0 966,168,1047,243,0 1081,634,1274,711,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000246.jpg 381,419,604,522,0 1121,529,1279,643,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/67980.jpg 778,186,879,229,0 595,160,692,240,0 564,275,718,352,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/186322.jpg 791,170,859,229,0 837,290,983,364,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43042.jpg 556,218,663,424,0 369,442,529,543,0 764,296,989,440,0 1036,314,1187,413,0 1069,453,1268,626,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001109.jpg 2,867,238,1077,0 930,763,1209,1080,0 531,428,711,696,0 670,419,852,606,0 77,477,281,795,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69559.jpg 613,101,672,140,0 808,184,898,235,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/73884.jpg 290,282,361,344,0 341,436,491,556,0 806,315,948,412,0 1059,324,1180,414,0 1072,446,1260,612,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46330.jpg 754,176,857,239,0 836,295,977,358,0 978,172,1043,242,0 1085,634,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000470.jpg 134,206,286,345,0 369,162,490,284,0 1154,283,1279,365,0 696,101,796,179,0 867,61,957,138,0 342,99,450,139,0 262,43,340,100,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48684.jpg 580,114,614,135,0 750,162,873,235,0 954,166,1052,230,0 828,297,979,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000529.jpg 363,416,613,553,0 1113,524,1278,664,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/169494.jpg 275,460,480,655,0 979,375,1141,575,0 1550,433,1745,650,0 2248,1022,2436,1265,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46418.jpg 759,173,861,237,0 973,173,1043,250,0 836,297,973,356,0 1084,634,1280,715,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/137510.jpg 392,405,530,510,0 792,314,916,411,0 1051,322,1157,404,0 1103,465,1248,606,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/139095.jpg 346,409,502,515,0 618,263,731,410,0 787,317,915,423,0 1052,319,1155,406,0 1109,466,1267,613,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001674.jpg 592,241,729,357,0 570,156,665,237,0 769,162,862,257,0 963,169,1047,254,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001689.jpg 618,450,787,692,0 771,407,891,597,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/161902.jpg 756,184,857,236,0 590,103,668,144,0 872,255,996,346,0 1156,625,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001805.jpg 339,410,520,528,0 556,169,649,352,0 781,317,916,434,0 1054,312,1165,398,0 1060,465,1273,651,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/3003.jpg 1128,485,1248,631,0 1105,330,1189,380,0 551,131,588,251,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000276.jpg 365,426,611,539,0 1127,523,1271,654,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/73812.jpg 285,282,369,343,0 404,349,513,475,0 812,317,900,408,0 1064,316,1168,392,0 1113,467,1235,597,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001467.jpg 124,283,222,362,0 81,249,141,282,0 828,227,946,355,0 1005,259,1118,383,0 379,227,470,280,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11324.jpg 1859,771,2010,962,0 1681,546,1859,795,0 210,1360,413,1433,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48294.jpg 789,162,861,237,0 839,296,975,356,0 967,168,1044,243,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48007.jpg 766,161,861,237,0 961,172,1050,241,0 836,295,982,357,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/168915.jpg 258,470,506,712,0 968,377,1175,589,0 1568,424,1792,687,0 2265,1016,2438,1239,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000968.jpg 298,272,390,356,0 327,415,520,515,0 867,258,967,370,0 896,341,982,500,0 970,381,1094,538,0 1094,464,1236,635,0 1067,306,1158,389,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/177297.jpg 565,279,720,352,0 592,156,691,212,0 774,173,866,225,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001575.jpg 108,489,269,743,0 58,789,302,1040,0 602,482,783,712,0 884,750,1220,1054,0 1137,605,1397,882,0 738,437,915,577,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001072.jpg 338,413,518,514,0 783,316,916,419,0 1044,318,1166,400,0 1066,473,1268,646,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001722.jpg 856,269,948,352,0 832,303,1004,673,0 942,432,1196,720,0 1039,296,1159,399,0 1189,261,1280,410,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001592.jpg 408,414,589,549,0 609,93,713,139,0 1123,507,1278,637,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/160917.jpg 582,104,657,142,0 759,187,865,229,0 879,254,1004,345,0 1178,629,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/57131.jpg 319,273,418,335,0 868,284,975,353,0 899,377,1031,465,0 1086,326,1178,405,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000916.jpg 4,822,234,1077,0 76,484,289,792,0 933,769,1204,1062,0 530,426,697,714,0 683,399,854,598,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001637.jpg 777,137,933,456,0 1115,510,1280,645,0 617,92,705,137,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/154425.jpg 340,412,496,509,0 791,315,928,412,0 693,434,868,591,0 1067,314,1168,404,0 1119,463,1263,631,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/53671.jpg 598,159,693,229,0 766,175,881,234,0 575,279,722,354,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/185709.jpg 519,716,685,941,0 1291,724,1487,951,0 1199,438,1363,611,0 1433,409,1623,611,0 1096,73,1167,173,0 1335,97,1392,217,0 1702,239,1811,366,0 2357,722,2463,833,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/99334.jpg 374,407,537,525,0 789,309,913,424,0 1065,313,1169,415,0 1075,467,1245,642,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000341.jpg 365,416,612,553,0 1107,510,1280,642,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10117.jpg 1764,752,2005,938,0 1724,473,1929,722,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000898.jpg 292,283,379,333,0 328,418,523,515,0 873,262,973,356,0 857,361,974,499,0 940,430,1066,585,0 1096,460,1229,633,0 1042,307,1167,397,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000903.jpg 92,463,283,798,0 6,817,238,1080,0 611,317,798,696,0 927,795,1220,1080,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45245.jpg 752,185,858,235,0 892,261,1005,354,0 1104,643,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/836.jpg 836,295,983,357,0 757,167,862,228,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001748.jpg 107,495,277,752,0 66,304,196,408,0 45,783,297,1036,0 882,748,1204,1066,0 1144,609,1384,866,0 598,480,783,716,0 743,440,916,580,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001765.jpg 366,391,526,578,0 863,271,974,384,0 1048,302,1163,393,0 1074,463,1252,666,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11765.jpg 1986,722,2132,998,0 2356,708,2459,816,0 251,1368,437,1435,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/85890.jpg 496,251,570,347,0 710,781,956,958,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45654.jpg 752,184,854,238,0 896,261,1008,357,0 1104,642,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001183.jpg 59,786,301,976,0 101,497,271,629,0 577,490,763,699,0 761,364,940,584,0 1003,252,1163,503,0 875,752,1214,1056,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001066.jpg 671,444,928,720,0 327,410,519,522,0 793,322,918,430,0 1048,309,1170,392,0 1071,466,1276,647,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47172.jpg 794,166,877,239,0 981,173,1050,249,0 829,296,978,358,0 1085,634,1277,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/140018.jpg 348,404,531,514,0 784,312,922,417,0 1055,317,1165,403,0 1102,450,1262,604,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000467.jpg 16,652,318,952,0 1099,584,1361,907,0 530,539,773,717,0 742,474,948,588,0 93,488,277,637,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001523.jpg 752,186,861,242,0 589,100,657,144,0 1112,632,1277,715,0 858,256,1009,353,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000808.jpg 541,253,701,359,0 595,164,678,240,0 766,164,849,257,0 982,126,1070,241,0 610,115,651,147,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/71288.jpg 552,252,718,352,0 768,162,846,224,0 956,169,1041,236,0 613,120,641,140,0 646,54,683,89,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/153062.jpg 594,150,695,216,0 574,279,719,352,0 770,168,874,233,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/53679.jpg 604,162,695,229,0 758,176,880,240,0 571,279,727,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000268.jpg 371,408,598,541,0 1109,507,1275,676,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000862.jpg 162,114,277,310,0 620,95,715,135,0 1105,515,1275,639,0 809,34,851,65,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42766.jpg 301,416,513,525,0 809,163,905,294,0 802,301,914,428,0 1050,319,1181,415,0 1068,460,1274,596,0 863,505,1066,718,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69623.jpg 418,90,492,159,0 611,101,672,142,0 807,184,898,247,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000147.jpg 369,415,601,535,0 1123,529,1278,631,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69951.jpg 611,103,675,138,0 805,181,887,246,0 881,177,974,274,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/154960.jpg 346,405,510,504,0 777,190,862,279,0 793,312,907,400,0 1070,325,1160,397,0 1125,458,1262,590,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/79831.jpg 588,103,652,136,0 758,173,865,246,0 831,285,977,359,0 1086,633,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/13340.jpg 885,254,1001,323,0 777,168,848,223,0 586,85,631,114,0 608,118,658,142,0 755,127,785,151,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/73018.jpg 574,266,744,351,0 768,167,846,222,0 971,169,1024,225,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48262.jpg 771,164,854,233,0 967,174,1043,243,0 832,299,970,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/127342.jpg 904,256,1035,351,0 761,166,852,235,0 954,169,1046,236,0 616,93,657,120,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000342.jpg 371,412,615,533,0 1107,510,1269,681,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000902.jpg 388,414,627,592,0 1083,490,1280,640,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000932.jpg 80,481,274,798,0 1,825,236,1080,0 913,780,1215,1080,0 531,428,713,702,0 686,407,863,606,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/161338.jpg 585,103,659,138,0 764,184,864,240,0 879,256,996,345,0 1156,627,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/186907.jpg 760,166,858,226,0 838,295,984,358,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/138091.jpg 343,409,502,506,0 1070,316,1160,399,0 783,316,907,415,0 1115,476,1262,619,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35129.jpg 316,269,412,340,0 832,380,1035,507,0 849,286,976,359,0 1078,326,1186,406,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/175256.jpg 599,96,647,128,0 757,167,852,224,0 955,174,1046,231,0 917,251,1026,340,0 788,280,921,419,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000661.jpg 776,361,955,449,0 1039,245,1111,366,0 832,218,944,314,0 124,273,258,399,0 381,231,477,272,0 90,238,166,300,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/137442.jpg 587,102,653,140,0 762,179,860,233,0 838,294,969,359,0 1107,633,1267,717,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/186958.jpg 767,179,852,226,0 846,300,985,358,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001518.jpg 4,834,236,1080,0 941,770,1223,1080,0 648,406,829,623,0 531,428,706,680,0 87,459,273,796,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42514.jpg 285,403,462,538,0 814,165,922,291,0 801,300,913,432,0 1057,325,1183,411,0 1084,479,1272,637,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10582.jpg 1856,708,2032,933,0 1754,579,1954,692,0 221,865,372,1030,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43172.jpg 350,434,542,545,0 789,313,912,418,0 668,466,848,696,0 1036,313,1179,422,0 1083,467,1266,661,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000767.jpg 938,642,1271,720,0 829,296,974,354,0 761,172,873,239,0 961,172,1047,247,0 747,130,808,150,0 611,120,648,150,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43893.jpg 755,183,858,235,0 889,262,1001,354,0 1104,647,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000352.jpg 382,414,620,542,0 1111,520,1280,647,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43171.jpg 364,437,525,531,0 774,313,914,437,0 657,454,872,712,0 1045,307,1180,410,0 1062,466,1267,672,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001098.jpg 339,411,518,519,0 1070,460,1274,653,0 772,312,922,421,0 1049,317,1165,396,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000989.jpg 321,409,542,516,0 772,321,920,429,0 1050,314,1175,409,0 1045,459,1266,664,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000502.jpg 944,729,1210,1037,0 1152,552,1356,811,0 546,584,787,756,0 34,895,279,1062,0 410,337,603,511,0 150,421,303,603,0 73,278,181,392,0 263,295,365,380,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/39306.jpg 342,408,519,523,0 1079,478,1268,633,0 780,317,927,414,0 1053,320,1177,414,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/1388.jpg 843,297,977,347,0 784,173,866,226,0 413,116,492,193,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001387.jpg 63,788,293,978,0 103,499,279,641,0 575,484,767,678,0 759,362,956,580,0 1022,254,1187,505,0 867,739,1212,1056,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001745.jpg 338,404,525,559,0 769,309,919,445,0 1051,318,1179,420,0 1038,456,1275,682,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/61840.jpg 774,158,854,240,0 957,176,1051,242,0 896,274,1033,349,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000417.jpg 367,404,612,556,0 1112,511,1280,685,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40079.jpg 346,411,516,529,0 784,314,924,413,0 1091,476,1274,631,0 1044,319,1173,404,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/70834.jpg 557,256,721,355,0 763,159,861,236,0 969,165,1041,229,0 602,112,640,140,0 639,56,685,91,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/92818.jpg 595,233,720,352,0 386,95,446,176,0 957,172,1040,240,0 646,60,676,91,0 619,127,647,143,0 766,128,801,149,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35359.jpg 306,265,409,348,0 843,381,1024,502,0 871,284,975,359,0 1079,319,1192,406,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000576.jpg 366,408,604,533,0 1100,512,1277,651,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000321.jpg 912,737,1214,1013,0 1146,558,1346,809,0 528,590,795,737,0 26,901,277,1066,0 152,421,312,605,0 414,344,583,472,0 65,292,171,415,0 248,303,375,374,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43921.jpg 755,185,858,242,0 894,261,1002,354,0 1105,643,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001786.jpg 61,788,295,976,0 107,495,277,627,0 587,499,769,695,0 783,364,1099,558,0 1095,319,1336,576,0 875,737,1210,1052,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/177874.jpg 568,265,702,349,0 594,158,687,214,0 777,177,857,229,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000837.jpg 101,489,275,712,0 59,793,298,1039,0 608,473,807,704,0 768,440,937,586,0 879,747,1211,1068,0 1148,607,1388,875,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001795.jpg 34,278,116,407,0 156,390,340,572,0 244,270,307,335,0 785,109,895,390,0 469,499,683,770,0 740,395,954,605,0 965,754,1234,1052,0 1193,578,1391,827,0 1218,246,1359,572,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45666.jpg 757,181,863,234,0 894,262,1008,356,0 1100,646,1278,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44913.jpg 581,101,651,141,0 762,185,861,235,0 893,260,1007,356,0 1102,651,1278,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/19298.jpg 596,243,696,356,0 770,324,861,412,0 1108,503,1239,620,0 1055,337,1150,379,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45919.jpg 754,181,855,238,0 893,265,1005,356,0 1097,642,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47447.jpg 793,176,886,239,0 979,170,1047,243,0 829,297,978,356,0 1096,638,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10608.jpg 1867,711,2035,927,0 1759,565,1943,692,0 189,900,343,1106,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/156643.jpg 801,321,918,428,0 387,444,510,514,0 651,408,861,615,0 1057,329,1169,412,0 1099,460,1273,616,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11321.jpg 1845,771,2010,954,0 1686,538,1862,779,0 191,1354,378,1433,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/162121.jpg 585,106,651,138,0 752,183,863,230,0 870,253,994,343,0 1156,619,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/151366.jpg 602,167,686,219,0 573,279,698,350,0 764,180,869,233,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001155.jpg 1114,499,1280,650,0 603,90,712,144,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/117499.jpg 301,284,368,340,0 299,478,470,558,0 798,306,911,411,0 1096,319,1178,396,0 1098,462,1236,606,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/41569.jpg 340,409,523,517,0 662,202,754,367,0 777,313,919,429,0 1050,320,1168,407,0 1078,467,1238,634,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45509.jpg 755,181,859,234,0 897,265,1007,354,0 1098,643,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/6593.jpg 559,282,706,351,0 779,171,877,231,0 588,157,692,225,0 392,140,493,239,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/18319.jpg 809,311,893,384,0 1124,500,1240,597,0 1063,336,1145,371,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000335.jpg 965,725,1210,1019,0 1169,550,1354,807,0 552,580,797,756,0 38,897,281,1056,0 140,419,303,586,0 412,344,577,466,0 71,282,156,376,0 246,297,350,362,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/68262.jpg 762,163,858,238,0 613,101,679,143,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46764.jpg 767,172,862,239,0 977,170,1044,245,0 840,299,979,357,0 1085,637,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001366.jpg 2,832,236,1077,0 926,795,1216,1080,0 642,400,813,621,0 526,427,705,688,0 72,489,288,796,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35339.jpg 316,267,416,345,0 836,383,1026,503,0 844,286,972,355,0 1079,320,1188,404,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001661.jpg 339,406,519,516,0 618,306,774,620,0 784,315,923,433,0 1042,319,1168,404,0 1041,467,1269,662,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48213.jpg 761,166,852,238,0 966,172,1044,239,0 836,297,977,357,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001645.jpg 4,867,236,1080,0 92,466,279,796,0 527,434,708,681,0 642,398,824,621,0 926,798,1209,1080,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000461.jpg 979,639,1262,715,0 819,287,974,365,0 758,172,865,253,0 971,169,1050,247,0 761,118,808,150,0 531,69,571,95,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46410.jpg 761,176,863,241,0 836,297,973,357,0 971,172,1043,245,0 1082,642,1277,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000334.jpg 374,412,609,523,0 1115,508,1280,647,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35117.jpg 316,269,412,342,0 842,386,1032,500,0 857,289,977,365,0 1083,327,1187,405,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46619.jpg 755,179,859,238,0 981,172,1046,247,0 832,295,973,356,0 1098,633,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45619.jpg 751,179,859,241,0 898,264,1008,358,0 1100,642,1280,720,0 584,100,644,141,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000854.jpg 1,875,234,1080,0 76,488,265,795,0 519,428,711,696,0 669,362,862,616,0 931,753,1209,1080,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46495.jpg 759,176,857,238,0 836,297,977,360,0 981,172,1042,241,0 1090,624,1277,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000286.jpg 26,654,310,950,0 1097,576,1344,888,0 479,544,775,772,0 724,472,934,611,0 105,488,293,639,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/106007.jpg 593,164,685,222,0 558,254,688,352,0 774,188,882,234,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/191238.jpg 487,246,596,317,0 664,764,967,968,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69568.jpg 610,99,673,142,0 811,183,898,247,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/18246.jpg 801,338,900,419,0 1086,504,1234,611,0 1059,341,1147,373,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/41811.jpg 825,166,922,286,0 336,405,527,524,0 780,316,916,427,0 1047,315,1170,404,0 1077,465,1241,626,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001667.jpg 582,105,654,141,0 755,187,860,237,0 858,253,1008,355,0 1099,628,1277,715,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/99216.jpg 348,405,528,523,0 782,303,918,434,0 1059,308,1173,405,0 1078,461,1244,640,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000589.jpg 367,419,609,535,0 1120,514,1278,645,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/139568.jpg 346,405,515,512,0 655,291,790,445,0 794,316,911,412,0 1048,322,1157,407,0 1117,451,1263,618,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/82067.jpg 928,197,1126,486,0 656,49,773,186,0 833,47,956,168,0 974,78,1110,178,0 1114,27,1212,136,0 1237,65,1337,186,0 1113,153,1249,368,0 1396,92,1481,209,0 1806,315,1896,389,0 3,274,82,383,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000083.jpg 381,404,602,529,0 1111,519,1280,637,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001018.jpg 321,409,521,534,0 763,312,932,428,0 1059,458,1273,681,0 1041,314,1178,414,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44343.jpg 757,183,855,238,0 888,260,1008,357,0 1097,650,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000810.jpg 328,405,531,520,0 775,321,922,443,0 1034,463,1270,667,0 1050,315,1195,418,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001042.jpg 332,412,525,527,0 585,240,730,492,0 782,313,920,441,0 1052,316,1164,404,0 1076,471,1267,668,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10650.jpg 1867,703,2027,927,0 1781,571,1951,695,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/19046.jpg 794,316,911,395,0 1048,341,1152,377,0 1120,499,1239,626,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45266.jpg 754,185,854,234,0 896,262,1001,354,0 1097,650,1278,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47723.jpg 811,165,893,247,0 979,170,1047,247,0 835,296,975,354,0 1100,633,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001273.jpg 302,287,398,338,0 350,414,532,504,0 861,277,961,372,0 855,368,966,504,0 969,407,1090,564,0 1102,460,1225,649,0 1058,296,1157,403,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/74502.jpg 279,279,363,345,0 318,473,469,556,0 743,210,845,320,0 814,326,896,413,0 1071,327,1168,398,0 1098,467,1221,605,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/53807.jpg 605,162,690,231,0 768,167,879,231,0 572,275,718,353,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/156508.jpg 389,444,509,517,0 613,212,713,323,0 784,292,988,424,0 1059,317,1179,407,0 1126,459,1270,616,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000103.jpg 34,650,295,954,0 1087,586,1354,852,0 510,544,779,727,0 740,468,938,613,0 97,486,275,637,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000191.jpg 382,416,613,546,0 1098,500,1280,658,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43340.jpg 743,175,867,233,0 886,259,1005,355,0 1100,642,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001529.jpg 59,790,299,982,0 105,499,269,635,0 577,507,773,692,0 771,366,940,574,0 1101,321,1322,558,0 875,746,1218,1048,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001570.jpg 872,752,1220,1080,0 23,762,273,1064,0 602,475,784,696,0 767,424,945,588,0 817,281,992,430,0 142,406,345,725,0 244,273,355,373,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/19211.jpg 757,324,862,406,0 1123,501,1250,638,0 1054,343,1151,383,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000906.jpg 1126,628,1278,716,0 761,182,859,236,0 856,260,1002,356,0 585,103,652,140,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48618.jpg 746,163,868,239,0 962,167,1061,241,0 819,291,988,355,0 581,115,626,136,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40162.jpg 605,289,756,550,0 340,404,523,522,0 779,319,918,431,0 1077,474,1273,647,0 1048,321,1179,420,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35726.jpg 320,267,410,340,0 847,383,1024,499,0 844,284,974,364,0 1074,324,1188,402,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46317.jpg 761,180,862,239,0 832,296,974,356,0 981,173,1044,243,0 1085,630,1277,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42534.jpg 263,401,466,539,0 832,166,962,292,0 799,297,908,424,0 1054,321,1180,416,0 1075,467,1275,654,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000435.jpg 916,733,1210,1001,0 1150,560,1354,809,0 540,582,791,758,0 28,890,267,1062,0 422,348,573,488,0 159,421,316,615,0 73,282,163,392,0 242,307,369,376,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001411.jpg 104,488,273,681,0 50,788,298,1053,0 607,491,811,712,0 776,441,944,581,0 880,746,1216,1060,0 1154,606,1384,871,0 732,78,812,337,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/73149.jpg 486,137,558,238,0 553,259,726,360,0 772,162,851,222,0 956,172,1035,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001442.jpg 98,484,284,734,0 48,783,302,1044,0 865,739,1214,1058,0 1150,604,1390,887,0 602,482,818,711,0 783,441,951,583,0 641,107,762,454,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/73792.jpg 285,282,363,349,0 380,320,504,452,0 810,312,900,403,0 1077,318,1174,398,0 1093,462,1238,581,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000682.jpg 125,210,271,343,0 355,185,481,269,0 675,99,792,162,0 863,66,938,115,0 128,134,220,183,0 367,89,458,135,0 284,35,350,114,0 440,15,498,66,0 754,12,824,54,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47974.jpg 769,158,854,235,0 975,170,1047,242,0 827,299,979,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42467.jpg 208,404,464,541,0 811,166,906,294,0 805,301,919,423,0 1043,322,1177,423,0 1068,462,1275,636,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/137345.jpg 590,104,650,136,0 758,179,865,225,0 837,301,965,356,0 1106,637,1277,717,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001525.jpg 297,285,378,339,0 348,410,534,507,0 858,273,984,360,0 865,353,971,499,0 975,419,1063,581,0 1065,469,1197,654,0 1059,301,1159,393,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001416.jpg 836,165,1023,462,0 1115,508,1279,643,0 608,90,714,136,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45358.jpg 761,184,859,241,0 890,261,1004,356,0 1100,646,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001063.jpg 866,266,971,355,0 764,354,1075,712,0 1079,471,1210,635,0 1212,482,1280,706,0 1050,299,1160,399,0 1188,253,1280,421,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000434.jpg 379,411,600,538,0 1104,515,1278,662,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48676.jpg 584,117,636,137,0 738,163,870,233,0 954,171,1061,229,0 826,290,984,358,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001003.jpg 5,825,240,1080,0 93,466,276,795,0 529,430,698,677,0 651,375,817,619,0 915,789,1211,1080,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/165708.jpg 292,276,380,340,0 372,405,535,493,0 890,342,1011,455,0 1087,313,1179,395,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001551.jpg 107,483,259,701,0 50,784,305,1037,0 601,487,812,725,0 783,445,952,586,0 762,120,870,433,0 1250,248,1395,634,0 1154,605,1386,862,0 883,748,1216,1064,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/176786.jpg 590,156,693,216,0 777,173,871,225,0 569,272,710,353,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/79782.jpg 762,173,869,238,0 833,295,966,355,0 1073,625,1271,720,0 963,213,1039,257,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10371.jpg 1854,714,2037,933,0 1751,565,1959,706,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43215.jpg 739,181,862,226,0 879,260,1013,356,0 1108,638,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001146.jpg 63,786,291,984,0 105,490,265,631,0 583,446,783,690,0 689,397,844,576,0 879,744,1207,1054,0 1240,282,1422,590,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47977.jpg 769,162,855,233,0 827,293,975,360,0 969,174,1050,242,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000519.jpg 367,411,613,550,0 1104,493,1280,657,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46195.jpg 761,174,855,237,0 973,174,1046,241,0 836,301,977,361,0 1082,634,1278,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000951.jpg 861,264,956,350,0 767,306,1004,654,0 875,421,1154,720,0 1111,490,1264,672,0 1036,293,1162,400,0 1190,265,1280,423,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001091.jpg 293,289,384,334,0 331,418,531,504,0 866,265,967,364,0 879,353,1000,501,0 973,423,1077,600,0 1082,466,1207,639,0 1059,306,1159,403,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/161977.jpg 589,105,657,142,0 759,182,860,237,0 863,258,991,350,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000389.jpg 378,418,611,539,0 1107,515,1279,666,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000674.jpg 785,353,957,453,0 1027,243,1119,365,0 809,212,943,310,0 112,291,239,369,0 385,226,466,283,0 73,241,159,307,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/185660.jpg 521,731,721,965,0 1155,255,1279,404,0 1153,61,1219,160,0 1336,104,1396,228,0 1258,711,1450,939,0 1213,460,1370,651,0 1436,428,1599,607,0 2360,716,2479,824,0 2380,987,2535,1246,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000030.jpg 371,403,624,560,0 1113,507,1273,670,0 1177,195,1278,277,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000302.jpg 351,416,609,543,0 1113,512,1280,643,0 1196,199,1280,299,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44438.jpg 755,184,863,242,0 889,261,1001,357,0 1096,643,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48690.jpg 580,116,623,140,0 748,162,876,230,0 820,290,981,356,0 952,169,1060,237,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/86563.jpg 490,236,599,342,0 715,767,960,982,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/169007.jpg 250,477,521,699,0 982,363,1167,580,0 1585,424,1787,677,0 2233,1009,2492,1278,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/140014.jpg 341,404,524,517,0 773,319,917,412,0 1051,325,1174,406,0 1107,455,1256,613,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/73620.jpg 290,281,370,341,0 513,248,615,351,0 799,312,885,404,0 1068,316,1164,400,0 1093,465,1228,601,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/58984.jpg 329,279,413,334,0 877,275,980,352,0 888,379,1029,462,0 1085,325,1179,401,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/126905.jpg 760,168,860,235,0 910,256,1013,330,0 959,170,1049,231,0 599,95,652,122,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000295.jpg 24,648,289,956,0 1114,568,1350,899,0 512,546,767,737,0 744,462,950,601,0 101,482,293,639,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001624.jpg 621,97,712,133,0 809,34,857,65,0 1097,514,1277,641,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/92563.jpg 770,166,875,234,0 557,246,721,347,0 955,170,1037,242,0 622,120,646,148,0 647,56,674,93,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000743.jpg 381,411,602,533,0 1100,508,1274,627,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44142.jpg 757,184,862,239,0 896,258,1004,356,0 1094,651,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46498.jpg 754,177,861,235,0 978,173,1043,245,0 828,299,973,357,0 1092,634,1277,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48003.jpg 774,161,858,234,0 969,173,1046,239,0 832,296,975,360,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001696.jpg 56,780,289,978,0 105,501,273,623,0 601,501,779,695,0 673,386,861,564,0 877,748,1201,1054,0 1465,380,1589,754,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42805.jpg 585,199,747,551,0 297,416,505,524,0 810,170,908,296,0 803,301,916,432,0 1057,319,1185,416,0 1072,459,1277,643,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000907.jpg 919,721,1381,1080,0 941,791,1173,900,0 4,819,234,1080,0 527,431,701,709,0 683,412,851,614,0 74,475,262,794,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/13660.jpg 882,261,998,338,0 775,166,846,223,0 577,92,619,120,0 593,124,652,147,0 751,131,788,151,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000325.jpg 30,656,307,948,0 1103,584,1348,909,0 467,544,787,737,0 714,480,950,617,0 110,482,281,650,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000114.jpg 359,415,635,545,0 1120,504,1280,656,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/178239.jpg 552,284,702,353,0 596,154,685,223,0 775,177,865,226,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000372.jpg 371,420,605,520,0 1104,506,1278,646,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/6630.jpg 562,286,712,352,0 779,173,881,227,0 569,168,653,265,0 599,156,688,233,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45410.jpg 758,184,854,239,0 897,262,1005,361,0 1093,649,1280,718,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000564.jpg 129,210,289,370,0 384,156,498,283,0 696,91,797,169,0 889,69,973,150,0 1158,277,1275,357,0 352,88,451,142,0 262,46,336,108,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001534.jpg 579,426,768,689,0 875,262,1112,584,0 1116,508,1280,639,0 617,94,702,138,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/121404.jpg 865,275,968,361,0 767,171,852,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/68146.jpg 762,166,856,228,0 396,45,424,78,0 437,40,468,67,0 610,101,671,139,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46130.jpg 958,173,1042,241,0 761,175,863,237,0 831,300,969,357,0 1094,635,1274,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/177264.jpg 570,279,704,351,0 589,159,686,216,0 773,175,865,222,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42833.jpg 570,149,690,403,0 813,168,886,295,0 303,416,503,542,0 803,301,905,444,0 1049,321,1183,414,0 1068,470,1274,655,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/62208.jpg 769,164,846,229,0 966,172,1047,240,0 918,263,1024,352,0 588,117,611,139,0 762,124,800,148,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48307.jpg 784,164,861,233,0 834,296,975,357,0 978,173,1051,242,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48357.jpg 785,162,871,237,0 829,300,971,356,0 971,173,1046,237,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/14014.jpg 890,262,1001,331,0 777,166,848,220,0 586,85,646,120,0 600,126,652,147,0 752,130,785,153,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/4227.jpg 1066,486,1250,660,0 792,307,960,453,0 1086,321,1192,412,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/71151.jpg 553,260,721,356,0 446,33,475,65,0 644,56,682,95,0 759,164,864,225,0 957,167,1044,233,0 610,113,636,141,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/41588.jpg 332,405,523,519,0 771,188,890,308,0 782,319,919,427,0 1043,318,1165,409,0 1076,456,1246,626,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000804.jpg 860,266,965,355,0 905,448,1185,719,0 1152,496,1262,644,0 871,300,1084,534,0 1059,288,1164,397,0 1192,262,1280,429,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000249.jpg 903,731,1218,1025,0 1154,556,1369,782,0 550,586,791,756,0 32,899,271,1064,0 144,425,314,611,0 405,333,595,474,0 77,276,159,384,0 250,295,361,376,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47984.jpg 773,161,854,230,0 966,173,1048,243,0 835,300,984,360,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/1295.jpg 840,299,978,346,0 785,172,867,227,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001550.jpg 289,287,378,331,0 332,412,525,510,0 867,276,961,373,0 859,357,981,506,0 994,389,1111,549,0 1105,464,1236,629,0 1051,300,1161,391,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/71886.jpg 561,240,717,358,0 764,162,844,222,0 952,171,1041,239,0 577,23,607,51,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000962.jpg 867,749,1220,1080,0 22,749,288,1055,0 611,487,783,713,0 755,403,911,589,0 906,395,990,527,0 944,196,1080,516,0 416,120,549,380,0 248,266,355,377,0 144,402,327,731,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/168925.jpg 267,466,513,692,0 974,383,1194,592,0 1592,433,1801,666,0 2252,1009,2477,1258,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46660.jpg 767,177,857,239,0 832,296,974,357,0 984,172,1042,243,0 1081,630,1279,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000513.jpg 373,407,613,550,0 931,196,1158,507,0 1136,522,1275,638,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/120414.jpg 796,167,868,227,0 865,248,985,340,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000390.jpg 371,412,590,545,0 1107,515,1274,672,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000255.jpg 374,406,628,553,0 1120,514,1280,638,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42010.jpg 348,411,529,526,0 813,164,891,283,0 778,311,918,423,0 1045,313,1174,404,0 1071,461,1271,638,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/8303.jpg 1730,474,1928,765,0 1792,768,2036,1100,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001373.jpg 296,284,377,335,0 338,416,528,514,0 874,273,981,365,0 867,358,988,501,0 974,368,1104,549,0 1097,460,1239,638,0 1062,308,1163,393,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001351.jpg 20,757,276,1062,0 863,749,1222,1080,0 1274,360,1444,856,0 609,475,784,691,0 754,385,912,596,0 147,410,349,730,0 247,275,349,369,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001186.jpg 1,834,236,1080,0 930,773,1229,1080,0 529,434,709,687,0 641,405,820,609,0 571,160,723,434,0 84,482,269,800,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47240.jpg 762,168,863,241,0 962,172,1048,241,0 824,299,973,358,0 1081,638,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001428.jpg 6,824,236,1080,0 965,771,1219,1080,0 531,432,712,692,0 647,374,833,610,0 88,459,276,789,0 165,323,451,955,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001425.jpg 286,281,392,337,0 327,415,519,507,0 813,253,912,351,0 867,354,985,488,0 982,403,1128,553,0 1097,469,1229,639,0 1078,304,1174,387,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40184.jpg 341,405,522,525,0 538,437,766,716,0 777,316,920,431,0 1030,314,1176,410,0 1077,476,1273,652,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10107.jpg 1786,752,1986,946,0 1735,473,1924,703,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/41568.jpg 338,406,525,528,0 637,205,759,349,0 777,318,919,437,0 1075,465,1243,638,0 1051,318,1166,409,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/828.jpg 830,296,980,356,0 757,168,864,228,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001644.jpg 396,418,585,553,0 620,89,709,137,0 1120,507,1271,633,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/142770.jpg 609,234,719,343,0 772,167,863,226,0 959,171,1043,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/92660.jpg 562,242,718,349,0 818,154,906,256,0 961,166,1047,234,0 644,58,681,86,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45864.jpg 759,181,855,234,0 901,261,1004,357,0 1100,641,1280,720,0 585,103,648,142,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69625.jpg 417,94,498,162,0 618,101,674,139,0 807,181,895,243,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40965.jpg 335,407,526,523,0 657,330,791,638,0 794,312,922,451,0 1052,318,1176,407,0 1063,476,1273,643,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10098.jpg 1786,754,1991,941,0 1745,476,1927,706,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000738.jpg 374,415,602,527,0 1125,512,1275,649,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/36150.jpg 317,265,414,340,0 850,381,1031,495,0 862,289,971,359,0 1083,322,1187,403,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43574.jpg 747,183,858,239,0 889,262,1004,356,0 1102,646,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/69664.jpg 389,112,483,203,0 607,99,675,141,0 802,182,894,247,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000460.jpg 946,739,1212,1027,0 1136,554,1338,776,0 534,527,738,778,0 40,897,277,1056,0 130,413,310,588,0 426,329,614,460,0 71,276,169,384,0 256,290,346,372,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/153066.jpg 589,151,697,208,0 771,172,868,228,0 568,273,716,349,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000971.jpg 50,790,298,1044,0 101,491,295,725,0 595,478,820,717,0 784,441,948,586,0 882,743,1209,1080,0 1150,607,1387,894,0 636,108,743,454,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11793.jpg 262,1319,429,1433,0 1972,727,2137,987,0 2354,703,2443,814,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001562.jpg 305,287,381,353,0 332,415,527,508,0 563,183,681,403,0 819,258,920,361,0 877,360,992,510,0 992,392,1107,561,0 1100,458,1235,638,0 1077,308,1166,384,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46877.jpg 763,169,859,241,0 979,170,1047,246,0 836,297,984,358,0 1082,637,1279,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/135803.jpg 563,119,638,223,0 751,176,847,230,0 828,299,960,355,0 595,99,661,136,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/137435.jpg 591,100,652,139,0 761,173,882,232,0 835,294,974,358,0 1095,640,1272,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001452.jpg 27,744,281,1056,0 30,453,198,848,0 155,414,334,725,0 249,264,359,380,0 604,484,797,698,0 872,732,1216,1080,0 748,402,922,570,0 899,385,1001,528,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/41551.jpg 536,215,647,369,0 334,408,527,523,0 772,316,920,422,0 1039,315,1172,411,0 1080,464,1242,616,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/48210.jpg 769,164,851,235,0 974,173,1051,241,0 832,299,971,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000108.jpg 379,410,607,524,0 1098,510,1278,656,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001331.jpg 288,279,371,335,0 335,419,529,515,0 869,265,981,360,0 875,346,996,496,0 977,420,1071,576,0 1066,477,1219,638,0 1055,304,1157,392,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000619.jpg 375,416,615,541,0 1113,507,1273,670,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000488.jpg 942,733,1220,1025,0 1144,554,1344,801,0 546,513,742,744,0 34,892,271,1060,0 163,415,305,605,0 412,337,597,454,0 69,278,165,382,0 256,301,350,374,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47411.jpg 819,177,902,250,0 982,172,1043,242,0 831,300,977,358,0 1090,634,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/55758.jpg 564,245,731,357,0 751,161,880,245,0 944,163,1048,254,0 640,55,690,96,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46788.jpg 766,162,866,245,0 981,169,1048,249,0 840,295,981,358,0 1079,635,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/86572.jpg 488,237,605,335,0 670,773,950,972,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/70580.jpg 609,103,670,140,0 798,185,894,247,0 912,245,1032,344,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000822.jpg 20,284,116,388,0 165,392,336,576,0 248,270,316,339,0 471,497,691,762,0 744,380,948,611,0 891,115,993,448,0 997,186,1142,499,0 942,746,1244,1050,0 1197,584,1387,813,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/22621.jpg 346,411,516,508,0 785,315,924,416,0 1079,487,1265,589,0 1055,322,1188,391,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45098.jpg 584,103,648,142,0 754,184,854,237,0 890,262,1004,356,0 1097,647,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45675.jpg 752,181,859,231,0 892,264,1009,357,0 1089,645,1279,720,0 588,101,650,145,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000160.jpg 143,210,288,334,0 362,156,488,276,0 697,95,796,169,0 878,62,944,120,0 1154,279,1277,362,0 334,99,444,142,0 275,47,335,97,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/85878.jpg 694,762,954,978,0 496,241,596,328,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/45419.jpg 754,185,858,243,0 888,260,1008,360,0 1082,650,1280,719,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/156079.jpg 286,413,432,531,0 823,167,887,243,0 819,301,920,400,0 1061,324,1163,412,0 1113,456,1251,609,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000343.jpg 373,410,607,533,0 1116,504,1271,666,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/42832.jpg 569,150,683,397,0 817,166,894,296,0 313,417,487,549,0 807,300,910,424,0 1050,325,1185,423,0 1082,474,1275,661,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/142842.jpg 647,57,679,92,0 601,234,717,358,0 767,167,873,233,0 957,172,1043,235,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46820.jpg 773,169,861,245,0 835,296,986,357,0 982,173,1044,243,0 1071,634,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35946.jpg 313,265,409,346,0 839,381,1031,507,0 841,288,975,356,0 1082,324,1184,407,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/137248.jpg 587,103,655,134,0 757,170,857,227,0 836,292,979,356,0 1083,637,1267,714,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46499.jpg 755,179,863,237,0 981,173,1051,249,0 832,297,977,356,0 1093,634,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001494.jpg 390,414,569,568,0 607,93,715,135,0 1120,508,1275,633,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001591.jpg 28,282,122,405,0 159,392,338,570,0 240,270,324,352,0 426,499,669,774,0 732,386,934,623,0 965,756,1238,1005,0 1130,558,1340,768,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/60125.jpg 756,164,862,229,0 952,170,1052,249,0 909,271,1031,351,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001500.jpg 974,752,1252,1080,0 2,863,240,1080,0 526,428,715,698,0 683,412,847,605,0 90,463,267,794,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/70926.jpg 766,162,849,234,0 556,252,722,354,0 967,168,1038,229,0 641,57,685,90,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43620.jpg 757,183,859,239,0 892,265,1004,357,0 1098,649,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/56211.jpg 959,166,1053,251,0 755,162,868,230,0 568,251,735,356,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001035.jpg 339,406,524,520,0 787,320,928,432,0 1058,314,1165,396,0 1063,455,1270,640,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/56210.jpg 762,156,854,232,0 583,245,730,352,0 953,171,1041,234,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001472.jpg 342,407,529,525,0 782,320,922,429,0 1040,321,1166,401,0 1061,466,1272,672,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/99333.jpg 384,405,518,523,0 796,312,913,421,0 1070,317,1168,400,0 1090,448,1240,620,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001010.jpg 61,786,287,962,0 107,495,263,627,0 589,464,761,686,0 693,399,838,564,0 881,741,1216,1054,0 1195,431,1350,780,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/44160.jpg 758,185,854,239,0 890,261,1007,357,0 1094,642,1277,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/67542.jpg 593,164,691,232,0 563,279,727,356,0 774,179,887,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43308.jpg 743,173,863,230,0 889,261,1004,359,0 1098,645,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/76535.jpg 927,356,1052,484,0 297,292,379,333,0 430,408,546,496,0 883,274,975,354,0 1053,325,1163,407,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001026.jpg 1114,509,1280,637,0 827,227,1046,547,0 616,92,714,135,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/11349.jpg 1854,814,2045,930,0 1613,614,1870,803,0 237,1346,464,1438,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40177.jpg 597,380,780,689,0 341,403,525,522,0 788,317,919,425,0 1080,473,1273,645,0 1042,321,1178,413,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/168649.jpg 277,477,521,719,0 960,383,1184,616,0 1597,436,1813,700,0 2228,1007,2465,1265,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000282.jpg 370,414,620,553,0 1104,506,1280,658,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/43565.jpg 747,184,859,238,0 894,262,1007,357,0 1105,645,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/3038.jpg 1123,484,1247,629,0 1109,327,1192,377,0 577,154,655,287,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001462.jpg 396,414,585,556,0 1109,507,1275,633,0 617,95,713,139,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/40884.jpg 339,406,526,519,0 770,315,917,419,0 1051,320,1182,408,0 1076,471,1270,636,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/10483.jpg 1854,703,2027,933,0 1778,571,1962,692,0 5,1092,256,1330,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000684.jpg 785,351,946,461,0 1034,246,1117,362,0 809,214,944,316,0 112,279,252,383,0 375,227,469,279,0 85,237,159,306,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/79834.jpg 588,99,652,137,0 759,173,873,242,0 835,299,978,358,0 1084,637,1276,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35132.jpg 311,269,412,347,0 842,381,1032,496,0 858,286,975,354,0 1078,328,1186,402,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46200.jpg 759,179,855,245,0 836,297,973,356,0 965,170,1047,242,0 1088,638,1273,718,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000229.jpg 367,407,598,539,0 1121,499,1274,676,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/160254.jpg 580,106,654,136,0 758,182,865,234,0 865,256,997,349,0 1132,619,1280,720,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000553.jpg 378,423,609,530,0 1094,511,1277,646,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000606.jpg 358,418,615,524,0 1098,504,1280,650,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/72809.jpg 572,258,743,354,0 768,165,852,224,0 960,168,1043,235,0 579,23,612,52,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000318.jpg 774,353,978,451,0 1038,250,1093,354,0 847,219,942,306,0 107,273,262,389,0 382,208,485,280,0 69,245,173,295,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/74675.jpg 278,285,360,340,0 321,479,481,571,0 815,169,909,289,0 803,312,912,406,0 1069,317,1163,400,0 1093,464,1224,593,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/35772.jpg 322,267,414,348,0 853,379,1019,493,0 845,285,978,354,0 1082,324,1187,403,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/46073.jpg 758,176,859,247,0 838,296,973,356,0 965,170,1047,243,0 1093,637,1273,716,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000930.jpg 542,511,789,700,0 809,358,950,449,0 1031,245,1100,347,0 850,210,957,287,0 938,162,1021,215,0 381,222,475,266,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/789.jpg 833,298,978,356,0 761,166,868,232,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001493.jpg 327,410,516,527,0 684,561,1001,720,0 782,322,923,440,0 1038,317,1166,401,0 1065,464,1271,660,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000960.jpg 337,413,521,512,0 777,316,913,425,0 1058,314,1170,392,0 1074,471,1272,644,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/115817.jpg 876,257,1010,350,0 807,188,894,241,0 615,105,677,140,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/62719.jpg 538,251,699,349,0 585,158,680,239,0 787,168,874,239,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000796.jpg 362,411,608,539,0 1119,519,1277,676,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000374.jpg 377,416,593,527,0 1128,514,1273,661,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/54320.jpg 595,262,710,353,0 763,162,887,235,0 952,163,1057,240,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/39163.jpg 340,409,523,524,0 1081,476,1268,642,0 777,318,924,420,0 1045,321,1177,408,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/001181.jpg 297,289,378,334,0 340,414,529,506,0 859,272,963,369,0 857,372,961,504,0 988,389,1115,546,0 1113,479,1243,647,0 1051,295,1155,392,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/000613.jpg 786,353,965,460,0 1023,237,1116,365,0 811,210,940,306,0 116,293,246,376,0 375,229,469,281,0 85,246,159,301,0
+/home/chenxi/yolov4-pytorch-master/VOC_merge/JPEGImages/47750.jpg 796,168,886,242,0 829,297,978,356,0 977,170,1048,249,0 1108,634,1280,720,0
