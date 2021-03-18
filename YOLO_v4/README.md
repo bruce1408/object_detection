@@ -1,6 +1,5 @@
 ## YOLOV4：You Only Look Once目标检测模型在pytorch当中的实现
 ---
-
 ### 目录
 1. [所需环境 Environment](#所需环境)
 2. [注意事项 Attention](#注意事项)
@@ -17,7 +16,7 @@
 - [ ] ……balabla
 
 ### 所需环境
-torch==1.2.0
+torch>=1.2.0
 
 ### 注意事项
 代码中的yolo4_weights.pth是基于608x608的图片训练的，但是由于显存原因。我将代码中的图片大小修改成了416x416。有需要的可以修改回来。 代码中的默认anchors是基于608x608的图片的。   
