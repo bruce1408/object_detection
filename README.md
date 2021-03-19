@@ -26,6 +26,7 @@ This repository contains:
 
 - [Install](#install)
 - [Dataset](#Dataset)
+- [Usage](#usage)
 - [Related impacts](#Related-impacts)
 - [Contributors](#Contributors)
 - [Reference](#Reference)
@@ -43,25 +44,29 @@ $ pip install torch==1.5.0+cu101 torchvision==0.6.0+cu101 -f https://download.py
 ## Dataset
 
 All data for this project can be found as follow
+voc 2007 + voc 2012 dataset you can directly follow the link below to download, and put the pretrained model *yolo4_voc_weights.pth*, *yolo4_weights.pth* into the *yolo_v4/model_data* folder
 
-- data <https://pan.baidu.com/s/1mylwtZH9ydB4DBz5c833AA>  pasd: u871
-- inception-2015-12-05.tgz: <https://pan.baidu.com/s/1o_BCsopsbgKMPqlNzMwTYw>  pasd: zt3t
-- classify_image_graph_def.pd: <https://pan.baidu.com/s/1yMoF8ol4HemE4SnqCIDa0A>  pasd: 7a6k
-- captcha/images: <https://pan.baidu.com/s/1p_ZYQyv7quiYdLydFw8SmA>  pasd:m1y4
+
+- data <https://pan.baidu.com/s/1waymHzEgMXi6Mk5fiixUZw>  pasd: 7cbp
 
 ```sh
 copy all data into data directory
 ```
-## Related Impacts
 
-- [Aymeric Damien](https://github.com/aymericdamien)
-- [Hvass-Labs](https://github.com/Hvass-Labs)
+## Usage
+### 1.YOLO_v1
+
+**Traditional convolutional neural networks need to go through two steps of preselection and classification. This method will bring about a decrease in detection speed. YOLO innovatively proposes to use regression to directly obtain location information and classification information without using preselection boxes. The generation link reduces the amount of calculation, thereby improving the training and detection speed of the network.**
+
+### 2.YOLO_v1
+### 3.YOLO_v1
+### 4.YOLO_v1
 
 ## Reference
 
-### Online Video
 
-
+- [abeardear](https://github.com/abeardear)
+- [Hoseong Lee](https://github.com/hoya012/deep_learning_object_detection)
 
 
 
