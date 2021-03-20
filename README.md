@@ -10,10 +10,10 @@ Object detection is the task of detecting instances of objects of a certain clas
 
 This repository contains:
 
-- **[YOLO_v1](#yolov1)**
-- **[YOLO_v2](#yolov2)**
-- **[YOLO_v3](#yolov3)**
-- **[YOLO_v4](#yolov4)**
+- **[YOLO_v1](#yolo_v1)**
+- **[YOLO_v2](#yolo_v2)**
+- **[YOLO_v3](#yolo_v3)**
+- **[YOLO_v4](#yolo_v4)**
 - **Instance Segmentation**
 
   - **FCN**
