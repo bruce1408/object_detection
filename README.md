@@ -77,7 +77,7 @@ The backbone network of YOLOv3 is inspired by ResNet, and uses Darknet-53, which
 
 YOLOv3 addresses some of the problems of YOLOv2, such as the detection of small objects that are easy to lose targets, and absorbs some of the better detection ideas today, such as the addition of residual modules, and channel splicing of deep and shallow features, and proposes a new network Darknet-53.
 
-YOLOv3 performs feature fusion in three dimensions of low, medium, and high, and then performs convolution and regression respectively, and finally outputs feature maps of three scales. The final feature map sizes are 52×52×75, 26×26×75, and 13×13×75, respectively. The generated feature map can correspond to the original image. Different feature map sizes represent the same division method. The feature map with a size of 52×52 is responsible for detecting small objects, and the feature map with a size of 26×26 is responsible for detecting medium-sized objects. 13×13 feature map is responsible for detecting large objects
+YOLOv3 performs feature fusion in three dimensions of low, medium, and high, and then performs convolution and regression respectively, and finally outputs feature maps of three scales. The final feature map sizes are ```52×52×75```, ```26×26×75```, and ```13×13×75```, respectively. The generated feature map can correspond to the original image. Different feature map sizes represent the same division method. The feature map with a size of 52×52 is responsible for detecting small objects, and the feature map with a size of 26×26 is responsible for detecting medium-sized objects. 13×13 feature map is responsible for detecting large objects
 
 ### 4.YOLO_v4
 
