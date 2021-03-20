@@ -84,7 +84,6 @@ YOLOv4 is proposed by AlexeyAB and others on the basis of YOLOv3. The original i
 
 In the feature pyramid structure, YOLOv4 uses the SPP structure and the PANet structure. The SPP structure is to maximize the pooling of the result of the feature layer P5 after three convolutions. In the pooling process, a total of four different scale pooling layers are used for processing, and the pooling core sizes are 1×1, 5×5, 9×9, and 13×13, respectively. After SPP processing, the receptive field can be effectively increased, and significant context characteristics can be separated. The PANet structure is a circular pyramid structure composed of convolution operations, up-sampling operations, feature layer fusion, and down-sampling operations. After the PANet structure, the different feature layers are fully integrated, which can effectively improve the feature extraction ability of defects. Finally, YOLOv4 Head uses the three feature layers processed by PANet to predict the results. Similar to the principle of YOLOv3 Head, it performs two convolution operations with sizes of 3×3 and 1×1. The check box is judged, whether it contains the target and the target type, and performs non-maximum suppression processing and a priori box adjustment to obtain the final prediction box.
 
-
 [Metrics](https://github.com/rafaelpadilla/Object-Detection-Metrics)
 In the topics below there are some comments on the most popular metrics used for object detection.
 
@@ -100,6 +99,8 @@ In the topics below there are some comments on the most popular metrics used for
 - [sgrvinod](https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection)
 
 - [hoya012](https://github.com/hoya012/deep_learning_object_detection)
+
+- [FelixFu520](原项目地址：https://github.com/FelixFu520/yolov1)
 
 ## Contributors
 
