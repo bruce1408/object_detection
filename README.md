@@ -54,13 +54,13 @@ copy all data into data directory
 ## Usage
 ### 1.[YOLO_v1](https://arxiv.org/abs/1506.02640)
 
-&nbsp;
 Traditional convolutional neural networks need to go through two steps of preselection and classification. This method will bring about a decrease in detection speed. YOLO innovatively proposes to use regression algorithm to directly obtain location information and classification without using pre-selected boxes. The generation link reduces the amount of calculation, thereby improving the training and detection speed of the network.
 
+YOLO creatively transforms the object detection problem into a regression problem. The main idea is to divide an input picture into S×S grids. When the center of an object falls on a certain grid, this grid is responsible for detecting this object. It realizes the extraction of features in a single network and predicts the position coordinates of the bounding box and the probability of the target category.
 
+![avatar](data/yolov1.png)
 
-
-
+YOLO_v1 use a network similar to GoogleNet as the backbone, the input image is ```448*448``` and the output is grid cells ```s*s```, the loss function of YOLO includes coordinate loss coordError, confidence loss IOUError and category prediction loss classError three parts.
 
 ### 2.YOLO_v1
 ### 3.YOLO_v1
