@@ -62,9 +62,15 @@ YOLO creatively transforms the object detection problem into a regression proble
 
 YOLO_v1 use a network similar to GoogleNet as the backbone, the input image is ```448*448``` and the output is grid cells ```s*s```, the loss function of YOLO includes coordinate loss coordError, confidence loss IOUError and category prediction loss classError three parts.
 
-### 2.YOLO_v1
-### 3.YOLO_v1
-### 4.YOLO_v1
+### 2.YOLO_v2
+
+YOLOv2 introduces the BN operation to replace the dropout layer in YOLOv1 to prevent overfitting, start training with low resolution and fine-tune the classification network every 10 epochs of training, the model is gradully adjusted to high-resolution input. Moreover, the network structure also refers to the idea of Faster R-CNN, introduces the anchor box mechanism, and uses the K-means clustering method to select a priori frames of different widths and heights. By measuring the detection accuracy and speed, finally selects 5 anchor frames.YOLOv2 use Darknet-19 as the backbone.
+![avatar](data/yolov2.png)
+
+YOLOv2 improves the detection ability of small objects through the fusion of high and low dimensional features. At the same time, the strategy of using small-size convolution kernels and pre-selected boxes reduces the amount of calculation of the network.
+
+### 3.YOLO_v3
+### 4.YOLO_v4
 
 ## Reference
 
