@@ -88,7 +88,6 @@ In the feature pyramid structure, YOLOv4 uses the SPP structure and the PANet st
 [Metrics](https://github.com/rafaelpadilla/Object-Detection-Metrics)
 In the topics below there are some comments on the most popular metrics used for object detection.
 
-
 ## Reference
 
 - [abeardear](https://github.com/abeardear)
