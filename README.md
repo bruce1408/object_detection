@@ -5,9 +5,7 @@
 ![](https://img.shields.io/badge/platform-Pytorch-brightgreen.svg)
 ![](https://img.shields.io/badge/python-3.6-blue.svg)
 
-
-This repository provides code for deep learning researchers to learn [Object Detection](https://machinelearningmastery.com/object-recognition-with-deep-learning/)
-
+&nbsp;This repository provides code for deep learning researchers to learn [Object Detection](https://machinelearningmastery.com/object-recognition-with-deep-learning/)
 Object detection is the task of detecting instances of objects of a certain class within an image. The state-of-the-art methods can be categorized into two main types: one-stage methods and two stage-methods. One-stage methods prioritize inference speed, and example models include YOLO, SSD and RetinaNet. Two-stage methods prioritize detection accuracy, and example models include Faster R-CNN, Mask R-CNN and Cascade R-CNN.
 
 This repository contains:
@@ -54,9 +52,15 @@ copy all data into data directory
 ```
 
 ## Usage
-### 1.YOLO_v1
+### 1.[YOLO_v1](https://arxiv.org/abs/1506.02640)
 
-**Traditional convolutional neural networks need to go through two steps of preselection and classification. This method will bring about a decrease in detection speed. YOLO innovatively proposes to use regression to directly obtain location information and classification information without using preselection boxes. The generation link reduces the amount of calculation, thereby improving the training and detection speed of the network.**
+&nbsp;
+Traditional convolutional neural networks need to go through two steps of preselection and classification. This method will bring about a decrease in detection speed. YOLO innovatively proposes to use regression algorithm to directly obtain location information and classification without using pre-selected boxes. The generation link reduces the amount of calculation, thereby improving the training and detection speed of the network.
+
+
+
+
+
 
 ### 2.YOLO_v1
 ### 3.YOLO_v1
