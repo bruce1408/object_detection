@@ -10,10 +10,10 @@ Object detection is the task of detecting instances of objects of a certain clas
 
 This repository contains:
 
-- **YOLO_v1**
-- **YOLO_v2**
-- **YOLO_v3**
-- **YOLO_v4**
+- **[YOLO_v1](#yolov1)**
+- **[YOLO_v2](#yolov2)**
+- **[YOLO_v3](#yolov3)**
+- **[YOLO_v4](#yolov4)**
 - **Instance Segmentation**
 
   - **FCN**
@@ -62,7 +62,7 @@ YOLO creatively transforms the object detection problem into a regression proble
 
 YOLO_v1 use a network similar to GoogleNet as the backbone, the input image is ```448*448``` and the output is grid cells ```s*s```, the loss function of YOLO includes coordinate loss coordError, confidence loss IOUError and category prediction loss classError three parts.
 
-### 2.YOLO_v2
+### [2.YOLO_v2](https://arxiv.org/abs/1612.08242)
 
 YOLOv2 introduces the BN operation to replace the dropout layer in YOLOv1 to prevent overfitting, start training with low resolution and fine-tune the classification network every 10 epochs of training, the model is gradully adjusted to high-resolution input. Moreover, the network structure also refers to the idea of Faster R-CNN, introduces the anchor box mechanism, and uses the K-means clustering method to select a priori frames of different widths and heights. By measuring the detection accuracy and speed, finally selects 5 anchor frames.YOLOv2 use Darknet-19 as the backbone.
 ![avatar](data/yolov2.png)
@@ -80,6 +80,10 @@ YOLOv3 performs feature fusion in three dimensions of low, medium, and high, and
 
 ### 4.YOLO_v4
 
+YOLOv4 is proposed by AlexeyAB and others on the basis of YOLOv3. The original intention of YOLOv4 is to accelerate the running speed of the model and optimize the neural network in parallel computing, so that the model can be trained and tested on conventional GPUs. YOLOv4 uses CSPDarknet53 as the feature extraction backbone network, and introduces SPP and PAN into the backbone network to achieve cross-layer fusion of features. YOLOv4 cleverly combines a variety of optimization techniques, its AP on the MS COCO data set reached 43.5%, and the detection speed on Tesla V100 reached 65FPS. YOLOv4 has reached a high level of accuracy and speed, and is one of the best detection algorithms in the current target detection algorithm.
+![avatar](data/yolov4.png)
+
+In the feature pyramid structure, YOLOv4 uses the SPP structure and the PANet structure. The SPP structure is to maximize the pooling of the result of the feature layer P5 after three convolutions. In the pooling process, a total of four different scale pooling layers are used for processing, and the pooling core sizes are 1×1, 5×5, 9×9, and 13×13, respectively. After SPP processing, the receptive field can be effectively increased, and significant context characteristics can be separated. The PANet structure is a circular pyramid structure composed of convolution operations, up-sampling operations, feature layer fusion, and down-sampling operations. After the PANet structure, the different feature layers are fully integrated, which can effectively improve the feature extraction ability of defects. Finally, YOLOv4 Head uses the three feature layers processed by PANet to predict the results. Similar to the principle of YOLOv3 Head, it performs two convolution operations with sizes of 3×3 and 1×1. The check box is judged, whether it contains the target and the target type, and performs non-maximum suppression processing and a priori box adjustment to obtain the final prediction box.
 ## Reference
 
 
