@@ -24,9 +24,8 @@ This repository contains:
 - [Install](#install)
 - [Dataset](#Dataset)
 - [Usage](#usage)
-- [Related impacts](#Related-impacts)
-- [Contributors](#Contributors)
 - [Reference](#Reference)
+- [Contributors](#Contributors)
 
 ## Install
 
